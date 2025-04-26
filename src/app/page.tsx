@@ -77,6 +77,10 @@ export default function Home() {
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible}  />
         <HomeHeroComponent heroImages={heroImages} />
         <EventCategories />
+      <div onClick={()=> handleChangeLanguage()}>Change Lnaguage</div>
+       
+
+          <li>{t('thisyear')}</li>
         
        
       </main>
