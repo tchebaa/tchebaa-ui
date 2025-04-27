@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-export default function HeaderDetailsBody({headerPage}) {
+export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
 
     const [accountModal, setAccountModal] = useState(false)
 

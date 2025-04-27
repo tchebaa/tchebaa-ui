@@ -11,7 +11,7 @@ import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
 
 
 
-export default function SearchBody({headerPage}) {
+export default function SearchBody({headerPage}: {headerPage: string}) {
 
     //const {auth} = useAuth()
    // const { endDate, startDate, setEndDate, setStartDate} = useInput()

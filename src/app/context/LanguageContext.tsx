@@ -54,7 +54,13 @@ export function LanguageProvider({children}: ChildrenProps) {
     const {t} = useTranslation()
  
    // const { locale, locales, defaultLocale } = useRouter();
-    
+
+   const handleChangeLanguage = (languageCode: string) => {
+    setLoadingLanguage(true);
+    i18next.changeLanguage(languageCode);
+    setCurrentLanguageCode(languageCode);
+    setLoadingLanguage(false);
+  };
 
 
 
@@ -121,7 +127,7 @@ export function LanguageProvider({children}: ChildrenProps) {
 */
 
   return(
-    <LanguageContext.Provider value={{loadingLanguage, setLoadingLanguage, currentLanguageCode, setCurrentLanguageCode, t}} >{children}</LanguageContext.Provider>
+    <LanguageContext.Provider value={{loadingLanguage, setLoadingLanguage, currentLanguageCode, setCurrentLanguageCode, handleChangeLanguage, t}} >{children}</LanguageContext.Provider>
   )
 
 }

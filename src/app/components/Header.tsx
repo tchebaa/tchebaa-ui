@@ -1,14 +1,16 @@
 "use client"
 
 import {useState, Dispatch, SetStateAction} from 'react'
-import SearchBody from './SearchBody';
-import HeaderDetailsBody from './HeaderDetailsBody';
+//import SearchBody from './SearchBody';
+//import HeaderDetailsBody from './HeaderDetailsBody';
 import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import SearchModal from './SearchModal';
-import SideMenu from './SideMenu';
+//import SearchModal from './SearchModal';
+//import SideMenu from './SideMenu';
 import Image from 'next/image'
 import Link from 'next/link';
+import HeaderDetailsBody from './HeaderDetailsBody';
+import SideMenu from './SideMenu';
 
 
 

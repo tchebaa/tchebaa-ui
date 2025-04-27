@@ -10,7 +10,7 @@ import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
 import { MdClose, MdOutlineLocationOn, MdOutlineGpsFixed   } from "react-icons/md";
 
 import dayjs from 'dayjs';
-import DateSelectComponents from "./DateSelectComponent"
+// DateSelectComponents from "./DateSelectComponent"
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 import {useLoadScript, useJsApiLoader, Libraries} from '@react-google-maps/api'
 
@@ -25,18 +25,18 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
     const [searchTerm, setSearchTerm] = useState('')
     const [locationComponent, setLocationComponent] = useState('')
 
-
-    const handleLocationChange = (value) => {
+/** */
+    const handleLocationChange = (value: string) => {
         
         setLocationComponent(value)
        // console.log(value)
        }
     
-       const handleLocationSelect = async (value) => {
+       const handleLocationSelect = async (value: string) => {
 
            console.log(value, 'value')
 
-           setLocationName(value)
+        //   setLocationName(value)
 
         const selectedLocation = await geocodeByAddress(value)
     
@@ -48,8 +48,8 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
     
         console.log(locationCoords, 'value3')
 
-        setLat(locationCoords.lat)
-        setLng(locationCoords.lng)
+      //  setLat(locationCoords.lat)
+      //  setLng(locationCoords.lng)
         setLocationComponent('')
           
     
@@ -96,7 +96,7 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
                                                         const style ={width: '90%'}
                                                     
                                                         return (
-                                                                <button key={i} className="border p-1 hover:bg-gray-100  max-w-sm text-black " {...getSuggestionItemProps(suggestion, {style})} >
+                                                                <button className="border p-1 hover:bg-gray-100  max-w-sm text-black " {...getSuggestionItemProps(suggestion, {style})} >
                                                                     {suggestion.description}
                                                                 </button>)
                                                     })}
@@ -109,13 +109,13 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
                             
                         </div>
                         <div className="w-full flex items-center mt-5 mb-2 justify-between">
-                            <div className="text-black">{locationName}</div>
+                            <div className="text-black">{}</div>
                             <div className='pr-2 cursor-pointer'>
                                 <MdOutlineLocationOn size={25} color='#00BDFE' />
                             </div>
                         </div>
                          
-                        <DateSelectComponents />
+                        
                           
                     </div>
                     <div className=' w-5/12  flex items-center justify-center mt-5 '>

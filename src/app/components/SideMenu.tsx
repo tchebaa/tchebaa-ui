@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect,  Dispatch, SetStateAction} from 'react'
 import { BsPersonCircle, BsCalendarPlus} from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp, MdOutlineAddchart, MdOutlineNotificationsActive} from "react-icons/md";
 import { FiMessageSquare} from "react-icons/fi";
@@ -14,7 +14,7 @@ import { MdClose } from "react-icons/md";
 //import {useAuth} from '../context/AuthContext'
 
 
-export default function SideMenu({setSearchModalVisible, setMenuModalVisible}) {
+export default function SideMenu({setSearchModalVisible, setMenuModalVisible, menuModalVisible}: {setSearchModalVisible: Dispatch<SetStateAction<boolean>>, setMenuModalVisible: Dispatch<SetStateAction<boolean>>, menuModalVisible: boolean}) {
 
     const [accountModal, setAccountModal] = useState(false)
 
