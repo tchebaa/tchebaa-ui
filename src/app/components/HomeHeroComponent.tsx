@@ -33,8 +33,8 @@ export default function HomeHeroComponent({heroImages}: {heroImages: string []})
                     <div className='text-3xl font-extrabold px-2 bg-gradient-to-r from-purple-400 to-white ml-20'>TO ANY SPECIAL PLACE</div>
                 </div>
                 <div className='flex flex-row items-center justify-between mt-5 w-11/12  max-w-2xl'>
-                    <div className='border p-2 rounded-md border-gray-400  cursor-pointer hover:border-2  bg-gradient-to-r from-green-300 to-cyan-500 ' onClick={()=> {setPlatformType('Android'); setOpenAppError(!openAppError)}}><BiLogoPlayStore size={62} color='white'/></div>
-                    <div className='border p-2 border-gray-400 rounded-md  cursor-pointer hover:border-2 bg-gradient-to-r from-cyan-500 to-green-300 ' onClick={()=> {setPlatformType('iOS'); setOpenAppError(!openAppError)}}><BiLogoApple size={62} color='white' /></div>
+                    <div className='border p-2 rounded-md border-gray-400  cursor-pointer hover:border-2  bg-gradient-to-r from-green-300 to-cyan-500 '><BiLogoPlayStore size={62} color='white'/></div>
+                    <div className='border p-2 border-gray-400 rounded-md  cursor-pointer hover:border-2 bg-gradient-to-r from-cyan-500 to-green-300 ' ><BiLogoApple size={62} color='white' /></div>
 
                 </div>
             </div>
