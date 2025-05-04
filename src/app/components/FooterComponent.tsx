@@ -18,21 +18,21 @@ export default function FooterComponent(){
                 <Link className="cursor-pointer" href='/' passHref target='_blank'>
                   
                         <div className="cursor-pointer">
-                            <FaFacebookF size={24}/>
+                            <FaFacebookF size={24} color="black"/>
                         </div>
                    
                 </Link>
                 <Link className="cursor-pointer" href="https" passHref target='_blank'>
                     
                         <div className="ml-10 cursor-pointer">
-                        <AiOutlineTwitter size={30} />
+                        <AiOutlineTwitter size={30} color="black"/>
                         </div>
                    
                 </Link>
                 <Link className="cursor-pointer" href="/" passHref target='_blank'>
                 
                         <div className="ml-10 cursor-pointer">
-                            <AiOutlineInstagram size={30} />
+                            <AiOutlineInstagram size={30} color="black"/>
                         </div>
                   
                 </Link>
