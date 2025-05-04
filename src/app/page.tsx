@@ -1,6 +1,6 @@
 "use client"
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Image from "next/image";
 import {useTranslations} from 'next-intl';
 import Cookies from 'js-cookie';
@@ -10,6 +10,15 @@ import SearchModal from './components/SearchModal';
 import FooterComponent from './components/FooterComponent';
 import HomeHeroComponent from './components/HomeHeroComponent';
 import EventCategories from './components/EventCategories';
+import LocationDateComponent from './components/LocationDateComponent';
+import moment from 'moment';
+import {useLocation} from './context/LocationContext'
+import { generateClient } from 'aws-amplify/data';
+import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
+
+
+
+const client = generateClient<Schema>();
 
 const heroImages = [
   'https://firebasestorage.googleapis.com/v0/b/tukiofusion.appspot.com/o/fusion9.png?alt=media&token=dcdcaf03-d213-4c5b-a4b7-52cd37cb558b',
@@ -36,6 +45,54 @@ const heroImages = [
 
 export default function Home() {
 
+  interface TicketPrice {
+    adultPrice: number;
+    adolescentPrice: number;
+    childPrice: number;
+    ticketTitle: string;
+    ticketNumber: number;
+  }
+  
+  interface DateTimePrice {
+    eventDate: string;
+    eventDays: number;
+    eventHours: number;
+    eventMinutes: number;
+    eventEndDate: string;
+    ticketPriceArray: TicketPrice[];
+  }
+  
+   interface EventImage {
+    aspectRatio: string;
+    url: string;
+  }
+  
+  interface Location {
+    type: string;
+    coordinates: number[];
+  }
+  
+interface Event {
+    eventName: string;
+    eventDescription: string;
+    email: string;
+    place: boolean;
+    personType: boolean;
+    companyEmail: string;
+    companyName: string;
+    personName: string;
+    sponsored: boolean;
+    eventMainImage: EventImage;
+    eventImage2: EventImage;
+    eventImage3: EventImage;
+    eventImage4: EventImage;
+    dateTimePriceList: DateTimePrice[];
+    ageRestriction: string[];
+    categories: string[];
+    eventAddress: string;
+    location: Location;
+  }
+
 
   const [loadParticles, setLoadParticles] = useState(true) 
   const [headerPage, setHeaderPage] = useState<string>('home')
@@ -54,9 +111,15 @@ export default function Home() {
   const [homeOrganizers, setHomeOrganizers] = useState([])
   const [loadingHomeOrganizers, setLoadingHomeOrganizers] = useState(true)
 
+  const [loadingEvents, setLoadingEvents] = useState<boolean>(true)
+  const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
+  const [events, setEvents] = useState<Event []>([])
+  const [startDate, setStartDate] = useState<string>(moment(new Date()).format().toString())
+
 
   const t = useTranslations();
   const router = useRouter();
+  const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
   
    const handleChangeLanguage = () => {
   
@@ -69,18 +132,60 @@ export default function Home() {
   
     }
 
+    const handleGetEvents = async () => {
+
+      try {
+
+          setErrorLoadingEvents('')
+          setLoadingEvents(true)
+  
+          const { data, errors } = await client.queries.searchEventsWithFilter({
+                 
+          startDate: startDate,
+          latitude: userLocation?.latitude,
+          longitude: userLocation?.longitude
+              
+          });
+
+          
+
+          if(data) {
+
+            const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
+            setEvents(filtered as Event[]);
+          }
+
+          
+          setLoadingEvents(false)
+          
+
+          
+          
+
+
+      } catch(e) {
+
+         // setErrorLoadingEvents(e.message)
+          
+
+      }
+
+
+  }
+
+
+ 
+
   
 
   return (
     <div className="">
-      <main className="flex min-h-screen  bg-white flex-col items-center justify-between ">
+      <main className="flex min-h-screen  bg-white flex-col items-center  ">
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible}  />
         <HomeHeroComponent heroImages={heroImages} />
+        <LocationDateComponent/>
         <EventCategories />
-      <div onClick={()=> handleChangeLanguage()}>Change Lnaguage</div>
-       
-
-          <li>{t('thisyear')}</li>
+        
         
        
       </main>

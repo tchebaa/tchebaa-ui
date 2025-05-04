@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale} from 'next-intl/server';
+import {LocationProvider} from '../app/context/LocationContext'
 
 
 
@@ -48,7 +49,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider>
-        {children}
+          <LocationProvider>
+            {children}
+          </LocationProvider>
         </NextIntlClientProvider>
         
        

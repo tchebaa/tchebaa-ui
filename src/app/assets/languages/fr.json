@@ -243,6 +243,8 @@
     "eventenddate": "Date de fin de l'événement",
     "noconversations": "Aucune conversation",
     "errorgettingconversations": "Erreur lors de l'obtention des conversations",
-    "notification": "Notification"
+    "notification": "Notification",
+    "notifications": "Notifications",
+    "deleteaccount": "Supprimer le compte"
     
 }

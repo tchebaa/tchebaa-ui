@@ -243,7 +243,9 @@
     "eventenddate": "Event end date",
     "noconversations": "No conversations",
     "errorgettingconversations": "Error getting conversations",
-    "notification": "Notification"
+    "notification": "Notification",
+    "notifications": "Notifications",
+    "deleteaccount":"Delete account"
     
 
 }
