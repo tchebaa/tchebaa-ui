@@ -1,7 +1,7 @@
 "use client"
 
 import moment from "moment"
-import { AiOutlineTwitter, AiOutlineInstagram, AiOutlineCopyrightCircle } from "react-icons/ai";
+import { AiOutlineTwitter, AiOutlineInstagram, AiOutlineCopyrightCircle, AiOutlineTikTok } from "react-icons/ai";
 import Link from 'next/link';
 import { FaFacebookF } from "react-icons/fa";
 import Image from 'next/image'
@@ -25,11 +25,11 @@ export default function FooterComponent(){
                 <Link className="cursor-pointer" href="https" passHref target='_blank'>
                     
                         <div className="ml-10 cursor-pointer">
-                        <AiOutlineTwitter size={30} color="black"/>
+                        <AiOutlineTikTok size={24} color="black"/>
                         </div>
                    
                 </Link>
-                <Link className="cursor-pointer" href="/" passHref target='_blank'>
+                <Link className="cursor-pointer" href="https://www.instagram.com/tchebaa_int/?hl=en" passHref target='_blank'>
                 
                         <div className="ml-10 cursor-pointer">
                             <AiOutlineInstagram size={30} color="black"/>
