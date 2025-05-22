@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, Dispatch, SetStateAction} from 'react'
 import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
 import { MdClose } from "react-icons/md";
@@ -12,15 +12,15 @@ import dayjs, { Dayjs } from 'dayjs';
 import moment from 'moment'
 
 
-export default function DateSelectComponents() {
+export default function DateSelectComponents({startDate, setStartDate, endDate, setEndDate}: {startDate: string | undefined, endDate: string, 
+    setStartDate: (data: string) => void, setEndDate: (data: string) => void
+}) {
     
 
     
     //const { endDate, startDate,  setEndDate, setStartDate,  dayType, setDayType} = useInput()
     const [newStartDate, setNewStartDate] = useState(new Date());
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
-
+   
     const [value, setValue] = useState({
         
     });

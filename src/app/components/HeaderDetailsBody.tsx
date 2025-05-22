@@ -91,8 +91,8 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                     
                     {languageModal ? 
                     <div className='flex flex-col bg-white absolute border  '>
-                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3' onClick={()=> handleChangeLanguage('en')}>EN</div>
-                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3' onClick={()=> handleChangeLanguage('fr')}>FR</div>
+                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> handleChangeLanguage('en')}>EN</div>
+                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> handleChangeLanguage('fr')}>FR</div>
                     </div>: null}
                 </div>
                 
@@ -105,8 +105,8 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
             </div>: 
             null}
             {headerPage === 'home' ? 
-            <Link className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer' href={{ pathname: '../pages/homeMessage', query: { pageMessageType: 'homeMessage' } }} passHref>
-                <div><FiMessageSquare size={20}/></div>
+            <Link className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer' href={{ pathname: '../pages/chatsPage', query: { pageMessageType: 'homeMessage' } }} passHref>
+                <div><FiMessageSquare size={20} color='black'/></div>
                 <div className='ml-2 text-black'>{t('messages')}</div>
             </Link>: 
             null}
@@ -115,12 +115,12 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                 <div className='ml-2 text-black'>{t('notifications')}</div>
             </div>
             <div className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
-                <div><IoTicketOutline size={24}/></div>
-                <div className='ml-2 text-black'>{t('bookings')}</div>
+                <div><IoTicketOutline size={24} color='black'/></div>
+                <div className='ml-2 text-black'>{t('tickets')}</div>
             </div>
-            <Link className="cursor-pointer" href={{ pathname: '../pages/dashboardLandingPage' }} passHref target='_blank'>
+            <Link className="cursor-pointer" href={{ pathname: '../pages/postEventPage' }} passHref target='_blank'>
                 <div className='flex flex-row items-center  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
-                    <div><MdOutlineAddchart size={25} /> </div>
+                    <div><MdOutlineAddchart size={25} color='black'/> </div>
                     <div className='ml-2 text-black'>{t('post')}</div>
                 </div>
             </Link>
@@ -130,10 +130,10 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                     <div className="ml-2">
                        {!accountModal ? 
                        <div >
-                            <MdOutlineKeyboardArrowDown size={20} />
+                            <MdOutlineKeyboardArrowDown size={20} color='black'/>
                         </div> : 
                         <div >
-                            <MdOutlineKeyboardArrowUp size={20} />
+                            <MdOutlineKeyboardArrowUp size={20} color='black'/>
                         </div> }
                     </div>
                     <div className='text-black'>{t('account')}</div>

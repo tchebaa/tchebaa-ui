@@ -5,6 +5,17 @@ import "./globals.css";
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale} from 'next-intl/server';
 import {LocationProvider} from '../app/context/LocationContext'
+import {LikeProvider} from '../app/context/LikedContext'
+import {AdminProvider} from '../app/context/TchebaaAdminContext'
+import {UserProvider} from '../app/context/UserContext'
+import {DateProvider} from '../app/context/DateContext'
+import {Amplify} from 'aws-amplify'
+import { generateClient } from 'aws-amplify/data';
+import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
+import outputs from '../../amplify_outputs.json'
+
+
+
 
 
 
@@ -49,9 +60,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider>
-          <LocationProvider>
-            {children}
-          </LocationProvider>
+          <UserProvider>
+            <LikeProvider>
+              <LocationProvider>
+                <AdminProvider>
+                  <DateProvider>
+                    {children}
+                  </DateProvider>
+                </AdminProvider>
+              </LocationProvider>
+            </LikeProvider>
+          </UserProvider>
         </NextIntlClientProvider>
         
        

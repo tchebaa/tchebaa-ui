@@ -215,10 +215,10 @@ export default function LocationDateComponent() {
     return(
         <div className="flex w-full flex-col items-center justify-center z-20 bg-white  mt-10 ">
             <div className='max-w-6xl w-11/12 '>
-                <div className='flex md:flex-row flex-col'>
+                <div className='flex md:flex-row flex-col items-start'>
                     <div className='border py-2 px-4 rounded-3xl hover:shadow'>
                         <div className=' flex flex-row items-center cursor-pointer' onClick={()=> handleLocationOpen()}>
-                            <div className='text-black'> Location</div>
+                            <div className='text-black'>{t('location')} </div>
                             <div>
                                 {!openLocationComponent ? 
                                 <MdOutlineKeyboardArrowDown color='black' size={20}/>
@@ -235,7 +235,7 @@ export default function LocationDateComponent() {
                                     >
                                         {({getInputProps, suggestions, getSuggestionItemProps, loading})=> (
                                             <div className="w-full">
-                                                <input  className="w-11/12  border px-1 py-2 mt-1" {...getInputProps({placeholder: 'Location'})} />
+                                                <input  className="w-11/12  border px-1 py-2 mt-1" {...getInputProps({placeholder: t('location')})} />
                                                 <div className="w-11/12 max-w-sm absolute  z-10 bg-white flex flex-col ">
                                                     {loading ? <div className='text-black'>...loading</div>: null}
                                                     {suggestions.map((suggestion, i) =>{
@@ -260,19 +260,19 @@ export default function LocationDateComponent() {
                     </div>
                     <div className='md:ml-5 mt-2 md:mt-0 border hover:shadow rounded-3xl'>
                         <div className=' py-2 px-4  flex flex-row items-center' onClick={()=> handleDateOpen()}>
-                            <div color='text-black'> Date</div>
+                            <div color='text-black'>{t('date')}</div>
                             <div>{!openDateComponent ? 
                                 <MdOutlineKeyboardArrowDown color='black' size={20}/>
-                                :<MdOutlineKeyboardArrowUp color='black'/>}</div>
+                                :<MdOutlineKeyboardArrowUp color='black' size={20}/>}</div>
                         </div>
                         {openDateComponent ? 
                         <div className=''>
                             {dayType === 'calendar' ? 
                             <div className='border border-green-400 p-1 mt-2 flex flex-row'>
-                                <DateSelectComponents/>
+                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
                             </div>:
                             <div className='border p-1 mt-2 flex flex-row'>
-                                <DateSelectComponents/>
+                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
                             </div>}
                             
                             <div className=''>

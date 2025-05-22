@@ -465,6 +465,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "site": {
+              "name": "site",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
             "companyEmail": {
               "name": "companyEmail",
               "isArray": false,
@@ -1622,5 +1629,5 @@
       }
     ]
   },
-  "version": "1.3"
+  "version": "1.4"
 }

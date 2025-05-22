@@ -55,6 +55,7 @@ export function LocationProvider({children}: ChildrenProps) {
     setLoadingLocation(true)
 
     try{
+      
 
         await axios({
             method: 'get',
@@ -64,7 +65,7 @@ export function LocationProvider({children}: ChildrenProps) {
             url: `https://ipapi.co/json/`
         }).then((response)=> {
             
-            console.log(response)
+            //console.log(response)
 
             setUserLocation({latitude: response.data.latitude, longitude: response.data.longitude})
 
@@ -75,7 +76,7 @@ export function LocationProvider({children}: ChildrenProps) {
         })
 
     } catch(error) {
-        console.log(error, 'ipapi')
+
         setLoadingLocation(false)
     }
 }

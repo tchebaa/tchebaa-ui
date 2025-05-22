@@ -1,5 +1,6 @@
 "use client"
 
+import {useEffect, useState} from 'react'
 import moment from "moment"
 import { AiOutlineTwitter, AiOutlineInstagram, AiOutlineCopyrightCircle, AiOutlineTikTok } from "react-icons/ai";
 import Link from 'next/link';
@@ -10,7 +11,15 @@ import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
 
 export default function FooterComponent(){
 
-    let currentDate =  moment(new Date()).format('YYYY')
+    const [year, setYear] = useState<string>('')
+
+    useEffect(()=> {
+
+        setYear(moment(new Date()).format('YYYY'))
+
+    },[])
+
+
 
     return(
         <div className="w-full flex flex-col items-center bg-gray-200">
@@ -22,10 +31,10 @@ export default function FooterComponent(){
                         </div>
                    
                 </Link>
-                <Link className="cursor-pointer" href="https" passHref target='_blank'>
+                <Link className="cursor-pointer" href="https://www.tiktok.com/@tchebaa.internati?lang=en" passHref target='_blank'>
                     
                         <div className="ml-10 cursor-pointer">
-                        <AiOutlineTikTok size={24} color="black"/>
+                        <AiOutlineTikTok size={30} color="black"/>
                         </div>
                    
                 </Link>
@@ -45,13 +54,6 @@ export default function FooterComponent(){
                   
                 </Link>
                 <Link className="cursor-pointer" href={{
-                    pathname: '../pages/careerPage'
-                }}>
-                    
-                        <h2 className=" ml-5 cursor-pointer hover:underline text-black">Careers</h2>
-                   
-                </Link>
-                <Link className="cursor-pointer" href={{
                     pathname: '../pages/privacyPolicyPage'
                 }}
                 passHref>
@@ -67,11 +69,11 @@ export default function FooterComponent(){
                    
                 </Link>
                 <Link className="cursor-pointer" href={{
-                    pathname: '../pages/covidSafetyPage'
+                    pathname: '../pages/dataProcessingAgreement'
                 }}
                 passHref>
                    
-                        <h2 className=" ml-3 cursor-pointer hover:underline text-black">Covid-19 Requirements</h2>
+                        <h2 className=" ml-3 cursor-pointer hover:underline text-black">DPA</h2>
                    
                 </Link>
                 <Link className="cursor-pointer" href={{
@@ -121,7 +123,7 @@ export default function FooterComponent(){
                     <AiOutlineCopyrightCircle size={18}/>
                     </div>
                     <p className=" ml-1  text-sm text-black">
-                    {currentDate} Tchebaa.
+                    {year} Tchebaa.
                     </p>
                     
                  </div>

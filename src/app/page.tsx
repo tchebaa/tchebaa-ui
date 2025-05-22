@@ -14,8 +14,16 @@ import LocationDateComponent from './components/LocationDateComponent';
 import moment from 'moment';
 import {useLocation} from './context/LocationContext'
 import { generateClient } from 'aws-amplify/data';
+import SignUpModal from './components/SignUpModal';
+import LoginModal from './components/LoginModal';
 import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
+import {Amplify} from 'aws-amplify'
+import HomeNearEvents from './components/HomeNearEvents';
+import outputs from '../../amplify_outputs.json'
 
+
+
+Amplify.configure(outputs)
 
 
 const client = generateClient<Schema>();
@@ -73,10 +81,11 @@ export default function Home() {
   }
   
 interface Event {
+    id: string;
     eventName: string;
     eventDescription: string;
     email: string;
-    place: boolean;
+    site: boolean;
     personType: boolean;
     companyEmail: string;
     companyName: string;
@@ -94,22 +103,16 @@ interface Event {
   }
 
 
+  const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
+
   const [loadParticles, setLoadParticles] = useState(true) 
   const [headerPage, setHeaderPage] = useState<string>('home')
   const [searchModalVisible, setSearchModalVisible] = useState<boolean>(false)
   const [menuModalVisible, setMenuModalVisible] = useState(false)
 
 
-  const [homeEvents, setHomeEvents] = useState([])
-  const [loadingHomeEvents, setLoadingHomeEvents] = useState(true)
-  const [pageNumber, setPageNumber] = useState(0)
-
-
-  const [homeSponsoredEvents, setHomeSponsoredEvents] = useState([])
-  const [loadingHomeSponsoredEvents, setLoadingHomeSponsoredEvents] = useState(true)
-
-  const [homeOrganizers, setHomeOrganizers] = useState([])
-  const [loadingHomeOrganizers, setLoadingHomeOrganizers] = useState(true)
+  const [loginModal, setLoginModal] = useState<boolean>(false)
+  const [signUpModal, setSignUpModal] = useState<boolean>(false)
 
   const [loadingEvents, setLoadingEvents] = useState<boolean>(true)
   const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
@@ -119,18 +122,21 @@ interface Event {
 
   const t = useTranslations();
   const router = useRouter();
-  const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
-  
-   const handleChangeLanguage = () => {
-  
-    
-  
-      Cookies.set('NEXT_LOCALE', 'en')
 
-      console.log('chnaged')
-      router.refresh();
+
+  useEffect(()=> {
+
+    setStartDate(moment(new Date()).format().toString())
+
+  },[])
+
   
-    }
+  
+   useEffect(()=> {
+
+    
+
+   },[])
 
   
 
@@ -176,6 +182,56 @@ interface Event {
   }
 
 
+  const handleGetEventsTest = async () => {
+
+    try{
+
+      
+          setErrorLoadingEvents('')
+          setLoadingEvents(true)
+  
+          const { data, errors } = await client.models.Event.list({
+                 
+        
+              
+          });
+
+          
+
+          if(data) {
+
+            const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
+            setEvents(filtered as Event[]);
+          }
+
+          
+          setLoadingEvents(false)
+
+    } catch(e) {
+
+       const error = e as Error;
+
+        if(error.message) {
+
+        setErrorLoadingEvents(error.message)
+        setLoadingEvents(false)
+
+        }
+      
+
+    }
+
+
+  }
+
+
+  useEffect(()=> {
+
+    handleGetEventsTest()
+
+  },[])
+
+
  
 
   
@@ -184,11 +240,27 @@ interface Event {
     <div className="">
       <main className="flex min-h-screen  bg-white flex-col items-center  ">
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible}  />
+        {searchModalVisible ? <SearchModal headerPage={headerPage} setMenuModalVisible={setMenuModalVisible} setSearchModalVisible={setSearchModalVisible} /> : null}
         <HomeHeroComponent heroImages={heroImages} />
         <LocationDateComponent/>
         <EventCategories />
-        
-        
+        <HomeNearEvents componentType={'home'} events={events} loadingEvents={loadingEvents} loginModal={loginModal} signUpModal={signUpModal} setLoginModal={setLoginModal} setSignUpModal={setSignUpModal}/>
+        {
+          loginModal ? 
+          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+          </div>
+          :
+          null
+        }
+        {
+          signUpModal ? 
+          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+          </div>
+          :
+          null
+        }
        
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
