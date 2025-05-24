@@ -8,6 +8,7 @@ import moment from 'moment';
 import {useLocation} from '../context/LocationContext';
 import {useTranslations} from 'next-intl';
 import DateSelectComponents from './DateSelectComponent';
+import {useDate} from '../context/DateContext'
 
 
 
@@ -15,12 +16,13 @@ export default function LocationDateComponent() {
 
 
     const libraries: Libraries = ['places'];
+    const {startDate, setStartDate, endDate, setEndDate} = useDate()
     const [openLocationComponent, setOpenLocationComponent] = useState(false)
     const [openDateComponent, setOpenDateComponent] = useState(false)
     const [locationComponent, setLocationComponent] = useState('')
     const [locationSelect, setLocationSelect] = useState('')
-    const [startDate, setStartDate] = useState<string>(moment(new Date()).format().toString())
-    const [endDate, setEndDate] = useState<string>('')
+    //const [startDate, setStartDate] = useState<string>(moment(new Date()).format().toString())
+   // const [endDate, setEndDate] = useState<string>('')
     const [dateFilter, setDateFilter] = useState<string>('all')
     const [dayType, setDayType] = useState('')
 
@@ -94,16 +96,16 @@ export default function LocationDateComponent() {
 
             setDateFilter('all')
 
-            setStartDate(moment(new Date()).format().toString())
-            setEndDate('')
+            setStartDate?.(moment(new Date()).format().toString())
+            setEndDate?.('')
         }
     
         if(code === 'today'){
 
             setDateFilter('today')
 
-            setStartDate(moment(new Date()).startOf('day').format().toString())
-            setEndDate(moment(new Date()).endOf('day').format().toString())
+            setStartDate?.(moment(new Date()).startOf('day').format().toString())
+            setEndDate?.(moment(new Date()).endOf('day').format().toString())
     
            // console.log(moment(new Date()).startOf('day').format())
     
@@ -116,8 +118,8 @@ export default function LocationDateComponent() {
 
             setDateFilter('tomorrow')
 
-            setStartDate(moment(new Date()).endOf('day').format().toString())
-            setEndDate(moment(new Date()).add(1, 'days').endOf('day').format().toString())
+            setStartDate?.(moment(new Date()).endOf('day').format().toString())
+            setEndDate?.(moment(new Date()).add(1, 'days').endOf('day').format().toString())
             
             
         }
@@ -125,8 +127,8 @@ export default function LocationDateComponent() {
     
             setDateFilter('thisweek')
 
-            setStartDate(moment(new Date()).startOf('isoWeek').format().toString())
-            setEndDate(moment(new Date()).endOf('isoWeek').format().toString())
+            setStartDate?.(moment(new Date()).startOf('isoWeek').format().toString())
+            setEndDate?.(moment(new Date()).endOf('isoWeek').format().toString())
             
             
         }
@@ -134,8 +136,8 @@ export default function LocationDateComponent() {
 
             setDateFilter('thisweekend')
 
-            setStartDate(moment(new Date()).endOf('isoWeek').subtract(2, 'days').format().toString())
-            setEndDate(moment(new Date()).endOf('isoWeek').format().toString())
+            setStartDate?.(moment(new Date()).endOf('isoWeek').subtract(2, 'days').format().toString())
+            setEndDate?.(moment(new Date()).endOf('isoWeek').format().toString())
             
         }
     
@@ -144,8 +146,8 @@ export default function LocationDateComponent() {
             setDateFilter('nextweek')
 
 
-            setStartDate(moment(new Date()).add(1, 'week').startOf('isoWeek').format().toString())
-            setEndDate(moment(new Date()).add(1, 'week').endOf('isoWeek').format().toString())
+            setStartDate?.(moment(new Date()).add(1, 'week').startOf('isoWeek').format().toString())
+            setEndDate?.(moment(new Date()).add(1, 'week').endOf('isoWeek').format().toString())
     
             
         }
@@ -153,16 +155,16 @@ export default function LocationDateComponent() {
 
             setDateFilter('thismonth')
 
-            setStartDate(moment(new Date()).startOf('month').format())
-            setEndDate(moment(new Date()).endOf('month').format())
+            setStartDate?.(moment(new Date()).startOf('month').format())
+            setEndDate?.(moment(new Date()).endOf('month').format())
         }
     
         if(code === 'nextmonth'){
 
             setDateFilter('nextmonth')
 
-            setStartDate(moment(new Date()).add(1, 'month').startOf('month').format())
-            setEndDate(moment(new Date()).add(1, 'month').endOf('month').format())
+            setStartDate?.(moment(new Date()).add(1, 'month').startOf('month').format())
+            setEndDate?.(moment(new Date()).add(1, 'month').endOf('month').format())
             
         }
     }
@@ -269,10 +271,10 @@ export default function LocationDateComponent() {
                         <div className=''>
                             {dayType === 'calendar' ? 
                             <div className='border border-green-400 p-1 mt-2 flex flex-row'>
-                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
+                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate!} endDate={endDate!} setEndDate={setEndDate!}/>
                             </div>:
                             <div className='border p-1 mt-2 flex flex-row'>
-                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
+                                <DateSelectComponents startDate={startDate} setStartDate={setStartDate!} endDate={endDate!} setEndDate={setEndDate!}/>
                             </div>}
                             
                             <div className=''>

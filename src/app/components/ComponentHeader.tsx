@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react'
 import Image from 'next/image'
-import { MdOutlineDashboardCustomize, MdOutlineCalendarMonth, MdPersonAddAlt, MdOutlineNotificationsActive, } from "react-icons/md";
+import { MdOutlineDashboardCustomize, MdOutlineCalendarMonth, MdPersonAddAlt, MdOutlineNotificationsActive, MdAdminPanelSettings } from "react-icons/md";
 
 import { GoOrganization } from "react-icons/go";
 import { FaPlus } from "react-icons/fa6";
@@ -11,13 +11,16 @@ import { GrSchedules } from "react-icons/gr";
 import { BsCalendarPlus, BsBookmarkCheck } from "react-icons/bs";
 import { FiMessageSquare} from "react-icons/fi";
 import { BiMessageRounded, BiSearch } from "react-icons/bi";
-
-
+import { TbCalendarUp } from "react-icons/tb";
+import {useTranslations} from 'next-intl';
 
 
 
 
 export default function ComponentHeader({category, id}: {category: string, id: string | null}) {
+
+
+    const t = useTranslations()
 
    /**
     * 
@@ -87,7 +90,7 @@ export default function ComponentHeader({category, id}: {category: string, id: s
                     <div><GrSchedules size={25} color='black' /></div>
                     :null}
 
-                    {category === 'Admins' ? 
+                    {category === 'allAdmins' ? 
                     <div><MdPersonAddAlt color='black'  size={25}/></div>
                     :null}
                     {category === 'Message' ? 
@@ -98,6 +101,18 @@ export default function ComponentHeader({category, id}: {category: string, id: s
                     :null}
                     {category === 'Notifications' ? 
                     <div><MdOutlineNotificationsActive color='black'  size={25}/></div>
+                    :null}
+                    {category === 'Manage' ? 
+                    <div><TbCalendarUp color='black'  size={25}/></div>
+                    :null}
+                    {category === 'eventBookings' ? 
+                    <div className='text-black font-semibold'>{t('bookings')}</div>
+                    :null}
+                    {category === 'analytics' ? 
+                    <div className='text-black font-semibold'>{t('analytics')}</div>
+                    :null}
+                    {category === 'admins' ? 
+                    <div ><MdAdminPanelSettings color='black'  size={30} /></div>
                     :null}
                     {category === 'company'  ?
                     <div  >

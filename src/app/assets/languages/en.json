@@ -245,7 +245,8 @@
     "errorgettingconversations": "Error getting conversations",
     "notification": "Notification",
     "notifications": "Notifications",
-    "deleteaccount":"Delete account"
+    "deleteaccount":"Delete account",
+    "dashboard": "Dashboard"
     
 
 }

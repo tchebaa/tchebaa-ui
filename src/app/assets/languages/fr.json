@@ -245,6 +245,7 @@
     "errorgettingconversations": "Erreur lors de l'obtention des conversations",
     "notification": "Notification",
     "notifications": "Notifications",
-    "deleteaccount": "Supprimer le compte"
+    "deleteaccount": "Supprimer le compte",
+    "dashboard": "Tableau de bord"
     
 }

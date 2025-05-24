@@ -202,10 +202,12 @@ interface Event {
 
             const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
             setEvents(filtered as Event[]);
+
+            setLoadingEvents(false)
           }
 
           
-          setLoadingEvents(false)
+          
 
     } catch(e) {
 

@@ -11,6 +11,8 @@ import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import {useTranslations} from 'next-intl';
+import {useUser} from '../context/UserContext'
+import {useAdmin} from '../context/TchebaaAdminContext'
 
 
 
@@ -18,11 +20,13 @@ import {useTranslations} from 'next-intl';
 export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
 
     const [accountModal, setAccountModal] = useState<boolean>(false)
-    const [languageModal, setLanguageModal] = useState<boolean>()
+    const [languageModal, setLanguageModal] = useState<boolean>(false)
 
     const [languageCode, setLanguageCode] = useState('en')
 
     const t = useTranslations();
+    const {userDetails} = useUser()
+    const {admins} = useAdmin()
 
     const router = useRouter()
 
@@ -111,10 +115,6 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
             </Link>: 
             null}
             <div className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
-                <div><MdOutlineNotificationsActive color='black'  size={25}/></div>
-                <div className='ml-2 text-black'>{t('notifications')}</div>
-            </div>
-            <div className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
                 <div><IoTicketOutline size={24} color='black'/></div>
                 <div className='ml-2 text-black'>{t('tickets')}</div>
             </div>
@@ -139,9 +139,21 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                     <div className='text-black'>{t('account')}</div>
                 </div>
                {accountModal ? 
-               <div className="w-40 h-20 mt-10 bg-white p-2 border absolute">
-                    
-                    
+               <div className="w-40 mt-10 bg-white p-2 border absolute">
+                    {userDetails ? 
+                    <div>
+                        <div className='font-semibold text-black'>{t('login')}</div>
+                        <div className='text-black font-semibold'>{t('signup')}</div>
+                        
+                    </div>
+                    :
+                    <div>
+                        <Link className='text-black font-semibold' href={{ pathname: '../pages/manageEventsPage', query: { screenName: 'main' } }} passHref>{t('manageevents')}</Link>
+                        <div className='text-black font-semibold'>{t('signout')}</div>
+                        <div className='text-black font-semibold'>{t('profile')}</div>
+                    </div>}
+                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold'>{t('administrator')}</Link>
+                    <div className='text-black font-semibold'>{t('settings')}</div>
                 </div>
 
                : null}

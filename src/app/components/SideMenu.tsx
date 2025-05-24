@@ -12,6 +12,8 @@ import { MdClose } from "react-icons/md";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import {useTranslations} from 'next-intl';
+import {useUser} from '../context/UserContext'
+import {useAdmin} from '../context/TchebaaAdminContext'
 //import {signOut} from 'firebase/auth';
 //import {auth} from '../firebase/firebase'
 //import {useAuth} from '../context/AuthContext'
@@ -24,6 +26,9 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
     const t = useTranslations();
 
     const router = useRouter()
+
+    const {userDetails} = useUser()
+    const {admins} = useAdmin()
 
    // const {setCurrentUser, currentUser} = useAuth()
 
@@ -70,10 +75,6 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                     <div className='ml-2 text-black'>{t('messages')}</div>
                 </Link>
                 <div className='flex flex-row items-center mt-2  lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
-                    <div><MdOutlineNotificationsActive color='black'  size={25}/></div>
-                    <div className='ml-2 text-black'>{t('notifications')}</div>
-                </div>
-                <div className='flex flex-row items-center mt-2  lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
                     <div><IoTicketOutline size={25} color='black'/></div>
                     <div className='ml-2 text-black'>{t('tickets')}</div>
                 </div>
@@ -99,7 +100,22 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                         <div className='color-black'>{t('account')}</div>
                     </div>
                 {accountModal ? 
-                <div className="w-40 h-20 mt-10 bg-white p-2 border absolute">
+                <div className="w-40  mt-10 bg-white p-2 border absolute">
+                    {!userDetails ? 
+                    <div>
+                        <div className='font-semibold text-black'>{t('login')}</div>
+                        <div className='text-black font-semibold'>{t('signup')}</div>
+                        
+                    </div>
+                    :
+                    <div>
+                        <div className='text-black font-semibold'>{t('manageevents')}</div>
+                        <div className='text-black font-semibold'>{t('signout')}</div>
+                        <div className='text-black font-semibold'>{t('profile')}</div>
+                    </div>}
+                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref className='text-black font-semibold'>{t('administrator')}</Link>
+                    <div className='text-black font-semibold'>{t('settings')}</div>
+                    
                     
                     
                 </div>

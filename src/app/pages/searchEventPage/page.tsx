@@ -12,11 +12,74 @@ import axios from 'axios';
 import LoginModal from '../../components/LoginModal';
 import SignUpModal from '../../components/SignUpModal';
 import { MdClose, MdModeEditOutline, MdDeleteForever  } from "react-icons/md";
+import HomeNearEvents from '../../components/HomeNearEvents';
+import FooterComponent from '../../components/FooterComponent';
 import ComponentHeader from '../../components/ComponentHeader';
+import { generateClient } from 'aws-amplify/data';
+import {type Schema} from '../../../../tchebaa-backend/amplify/data/resource'
+import {useTranslations} from 'next-intl';
+import {Amplify} from 'aws-amplify'
+import outputs from '../../../../amplify_outputs.json'
+
+
+Amplify.configure(outputs)
+
+const client = generateClient<Schema>();
 
 
 
 export default function SearchEventComponent() {
+
+
+     interface TicketPrice {
+    adultPrice: number;
+    adolescentPrice: number;
+    childPrice: number;
+    ticketTitle: string;
+    ticketNumber: number;
+  }
+  
+  interface DateTimePrice {
+    eventDate: string;
+    eventDays: number;
+    eventHours: number;
+    eventMinutes: number;
+    eventEndDate: string;
+    ticketPriceArray: TicketPrice[];
+  }
+  
+   interface EventImage {
+    aspectRatio: string;
+    url: string;
+  }
+  
+  interface Location {
+    type: string;
+    coordinates: number[];
+  }
+  
+interface Event {
+    id: string;
+    eventName: string;
+    eventDescription: string;
+    email: string;
+    site: boolean;
+    personType: boolean;
+    companyEmail: string;
+    companyName: string;
+    personName: string;
+    sponsored: boolean;
+    eventMainImage: EventImage;
+    eventImage2: EventImage;
+    eventImage3: EventImage;
+    eventImage4: EventImage;
+    dateTimePriceList: DateTimePrice[];
+    ageRestriction: string[];
+    categories: string[];
+    eventAddress: string;
+    location: Location;
+  }
+
 
    const searchParams = useSearchParams()
 
@@ -38,18 +101,101 @@ export default function SearchEventComponent() {
 
    const [likedEvents, setLikedEvents] = useState([])
 
-    const [homeEvents, setHomeEvents] = useState([])
-    const [loadingHomeEvents, setLoadingHomeEvents] = useState(true)
-    const [pageNumber, setPageNumber] = useState(0)
-    const [openMobileMap, setOpenMobileMap] = useState(false)
+    const [events, setEvents] = useState<Event []>([])
+    const [loadingEvents, setLoadingEvents] = useState(true)
+     const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
+    const [pageNumber, setPageNumber] = useState<number>(0)
+    const [openMobileMap, setOpenMobileMap] = useState<boolean>(false)
 
 
     useEffect(()=> {
-        console.log(searchTerm, allSearchTerm, 2)
+        handleGetNearEvents()
     },[allSearchTerm, searchTerm])
 
 
+    const handleGetEvents = async () => {
+
+      try {
+
+          setErrorLoadingEvents('')
+          setLoadingEvents(true)
+  
+          const { data, errors } = await client.queries.searchEventsWithFilter({
+          searchTerm: searchTerm,
+          categories: [category],      
+          startDate: startDate,
+          latitude: userLocation?.latitude,
+          longitude: userLocation?.longitude,
+          endDate: endDate
+              
+          });
+
+          
+
+          if(data) {
+
+            const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
+            setEvents(filtered as Event[]);
+          }
+
+          
+          setLoadingEvents(false)
+          
+
+          
+          
+
+
+      } catch(e) {
+
+         // setErrorLoadingEvents(e.message)
+          
+
+      }
+
+
+  }
+
+
     const handleGetNearEvents = async () => {
+
+        try{
+
+      
+          setErrorLoadingEvents('')
+          setLoadingEvents(true)
+  
+          const { data, errors } = await client.models.Event.list({
+                 
+        
+              
+          });
+
+          
+
+          if(data) {
+
+            const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
+            setEvents(filtered as Event[]);
+            console.log(data)
+          }
+
+          
+          setLoadingEvents(false)
+
+    } catch(e) {
+
+       const error = e as Error;
+
+        if(error.message) {
+
+        setErrorLoadingEvents(error.message)
+        setLoadingEvents(false)
+
+        }
+      
+
+    }
 
     }
          
@@ -82,17 +228,19 @@ export default function SearchEventComponent() {
                   </div>: null}
             </div>
                 
-        <div className='flex flex-row justify-between bg-white w-full lg:w-7/12 h-full border'>
-            
-            <div className="flex  w-full z-0 flex-col bg-white h-full ">
+            <div className='flex flex-row justify-between bg-white w-full lg:w-7/12 h-full  mb-5'>
                 
-                <SearchComponent categoryTitle={categoryTitle!} category={category!} setOpenMobileMap={setOpenMobileMap} searchTerm={searchTerm!} setSearchTerm={setSearchTerm!}
-                handleGetNearEvents={handleGetNearEvents} />
+                <div className="flex  w-full z-0 flex-col bg-white h-full ">
+                    
+                    <SearchComponent categoryTitle={categoryTitle!} category={category!} setOpenMobileMap={setOpenMobileMap} searchTerm={searchTerm!} setSearchTerm={setSearchTerm!}
+                    handleGetNearEvents={handleGetNearEvents} />
+                    
+                </div>
+                
                 
             </div>
-            
-            
-        </div>
+            <HomeNearEvents componentType={'home'} events={events} loadingEvents={loadingEvents} loginModal={loginModal} signUpModal={signUpModal} setLoginModal={setLoginModal} setSignUpModal={setSignUpModal}/>
+            <FooterComponent />
         </div>
     )
 }
