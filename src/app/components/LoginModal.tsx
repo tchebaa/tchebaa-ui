@@ -21,8 +21,10 @@ const client = generateClient<Schema>();
 
 
 
-export default function LoginModal({loginModal, setLoginModal, signUpModal, setSignUpModal}:
-     {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>}) {
+export default function LoginModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}:
+     {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>,
+      forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>
+     }) {
 
 
     const t = useTranslations()
@@ -179,14 +181,20 @@ export default function LoginModal({loginModal, setLoginModal, signUpModal, setS
                             <p className=" md:text-base text-white">{t('login')}</p>
                     </button>}
                     <div className="w-11/12 flex justify-end mt-3 justify-self-end">
-                        <button onClick={()=> setOpenForgetPassword(true)}>
+                        <button onClick={()=> {setForgotPasswordModal(true); setLoginModal(false); setSignUpModal(false)}}>
                             <p className=" flex justify-self-end mr-2  cursor-pointer hover:underline text-black">{t('forgotpassword')}</p>
                         </button>
                     </div>
                     
+                    <div className="flex mt-3">
+                            
+                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(false); setForgotPasswordModal(false)}}> 
+                                <p className="ml-3  border-b cursor-pointer text-black ">{t('didntconfirmemailresendcode')}</p>
+                            </div>
+                        </div>
                         <div className="flex mt-3">
                             <p className="text-black">Need an account?</p>
-                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(true)}}> 
+                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(true); setForgotPasswordModal(false)}}> 
                                 <p className="ml-3 font-bold border-b cursor-pointer text-black ">{t('signup')}</p>
                             </div>
                         </div>

@@ -19,6 +19,7 @@ import SignUpModal from './components/SignUpModal';
 import LoginModal from './components/LoginModal';
 import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
 import {Amplify} from 'aws-amplify'
+import ForgotPasswordModal from './components/ForgotPasswordModal';
 import HomeNearEvents from './components/HomeNearEvents';
 import { MdLocationOn } from "react-icons/md";
 import outputs from '../../amplify_outputs.json'
@@ -116,6 +117,7 @@ interface Event {
 
   const [loginModal, setLoginModal] = useState<boolean>(false)
   const [signUpModal, setSignUpModal] = useState<boolean>(false)
+  const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
 
   const [loadingEvents, setLoadingEvents] = useState<boolean>(true)
   const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
@@ -249,7 +251,17 @@ interface Event {
         {
           loginModal ? 
           <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+          </div>
+          :
+          null
+        }
+        {
+          forgotPasswordModal ? 
+          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
           </div>
           :
           null
@@ -257,7 +269,8 @@ interface Event {
         {
           signUpModal ? 
           <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
           </div>
           :
           null

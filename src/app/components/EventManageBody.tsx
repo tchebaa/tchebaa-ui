@@ -192,7 +192,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                     <div className='text-black mt-1'>{eventAddress}</div>
                     <div className='text-black mt-1'>{eventId}</div>
                     
-                    {loadingDelete ? <div>{t('deleting')}</div> :
+                    {loadingDelete ? <div className='text-black font-semibold'>{t('deleting')}</div> :
                     <div className='flex flex-row items-center justify-between mt-2'>
                         <div className='border-2 px-1 cursor-pointer'  onClick={()=> setDeleteModal(false)}>
                             <div className='text-black font-semibold'>{t('no')}</div>
@@ -209,7 +209,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                       <div className='w-full h-44 max-w-sm rounded-md border'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>
                       </div>:
-                      <div >{t('loading')}</div>} 
+                      <div className='text-black font-semibold'>{t('loading')}</div>} 
                     </div>: null}
                     
                     {item.eventMainImage.aspectRatio === 'b'  ? 
@@ -224,7 +224,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                             </div>
                           
                       </div>:
-                      <div >{t('loading')}</div>}
+                      <div className='text-black font-semibold'>{t('loading')}</div>}
                     </div> : null}
                     {item.eventMainImage.aspectRatio === 'c'  ? 
                     <div>
@@ -239,7 +239,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
 
                         
                     </div>:
-                    <div >{t('loading')}</div>}
+                    <div className='text-black font-semibold'>{t('loading')}</div>}
                     </div> : null}
                     
                     <div className='mt-2 w-full'>

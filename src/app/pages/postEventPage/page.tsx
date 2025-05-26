@@ -28,6 +28,7 @@ import PostDateTimeDuration from '../../components/PostDateTimeDuration';
 import Header from '../../components/Header';
 import LoginModal from '../../components/LoginModal';
 import SignUpModal from '../../components/SignUpModal';
+import ForgotPasswordModal from '../../components/ForgotPasswordModal';
 
 
 
@@ -53,6 +54,8 @@ export default function PostEventPage() {
     const id = searchParams.get('id');
     const {userDetails} = useUser()
     const router = useRouter()
+    const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
+    
 
     const [newScreenName, setNewScreenName] = useState<string | string [] >(screenName ?? "")
 
@@ -1523,7 +1526,8 @@ const handleGetEvent = async () => {
         {
             loginModal ? 
             <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
             </div>
             :
             null
@@ -1531,7 +1535,17 @@ const handleGetEvent = async () => {
         {
             signUpModal ? 
             <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+            </div>
+            :
+            null
+        }
+        {
+            !forgotPasswordModal ? 
+            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
             </div>
             :
             null

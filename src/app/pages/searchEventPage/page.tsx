@@ -90,6 +90,7 @@ interface Event {
    const [headerPage, setHeaderPage] = useState('category')
    const [loginModal, setLoginModal] = useState(false)
    const [signUpModal, setSignUpModal] = useState(false)
+    const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
 
    
 
@@ -225,19 +226,15 @@ interface Event {
             <div className="w-full flex items-center flex-col  ">
                {loginModal ?
                   <div className='fixed z-40 w-full max-w-lg border top-16 pb-10 bg-white rounded-md'>
-                     <div className='bg-white flex flex-row items-center justify-between p-2'>
-                        <div></div>
-                        <div className='cursor-pointer' onClick={()=> setLoginModal(false)}><MdClose color='black' size={25} /></div>
-                     </div>
-                     <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                     
+                     <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
                   </div>: null}
                   {signUpModal ? 
                   <div className='fixed z-40 w-full max-w-lg border top-16 pb-10 bg-white rounded-md'>
-                     <div className='bg-white flex flex-row items-center justify-between p-2'>
-                        <div></div>
-                        <div className='cursor-pointer' onClick={()=> setSignUpModal(false)}><MdClose color='black' size={25} /></div>
-                     </div>
-                     <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}/>
+                    
+                     <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
                   </div>: null}
             </div>
                 

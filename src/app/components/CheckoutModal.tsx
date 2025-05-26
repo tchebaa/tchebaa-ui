@@ -11,7 +11,7 @@ import { FaRegSquarePlus, FaRegSquareMinus } from "react-icons/fa6";
 
 
 
-export default function TicketPrice({}) {
+export default function CheckOutMOdal({}) {
     
 
     const  t = useTranslations()

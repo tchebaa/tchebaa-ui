@@ -10,6 +10,7 @@ import Image from 'next/image'
 import Header from '../../components/Header';
 import LoginModal from '../../components/LoginModal'
 import SignUpModal from '../../components/SignUpModal'
+import ForgotPasswordModal from '../../components/ForgotPasswordModal'
 
 
 const profileImages = [
@@ -47,6 +48,7 @@ function AboutUsComponent() {
     const [menuModalVisible, setMenuModalVisible] = useState(false)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
+    const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
 
 
     return(
@@ -54,7 +56,8 @@ function AboutUsComponent() {
             {
                 loginModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
                 </div>
                 :
                 null
@@ -62,7 +65,17 @@ function AboutUsComponent() {
             {
                 signUpModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                </div>
+                :
+                null
+            }
+            {
+                !forgotPasswordModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
                 </div>
                 :
                 null

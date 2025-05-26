@@ -15,6 +15,7 @@ import LoginModal from '../../components/LoginModal'
 import SignUpModal from '../../components/SignUpModal'
 import {Amplify} from 'aws-amplify'
 import outputs from '../../../../amplify_outputs.json'
+import ForgotPasswordModal from '../../components/ForgotPasswordModal'
 
 
 Amplify.configure(outputs)
@@ -69,6 +70,7 @@ function ChatsComponent() {
     const [loadingConversationsError, setLoadingConversationsError] = useState<boolean>(true)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
+    const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
 
 
     const handleGetConversations = async () => {
@@ -137,21 +139,32 @@ function ChatsComponent() {
                 <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
                 setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
                 {
-                          loginModal ? 
-                          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
-                          </div>
-                          :
-                          null
-                        }
-                        {
-                          signUpModal ? 
-                          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
-                          </div>
-                          :
-                          null
-                        }
+                    loginModal ? 
+                    <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                    <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+                    forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                    </div>
+                    :
+                    null
+                }
+                {
+                    signUpModal ? 
+                    <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                    <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
+                    forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                    </div>
+                    :
+                    null
+                }
+                {
+                    !forgotPasswordModal ? 
+                    <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                    <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                    forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                    </div>
+                    :
+                    null
+                }
                 <div className='w-full flex flex-col items-center mt-14'>
                     <div className='w-full h-20 absolute max-w-lg flex flex-col items-center ' 
                     style={{backgroundImage: 'url(' + `${profileImages[Math.floor(Math.random() * profileImages.length)]}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>

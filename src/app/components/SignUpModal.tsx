@@ -22,7 +22,10 @@ const client = generateClient<Schema>();
 
 
 
-export default function SignUpModal({loginModal, setLoginModal, signUpModal, setSignUpModal}: {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>}) {
+export default function SignUpModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}: 
+  {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>, 
+    forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>
+  }) {
 
     const {userDetails, setUserDetails} = useUser()
     const t = useTranslations()
@@ -205,10 +208,16 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
                     style={{backgroundColor: '#1184e8'}} onClick={()=> handleSignup()}>
                             <p className=" md:text-base text-white">{t('signup')}</p>
                     </button>}
+                    <div className="flex mt-3">
+                            
+                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(false); setForgotPasswordModal(false)}}> 
+                                <p className="ml-3  border-b cursor-pointer text-black ">{t('didntconfirmemailresendcode')}</p>
+                            </div>
+                        </div>
                         <div className="mt-5 flex">
                             <p className="text-black">{t('alreadyhaveanaccount')}</p>
                         <div>
-                    <p className="ml-3 font-bold border-b cursor-pointer text-black" onClick={()=> {setSignUpModal(false); setLoginModal(true)}}>{t('login')}</p>
+                    <p className="ml-3 font-bold border-b cursor-pointer text-black" onClick={()=> {setSignUpModal(false); setLoginModal(true); setForgotPasswordModal(false)}}>{t('login')}</p>
                     </div>
                 </div> 
                         
