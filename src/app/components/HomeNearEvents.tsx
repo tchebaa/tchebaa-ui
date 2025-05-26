@@ -86,12 +86,8 @@ export default function HomeNearEvents({componentType, events, loadingEvents, lo
         <div className=" w-full  max-w-7xl flex items-center flex-col pt-4 border-t" >
            <div className=" flex flex-row items-center justify-between w-11/12 md:w-full">
                 <div className="  font-semibold text-lg text-black  " >Events Near You</div>
-                {componentType === 'home' ? 
-                <Link className="flex flex-row items-center cursor-pointer" href={{ pathname: '../pages/searchEventPage', query: { category: 'near', categoryTitle: 'Near' } }} passHref>
-                    <div className="text-black">View all</div>
-                    <div><MdOutlineKeyboardArrowRight size={25} color='black'/></div>
-                </Link>: 
-                <div></div>}
+                 
+                <div></div>
            </div>
            {loadingEvents ?
            <div className="flex flex-col md:flex-row flex-wrap w-full   items-center md:items-start">

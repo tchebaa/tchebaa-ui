@@ -1,6 +1,7 @@
 "use client"
 
 import {createContext, useContext, useState, useEffect, type Dispatch, type SetStateAction, type ReactNode} from 'react';
+import moment from 'moment';
 
 
 
@@ -37,7 +38,7 @@ type ChildrenProps = { children?: ReactNode };
 
 export function DateProvider({children}: ChildrenProps) {
 
-    const [startDate, setStartDate] = useState<string>('')
+    const [startDate, setStartDate] = useState<string>(moment(new Date()).format().toString())
     const [endDate, setEndDate] = useState<string>('')
 
 

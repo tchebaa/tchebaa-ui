@@ -83,12 +83,12 @@ function ChatsComponent() {
             const { data, errors } = await client.models.Conversation.list({
             filter: {
                 participants: {
-                contains: 'fondolski@gmail.com'    
+                contains: userDetails?.username     
                 }
             }          
             })
 
-            console.log(data)
+          
 
             const sanitizedSortedData = data
             .map(item => ({

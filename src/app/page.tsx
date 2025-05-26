@@ -11,6 +11,7 @@ import FooterComponent from './components/FooterComponent';
 import HomeHeroComponent from './components/HomeHeroComponent';
 import EventCategories from './components/EventCategories';
 import LocationDateComponent from './components/LocationDateComponent';
+import {useDate} from './context/DateContext'
 import moment from 'moment';
 import {useLocation} from './context/LocationContext'
 import { generateClient } from 'aws-amplify/data';
@@ -104,6 +105,7 @@ interface Event {
 
 
   const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
+  const {startDate, setStartDate, endDate, setEndDate} = useDate()
 
   const [loadParticles, setLoadParticles] = useState(true) 
   const [headerPage, setHeaderPage] = useState<string>('home')
@@ -117,7 +119,7 @@ interface Event {
   const [loadingEvents, setLoadingEvents] = useState<boolean>(true)
   const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
   const [events, setEvents] = useState<Event []>([])
-  const [startDate, setStartDate] = useState<string>(moment(new Date()).format().toString())
+
 
 
   const t = useTranslations();
@@ -126,7 +128,7 @@ interface Event {
 
   useEffect(()=> {
 
-    setStartDate(moment(new Date()).format().toString())
+    setStartDate?.(moment(new Date()).format().toString())
 
   },[])
 
@@ -148,6 +150,7 @@ interface Event {
           setLoadingEvents(true)
   
           const { data, errors } = await client.queries.searchEventsWithFilter({
+  
                  
           startDate: startDate,
           latitude: userLocation?.latitude,
@@ -191,8 +194,7 @@ interface Event {
           setLoadingEvents(true)
   
           const { data, errors } = await client.models.Event.list({
-                 
-        
+                limit: 20
               
           });
 
@@ -229,9 +231,16 @@ interface Event {
 
   useEffect(()=> {
 
-    handleGetEventsTest()
+    if(userLocation) {
+      handleGetEvents()
+    } else {
 
-  },[])
+      handleGetEventsTest()
+
+    }
+    
+
+  },[userLocation, startDate, endDate])
 
 
  

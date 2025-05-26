@@ -140,7 +140,7 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                 </div>
                {accountModal ? 
                <div className="w-40 mt-10 bg-white p-2 border absolute">
-                    {userDetails ? 
+                    {!userDetails ? 
                     <div>
                         <div className='font-semibold text-black'>{t('login')}</div>
                         <div className='text-black font-semibold'>{t('signup')}</div>
@@ -152,7 +152,10 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                         <div className='text-black font-semibold'>{t('signout')}</div>
                         <div className='text-black font-semibold'>{t('profile')}</div>
                     </div>}
-                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold'>{t('administrator')}</Link>
+                    {admins?.some((admin)=> admin.email === userDetails?.username) ? 
+                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold'>
+                    {t('administrator')}
+                    </Link>: null}
                     <div className='text-black font-semibold'>{t('settings')}</div>
                 </div>
 

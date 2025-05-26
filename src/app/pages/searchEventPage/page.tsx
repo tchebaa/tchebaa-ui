@@ -109,8 +109,19 @@ interface Event {
 
 
     useEffect(()=> {
+
+      if(userLocation) {
+
         handleGetNearEvents()
-    },[allSearchTerm, searchTerm])
+
+      } else {
+
+        handleGetEvents()
+
+      }
+
+        
+    },[allSearchTerm, searchTerm, startDate, endDate, category])
 
 
     const handleGetEvents = async () => {
@@ -124,8 +135,6 @@ interface Event {
           searchTerm: searchTerm,
           categories: [category],      
           startDate: startDate,
-          latitude: userLocation?.latitude,
-          longitude: userLocation?.longitude,
           endDate: endDate
               
           });
@@ -165,9 +174,13 @@ interface Event {
           setErrorLoadingEvents('')
           setLoadingEvents(true)
   
-          const { data, errors } = await client.models.Event.list({
-                 
-        
+          const { data, errors } = await client.queries.searchEventsWithFilter({
+          searchTerm: searchTerm,
+          categories: [category],      
+          startDate: startDate,
+          latitude: userLocation?.latitude,
+          longitude: userLocation?.longitude,
+          endDate: endDate
               
           });
 

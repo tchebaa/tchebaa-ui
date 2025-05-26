@@ -113,7 +113,10 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                         <div className='text-black font-semibold'>{t('signout')}</div>
                         <div className='text-black font-semibold'>{t('profile')}</div>
                     </div>}
-                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref className='text-black font-semibold'>{t('administrator')}</Link>
+                    {admins?.some((admin)=> admin.email === userDetails?.username) ? 
+                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref className='text-black font-semibold'>
+                        {t('administrator')}
+                    </Link>: null}
                     <div className='text-black font-semibold'>{t('settings')}</div>
                     
                     

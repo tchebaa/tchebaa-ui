@@ -36,20 +36,20 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
     
        const handleLocationSelect = async (value: string) => {
 
-           console.log(value, 'value')
+        
 
         //   setLocationName(value)
         setUserAddress(value)
 
         const selectedLocation = await geocodeByAddress(value)
     
-        
-        console.log(selectedLocation, 'value2')
-        
+
         
         const locationCoords = await getLatLng(selectedLocation[0])
     
-        console.log(locationCoords, 'value3')
+
+
+        setUserLocation({latitude: locationCoords.lat, longitude: locationCoords.lng})
 
       //  setLat(locationCoords.lat)
       //  setLng(locationCoords.lng)
@@ -123,7 +123,7 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
                     </div>
                     <div className=' w-5/12  flex items-center justify-center mt-5 '>
                                 {searchTerm.length > 1 ?
-                                 <Link className='  flex items-center w-6/12 cursor-pointer w-full' href={{ pathname: '../pages/searchEventPage', query: { allSearchTerm: searchTerm, categoryTitle: 'all', pageType:'allSearch' } }} >
+                                 <Link className='  flex items-center w-6/12 cursor-pointer w-full' href={{ pathname: '../pages/searchEventPage', query: { allSearchTerm: searchTerm, categoryTitle: 'all', pageType:'allSearch', category: '' } }} >
                                     <div className=' p-1 flex w-3/12 items-center rounded-l-md  bg-black justify-center h-10'>
                                         <div>
                                             <BiSearch size={25} color='white' />
