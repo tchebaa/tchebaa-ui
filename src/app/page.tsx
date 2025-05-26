@@ -11,15 +11,16 @@ import FooterComponent from './components/FooterComponent';
 import HomeHeroComponent from './components/HomeHeroComponent';
 import EventCategories from './components/EventCategories';
 import LocationDateComponent from './components/LocationDateComponent';
+import {useLocation} from './context/LocationContext'
 import {useDate} from './context/DateContext'
 import moment from 'moment';
-import {useLocation} from './context/LocationContext'
 import { generateClient } from 'aws-amplify/data';
 import SignUpModal from './components/SignUpModal';
 import LoginModal from './components/LoginModal';
 import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
 import {Amplify} from 'aws-amplify'
 import HomeNearEvents from './components/HomeNearEvents';
+import { MdLocationOn } from "react-icons/md";
 import outputs from '../../amplify_outputs.json'
 
 
@@ -126,21 +127,7 @@ interface Event {
   const router = useRouter();
 
 
-  useEffect(()=> {
 
-    setStartDate?.(moment(new Date()).format().toString())
-
-  },[])
-
-  
-  
-   useEffect(()=> {
-
-    
-
-   },[])
-
-  
 
     const handleGetEvents = async () => {
 
@@ -231,13 +218,9 @@ interface Event {
 
   useEffect(()=> {
 
-    if(userLocation) {
       handleGetEvents()
-    } else {
 
-      handleGetEventsTest()
 
-    }
     
 
   },[userLocation, startDate, endDate])
@@ -250,10 +233,17 @@ interface Event {
   return (
     <div className="">
       <main className="flex min-h-screen  bg-white flex-col items-center  ">
-        <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible}  />
+        <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
+        setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}  />
         {searchModalVisible ? <SearchModal headerPage={headerPage} setMenuModalVisible={setMenuModalVisible} setSearchModalVisible={setSearchModalVisible} /> : null}
         <HomeHeroComponent heroImages={heroImages} />
         <LocationDateComponent/>
+        {userAddress ? 
+        <div className=' w-11/12 max-w-6xl mt-5 flex flex-row items-center'>
+          <div><MdLocationOn size={20} color='#00BDFE' /></div>
+          <div className='text-black font-semibold ml-2'>{userAddress}</div>
+        </div>
+        : null}
         <EventCategories />
         <HomeNearEvents componentType={'home'} events={events} loadingEvents={loadingEvents} loginModal={loginModal} signUpModal={signUpModal} setLoginModal={setLoginModal} setSignUpModal={setSignUpModal}/>
         {

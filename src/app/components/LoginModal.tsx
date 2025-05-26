@@ -147,7 +147,11 @@ export default function LoginModal({loginModal, setLoginModal, signUpModal, setS
         <div className='w-full'>
             
             <div className="bg-white flex flex-col items-center justify-center  w-full">
-                <div className="mt-5">
+                <div className='w-full flex flex-row items-center justify-between p-2'>
+                  <div></div>
+                  <div className='cursor-pointer' onClick={()=> setLoginModal(false)}><MdClose color='black' size={24}/></div>
+                </div>
+                <div className="mt-3">
                         <p className="font-semibold tezt-black">{t('login')}</p>
                 </div>
                     {loadingLogIn ? <div className='absolute top-20 bg-white w-52 h-20 flex items-center justify-center border'>
@@ -167,7 +171,7 @@ export default function LoginModal({loginModal, setLoginModal, signUpModal, setS
                             <p className=" w-11/12 md:text-base max-w-xl  text-red-500 ">{loginError}</p>
                         </div>
                     {loadingLogIn ? 
-                    <button className=" md:text-base w-11/12 border-2 rounded-md p-1 max-w-xl mt-3 flex items-center justify-center" style={{backgroundColor: '#1184e8'}} >
+                    <button className=" md:text-base w-11/12 border-2 rounded-md p-1 max-w-xl mt-3 flex items-center justify-center cursor-pointer" style={{backgroundColor: '#1184e8'}} >
                             <p className=" md:text-base text-white">{t('login')}</p>
                     </button>: 
                     <button className="cursor-pointer md:text-base w-11/12 border-2 rounded-md p-1 max-w-xl mt-3 flex items-center justify-center" style={{backgroundColor: '#1184e8'}} 

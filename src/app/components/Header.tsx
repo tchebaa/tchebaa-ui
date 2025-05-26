@@ -14,7 +14,9 @@ import SideMenu from './SideMenu';
 
 
 
-export default function Header({ headerPage, searchModalVisible, setSearchModalVisible}: {headerPage: string, searchModalVisible: boolean, setSearchModalVisible: Dispatch<SetStateAction<boolean>> }) {
+export default function Header({ headerPage, searchModalVisible, setSearchModalVisible, loginModal, signUpModal, setLoginModal, setSignUpModal}: {headerPage: string, searchModalVisible: boolean, 
+    setSearchModalVisible: Dispatch<SetStateAction<boolean>>, loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean,
+setSignUpModal: Dispatch<SetStateAction<boolean>> }) {
 
    
 
@@ -48,7 +50,7 @@ export default function Header({ headerPage, searchModalVisible, setSearchModalV
                     : <div></div>}
                 </div>
                 <div className='flex   w-full'>
-                    <HeaderDetailsBody headerPage={headerPage} />
+                    <HeaderDetailsBody headerPage={headerPage} loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}/>
                 </div>
             </div>
             <div className='md:invisible md:absolute visible relative w-11/12'>
@@ -74,7 +76,8 @@ export default function Header({ headerPage, searchModalVisible, setSearchModalV
                 </div>
             </div>
             
-            {menuModalVisible ? <SideMenu menuModalVisible={menuModalVisible} setMenuModalVisible={setMenuModalVisible} setSearchModalVisible={setSearchModalVisible} /> : null}
+            {menuModalVisible ? <SideMenu menuModalVisible={menuModalVisible} setMenuModalVisible={setMenuModalVisible} setSearchModalVisible={setSearchModalVisible}
+            loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} /> : null}
         </div>
     )
 }

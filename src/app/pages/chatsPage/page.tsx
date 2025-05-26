@@ -11,6 +11,8 @@ import {useUser} from '../../context/UserContext'
 import { generateClient } from 'aws-amplify/data';
 import {type Schema} from '../../../../tchebaa-backend/amplify/data/resource'
 import {useTranslations} from 'next-intl';
+import LoginModal from '../../components/LoginModal'
+import SignUpModal from '../../components/SignUpModal'
 import {Amplify} from 'aws-amplify'
 import outputs from '../../../../amplify_outputs.json'
 
@@ -65,6 +67,8 @@ function ChatsComponent() {
     const [conversations, setConversations] = useState<{participants: string [], id: string, lastMessage: string, updatedAt: string} []>([])
     const [loadingConversations, setLoadingConversations] = useState<boolean>(true)
     const [loadingConversationsError, setLoadingConversationsError] = useState<boolean>(true)
+    const [loginModal, setLoginModal] = useState<boolean>(false)
+    const [signUpModal, setSignUpModal] = useState<boolean>(false)
 
 
     const handleGetConversations = async () => {
@@ -130,8 +134,24 @@ function ChatsComponent() {
 
     return(
         <div className='min-h-screen flex flex-col items-center bg-white h-screen w-full'>
-                <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} />
-                
+                <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
+                setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                {
+                          loginModal ? 
+                          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                          </div>
+                          :
+                          null
+                        }
+                        {
+                          signUpModal ? 
+                          <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                          </div>
+                          :
+                          null
+                        }
                 <div className='w-full flex flex-col items-center mt-14'>
                     <div className='w-full h-20 absolute max-w-lg flex flex-col items-center ' 
                     style={{backgroundImage: 'url(' + `${profileImages[Math.floor(Math.random() * profileImages.length)]}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>

@@ -25,6 +25,9 @@ import PostAgeRestriction from '../../components/PostAgeRestriction';
 import PostPhotoUpload from '../../components/PostPhotoUpload';
 import PostEventPreview from '../../components/PostEventPreview';
 import PostDateTimeDuration from '../../components/PostDateTimeDuration';
+import Header from '../../components/Header';
+import LoginModal from '../../components/LoginModal';
+import SignUpModal from '../../components/SignUpModal';
 
 
 
@@ -53,13 +56,19 @@ export default function PostEventPage() {
 
     const [newScreenName, setNewScreenName] = useState<string | string [] >(screenName ?? "")
 
+    const [headerPage, setHeaderPage] = useState('home')
+    const [searchModalVisible, setSearchModalVisible] = useState(false)
+    const [menuModalVisible, setMenuModalVisible] = useState(false)
+    const [loginModal, setLoginModal] = useState<boolean>(false)
+    const [signUpModal, setSignUpModal] = useState<boolean>(false)
+
     const [loadingGetEvent, setLoadingGetEvent] = useState<boolean>(false)
     const [loadingEventError, setLoadingEventError] = useState<string>('')
     const [email, setEmail] = useState<string>(screenName === 'post' ? userDetails?.username ?? '' : 'rani')
     const [emailError, setEmailError] = useState<boolean>(false)
     const [sponsored, setSponsord] = useState<boolean>(false)
 
-    const [pageSection, setPageSection] = useState<number>(4)
+    const [pageSection, setPageSection] = useState<number>(0)
 
     const [pageType, setPageType] = useState<string | string[]>(screenName ?? '');
 
@@ -1509,6 +1518,25 @@ const handleGetEvent = async () => {
 
     return(
         <div className='w-full mt-1 bg-white   h-full '>
+            <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
+        setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+        {
+            loginModal ? 
+            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            </div>
+            :
+            null
+        }
+        {
+            signUpModal ? 
+            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+            </div>
+            :
+            null
+        }
+            {!userDetails ?
             <div className='bg-white w-full  flex h-full justify-center'>
                 <div className='max-w-3xl mt-16 w-full bg-white border  flex flex-col items-center pt-5 pl-5 pr-5 pb-20  h-full'>
                  {currentDisplay()}   
@@ -1521,7 +1549,7 @@ const handleGetEvent = async () => {
                         <div></div> :
                         <div className='flex flex-row items-center cursor-pointer' onClick={()=> handlePrevDisplay()}>
                             <div> <MdOutlineKeyboardArrowLeft size={25} color='black'/></div>
-                            <div className='text-black'>Prev</div>
+                            <div className='text-black'>{t('previous')}</div>
                                 
                         </div>}
                         </div>
@@ -1530,16 +1558,16 @@ const handleGetEvent = async () => {
                            <div className='w-full'>
                                 {!uploadModal ? 
                                 <div className='  flex items-center w-full cursor-pointer border-2 px-2 border-cyan-400 rounded-md' >
-                                    <div className='text-black font-semibold'>Post</div>
+                                    <div className='text-black font-semibold'>{t('post')}</div>
                                 
                                 </div>:
                                 <div className='  flex items-center w-full cursor-pointer border-2 px-2 border-cyan-400 rounded-md'>
-                                    <div className='text-black font-semibold'>Post</div>
+                                    <div className='text-black font-semibold'>{t('post')}</div>
                             
                                 </div>}
                             </div>
                            : <div className='flex flex-row items-center cursor-pointer' onClick={()=> handleNextDisplay()}>
-                                <div className='text-black'>Next</div>
+                                <div className='text-black'>{t('next')}</div>
                                 <div>
                                     <MdOutlineKeyboardArrowRight size={25} color='black'/>
                                 </div>
@@ -1555,7 +1583,16 @@ const handleGetEvent = async () => {
                             <div className='mt-5 text-black'>{uploadingText}</div>
                     </div>:null}
                 
-            </div>
+            </div>: 
+            <div className='bg-white w-full  flex h-full justify-center pt-20'>
+                <button className=" md:text-base border-2 rounded-md p-1 w-20  mt-3 flex items-center justify-center cursor-pointer" style={{backgroundColor: '#1184e8'}} 
+                onClick={()=> setLoginModal(true)} >
+                    <p className=" md:text-base text-white">{t('login')}</p>
+                </button>
+                <button className=" md:text-base border-2 w-20 rounded-md p-1 ml-5  mt-3 flex items-center justify-center cursor-pointer" style={{backgroundColor: '#1184e8'}} onClick={()=> setSignUpModal(true)} >
+                    <p className=" md:text-base text-white">{t('signup')}</p>
+                </button>
+            </div>}
             
         </div>
     )

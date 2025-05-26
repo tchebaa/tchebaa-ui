@@ -14,12 +14,27 @@ import { useRouter } from 'next/navigation';
 import {useTranslations} from 'next-intl';
 import {useUser} from '../context/UserContext'
 import {useAdmin} from '../context/TchebaaAdminContext'
+import {signOut, deleteUser} from '@aws-amplify/auth'
+import { generateClient } from 'aws-amplify/data';
+import {type Schema} from '../../../tchebaa-backend/amplify/data/resource'
+import {Amplify} from 'aws-amplify'
+import outputs from '../../../amplify_outputs.json'
+import {signIn, getCurrentUser} from '@aws-amplify/auth'
+
+
+
+Amplify.configure(outputs)
+
+const client = generateClient<Schema>();
+
 //import {signOut} from 'firebase/auth';
 //import {auth} from '../firebase/firebase'
 //import {useAuth} from '../context/AuthContext'
 
 
-export default function SideMenu({setSearchModalVisible, setMenuModalVisible, menuModalVisible}: {setSearchModalVisible: Dispatch<SetStateAction<boolean>>, setMenuModalVisible: Dispatch<SetStateAction<boolean>>, menuModalVisible: boolean}) {
+export default function SideMenu({setSearchModalVisible, setMenuModalVisible, menuModalVisible, loginModal, setLoginModal, signUpModal, setSignUpModal}: 
+    {setSearchModalVisible: Dispatch<SetStateAction<boolean>>, setMenuModalVisible: Dispatch<SetStateAction<boolean>>, menuModalVisible: boolean, 
+    loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>}) {
 
     const [accountModal, setAccountModal] = useState(false)
     const [languageCode, setLanguageCode] = useState('en')
@@ -103,8 +118,8 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                 <div className="w-40  mt-10 bg-white p-2 border absolute">
                     {!userDetails ? 
                     <div>
-                        <div className='font-semibold text-black'>{t('login')}</div>
-                        <div className='text-black font-semibold'>{t('signup')}</div>
+                        <div className='font-semibold text-black cursor-pointrt' onClick={()=> setLoginModal(true)} >{t('login')}</div>
+                        <div className='text-black font-semibold cursor-pointer' onClick={()=> setSignUpModal(true)}>{t('signup')}</div>
                         
                     </div>
                     :

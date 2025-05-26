@@ -170,11 +170,11 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
         <div className='w-full'>
             
             <div className="flex flex-col items-center bg-white justify-center bg-white w-full">
-                <div className='w-11/12 flex flex-row items-center justify-center'>
-                    <div></div>
-                    <div></div>
+                <div className='w-full flex flex-row items-center justify-between p-2'>
+                  <div></div>
+                  <div className='cursor-pointer' onClick={()=> setSignUpModal(false)}><MdClose color='black' size={24}/></div>
                 </div>
-                <div className="mt-5">
+                <div className="mt-3">
                         <p className="font-semibold text-black">{t('signup')}</p>
                 </div>
                 {loadingSignUp ? <div className='absolute top-20 bg-white w-52 h-20 flex items-center justify-center border'>

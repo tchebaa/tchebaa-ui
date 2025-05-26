@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, Dispatch, SetStateAction} from 'react'
 import { BsPersonCircle, BsCalendarPlus} from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp, MdOutlineAddchart, MdOutlineNotificationsActive} from "react-icons/md";
 import { FiMessageSquare} from "react-icons/fi";
@@ -13,19 +13,33 @@ import { useRouter } from 'next/navigation';
 import {useTranslations} from 'next-intl';
 import {useUser} from '../context/UserContext'
 import {useAdmin} from '../context/TchebaaAdminContext'
+import {signOut, deleteUser} from '@aws-amplify/auth'
+import { generateClient } from 'aws-amplify/data';
+import {type Schema} from '../../../tchebaa-backend/amplify/data/resource'
+import {Amplify} from 'aws-amplify'
+import outputs from '../../../amplify_outputs.json'
+import {signIn, getCurrentUser} from '@aws-amplify/auth'
+
+
+
+Amplify.configure(outputs)
+
+const client = generateClient<Schema>();
 
 
 
 
-export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
+export default function HeaderDetailsBody({headerPage, loginModal, setLoginModal, signUpModal, setSignUpModal}:{headerPage: string, loginModal: boolean, 
+    setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>}) {
 
     const [accountModal, setAccountModal] = useState<boolean>(false)
     const [languageModal, setLanguageModal] = useState<boolean>(false)
+    const [loadingSignOut, setLoadingSignOut] = useState<boolean>(false)
 
     const [languageCode, setLanguageCode] = useState('en')
 
     const t = useTranslations();
-    const {userDetails} = useUser()
+    const {userDetails, setUserDetails, onlineUserDetails} = useUser()
     const {admins} = useAdmin()
 
     const router = useRouter()
@@ -58,6 +72,53 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
         }
 
       },[])
+
+
+          const handleSignOut = async () => {
+
+        try {
+
+            setLoadingSignOut(true)
+
+            await signOut().then((e)=> {setUserDetails(null)})
+
+            setLoadingSignOut(false)
+
+        } catch(e) {
+
+            setLoadingSignOut(false)
+
+        }
+
+    }
+
+
+    const handleDeleteUserDetails = async () => {
+
+        const { data, errors } = await client.models.OnlineUser.delete({
+
+            id: onlineUserDetails?.id ?? ''
+
+          });
+        
+
+        
+
+    }
+
+   
+
+    const handleDeleteAccount = async () => {
+
+        handleSignOut()
+        handleDeleteUserDetails()
+
+        await deleteUser()
+        
+
+        
+
+    }
 
     /**
      * {!currentUser ? 
@@ -142,15 +203,15 @@ export default function HeaderDetailsBody({headerPage}:{headerPage: string}) {
                <div className="w-40 mt-10 bg-white p-2 border absolute">
                     {!userDetails ? 
                     <div>
-                        <div className='font-semibold text-black'>{t('login')}</div>
-                        <div className='text-black font-semibold'>{t('signup')}</div>
+                        <div className='font-semibold text-black cursor-pointer' onClick={()=> setLoginModal(true)}>{t('login')}</div>
+                        <div className='text-black font-semibold cursor-pointer' onClick={()=> setSignUpModal(true)}>{t('signup')}</div>
                         
                     </div>
                     :
                     <div>
                         <Link className='text-black font-semibold' href={{ pathname: '../pages/manageEventsPage', query: { screenName: 'main' } }} passHref>{t('manageevents')}</Link>
-                        <div className='text-black font-semibold'>{t('signout')}</div>
-                        <div className='text-black font-semibold'>{t('profile')}</div>
+                        <div className='text-black font-semibold cursor-pointer'>{t('signout')}</div>
+                        <div className='text-black font-semibold cursor-pointer'>{t('profile')}</div>
                     </div>}
                     {admins?.some((admin)=> admin.email === userDetails?.username) ? 
                     <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold'>

@@ -7,7 +7,9 @@ import FooterComponent from '../../components/FooterComponent'
 import { BsDot } from "react-icons/bs";
 import Head from 'next/head'
 import Image from 'next/image'
-import Header from '../../components/Header'
+import Header from '../../components/Header';
+import LoginModal from '../../components/LoginModal'
+import SignUpModal from '../../components/SignUpModal'
 
 
 const profileImages = [
@@ -43,17 +45,35 @@ function AboutUsComponent() {
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
     const [menuModalVisible, setMenuModalVisible] = useState(false)
+    const [loginModal, setLoginModal] = useState<boolean>(false)
+    const [signUpModal, setSignUpModal] = useState<boolean>(false)
 
 
     return(
         <div className="flex flex-col w-full  h-full bg-gray-300 items-center">
-            
+            {
+                loginModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                </div>
+                :
+                null
+            }
+            {
+                signUpModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                </div>
+                :
+                null
+            }
             
         <Head>
             <title className='text-black'>About us</title>
             <meta name='description' content='Tukiofusion is an event booking platform' />
         </Head>
-        <Header  headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} />
+        <Header  headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
+        setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}/>
         <div className='w-full flex items-center bg-white h-full max-w-6xl mt-16' style={{width: '100%', height:300, position: 'relative'}}>
             <div className='w-full h-52 absolute top-0  flex flex-col items-center ' style={{backgroundImage: 'url(' + `${profileImages[Math.floor(Math.random() * profileImages.length)]}` + ')', backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>

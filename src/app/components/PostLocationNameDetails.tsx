@@ -6,6 +6,7 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-auto
 import {useLoadScript, useJsApiLoader,  Libraries} from '@react-google-maps/api'
 import moment from 'moment';
 import {useLocation} from '../context/LocationContext';
+import { MdClose } from 'react-icons/md';
 
 
 
@@ -72,16 +73,17 @@ export default function PostLocationNameDetails ({eventName, setEventName, event
     return(
         <div className='w-full'>
             {showMap ? 
-            <div >
+            <div className='border bg-white p-2'>
                 <div // style={styles.mapStyle}
                 >
                   
 
                 </div>
                 <div >
-                    <div >
+                    <div className='w-full flex flex-row items-center justify-between '>
                         <div //close
                         ></div>
+                        <div className='cursor-pointer' onClick={()=> setShowMap(false)}><MdClose color='black' size={20}/></div>
                         
                     </div>
                     <div className='mt-2'>
@@ -118,9 +120,9 @@ export default function PostLocationNameDetails ({eventName, setEventName, event
                         </div> : null}
                         {address && !loadingAddress ? 
                         <div >
-                          <div className='text-black'>{address}</div>
+                          <div className='text-black mt-2'>{address}</div>
                           <div onClick={()=> setShowMap(false)}>
-                            <div className='text-black'>{t('confirm')}</div>
+                            <div className='text-black font-semibold cursor-pointer'>{t('confirm')}</div>
                           </div>
                         </div>: null}
                       </div>
@@ -128,11 +130,11 @@ export default function PostLocationNameDetails ({eventName, setEventName, event
             : null}
             <div className='w-full'>
               <div className='text-black font-semibold'>{t('location')}</div>
-                <div onClick={()=> setShowMap(true)}>
-                    <div className='text-black'>{t('picklocation')}</div>    
+                <div onClick={()=> setShowMap(true)} className='mt-1'>
+                    <div className='text-black cursor-pointer'>{t('picklocation')}</div>    
                 </div>
-                <div>
-                  <div>{address}</div>
+                <div className='mt-2'>
+                  <div className='text-black'>{address}</div>
                   {eventAddressError ? <div className='text-red-500'>{t('eventlocationisrequired')}</div>: <div></div>}
                 </div>
                 <div className='mt-2 w-full'>

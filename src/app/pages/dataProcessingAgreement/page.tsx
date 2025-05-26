@@ -6,6 +6,8 @@ import Head from 'next/head'
 import FooterComponent from '../../components/FooterComponent'
 import Header from '../../components/Header'
 import { BsDot } from "react-icons/bs";
+import LoginModal from '../../components/LoginModal'
+import SignUpModal from '../../components/SignUpModal'
 
 export default function TermsOfServicePage() {
 
@@ -13,11 +15,31 @@ export default function TermsOfServicePage() {
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
     const [menuModalVisible, setMenuModalVisible] = useState(false)
+    const [loginModal, setLoginModal] = useState<boolean>(false)
+    const [signUpModal, setSignUpModal] = useState<boolean>(false)
 
 
     return(
         <div className="flex flex-col w-full h-full bg-gray-300 items-center">
-        <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible}/>
+            {
+                loginModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                </div>
+                :
+                null
+            }
+            {
+                signUpModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+                </div>
+                :
+                null
+            }
+                   
+        <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
+        setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
         <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-4">
                 <div className="w-11/12 flex flex-col">
                     <h1 className="text-2xl font-semibold mt-10 ">Data Processing Agreement (DPA)</h1>
