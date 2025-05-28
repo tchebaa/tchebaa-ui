@@ -175,10 +175,12 @@ export default function HeaderDetailsBody({headerPage, loginModal, setLoginModal
                 <div className='ml-2 text-black'>{t('messages')}</div>
             </Link>: 
             null}
-            <div className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
+            <Link className='flex flex-row items-center justify-between  border-sky-500 hover:border-b-2 p-1 cursor-pointer' href={{ pathname: '../pages/tickets' }} passHref>
+                
                 <div><IoTicketOutline size={24} color='black'/></div>
                 <div className='ml-2 text-black'>{t('tickets')}</div>
-            </div>
+            
+            </Link>
             <Link className="cursor-pointer" href={{ pathname: '../pages/postEventPage' }} passHref target='_blank'>
                 <div className='flex flex-row items-center  border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
                     <div><MdOutlineAddchart size={25} color='black'/> </div>

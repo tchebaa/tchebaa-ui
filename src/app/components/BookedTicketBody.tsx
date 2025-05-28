@@ -182,7 +182,7 @@ export default function BookedTicketBody({item}: {item: Ticket}) {
 
   return (
     
-        <div className='border w-full max-w-sm p-2 m-1'>
+        <div className='border border-black w-full max-w-sm p-2 m-1'>
       
                 
                 <div className='flex flex-row items-center justify-between'>
@@ -222,7 +222,7 @@ export default function BookedTicketBody({item}: {item: Ticket}) {
                 <div className='my-1'>{moment(item.createdAt).format('MMMM Do YYYY, h:mm a')}</div>
                 {moment(item.eventEndDate).format() > moment(new Date()).format() ?
                  <div className='flex flex-row items-center justify-between'>
-                    <div className='border px-1 rounded-md flex items-center justify-center'>
+                    <div className='border px-1 border-black rounded-md flex items-center justify-center'>
                         <div className='text-black font-semibold'>{t('cancel')}</div>
                         
                     </div>
@@ -230,10 +230,10 @@ export default function BookedTicketBody({item}: {item: Ticket}) {
                     {!loadingConversation ? 
                         <div className='flex flex-row items-center justify-between'>
                             {conversation.length > 0 ? 
-                            <div className='border px-1 rounded-md flex items-center justify-center'>
+                            <div className='border border-black px-1 rounded-md flex items-center justify-center'>
                                 <div className='text-black font-semibold'>{t('chat')}</div>
                             </div>:
-                            <div className='border px-1 rounded-md flex items-center justify-center'>
+                            <div className='border border-black px-1 rounded-md flex items-center justify-center'>
                                 <div className='text-black font-semibold'>{t('createchat')}</div>
                             </div>}
                         </div>

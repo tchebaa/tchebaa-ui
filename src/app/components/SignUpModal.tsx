@@ -24,7 +24,7 @@ const client = generateClient<Schema>();
 
 export default function SignUpModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}: 
   {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>, 
-    forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>
+    forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>, confirmationModal: boolean, setConfirmationModal: Dispatch<SetStateAction<boolean>>
   }) {
 
     const {userDetails, setUserDetails} = useUser()
@@ -184,15 +184,15 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
                     <div className='text-black'>{t('loading')}</div>
                 </div>: null}
                 <div className="flex flex-col w-full items-center max-w-md mt-5">
-                    <input className="bg-white p-2 w-11/12 border" placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                    <input className="bg-white p-2 w-11/12 border text-black" placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
                     <div className="w-11/12 h-10 flex items-center justify-center ">
                             <p className=" w-11/12 md:text-base max-w-xl  text-red-500 ">{emailError}</p>
                         </div>
-                    <input className="bg-white p-2 w-11/12 border" placeholder={t('password')} type='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                    <input className="bg-white p-2 w-11/12 border text-black" placeholder={t('password')} type='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
                     <div className="w-11/12 h-10 flex items-center justify-center ">
                             <p className=" w-11/12 md:text-base max-w-xl  text-red-500 ">{passwordError}</p>
                         </div>
-                        <input className="bg-white p-2 w-11/12 border" type='password' placeholder={t('repeatpassword')} value={repeatPassword} onChange={(e)=> setRepeatPassword(e.target.value)}/>
+                        <input className="bg-white p-2 w-11/12 border text-black" type='password' placeholder={t('repeatpassword')} value={repeatPassword} onChange={(e)=> setRepeatPassword(e.target.value)}/>
                         <div className="w-11/12 h-10 flex items-center justify-center ">
                             <p className=" w-11/12 md:text-base max-w-xl  text-red-500 ">{repeatPasswordError}</p>
                         </div>

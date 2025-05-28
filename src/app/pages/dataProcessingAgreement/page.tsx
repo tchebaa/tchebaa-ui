@@ -9,9 +9,12 @@ import { BsDot } from "react-icons/bs";
 import LoginModal from '../../components/LoginModal'
 import SignUpModal from '../../components/SignUpModal'
 import ForgotPasswordModal from '../../components/ForgotPasswordModal'
+import {useTranslations} from 'next-intl';
+import ConfirmAccountModal from '../../components/ConfirmAccountModal'
 
 export default function TermsOfServicePage() {
 
+    const t = useTranslations()
     const [loadParticles, setLoadParticles] = useState(true) 
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
@@ -19,6 +22,7 @@ export default function TermsOfServicePage() {
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
     const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
 
 
     return(
@@ -27,7 +31,7 @@ export default function TermsOfServicePage() {
                 loginModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal}setConfirmationModal={setConfirmationModal}/>
                 </div>
                 :
                 null
@@ -36,16 +40,27 @@ export default function TermsOfServicePage() {
                 signUpModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal} />
                 </div>
                 :
                 null
             }
             {
-                !forgotPasswordModal ? 
+                confirmationModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
+                </div>
+                :
+                null
+            }
+            {
+                forgotPasswordModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
                 </div>
                 :
                 null
@@ -53,125 +68,77 @@ export default function TermsOfServicePage() {
                    
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
-        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-4">
+        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-20">
                 <div className="w-11/12 flex flex-col">
-                    <h1 className="text-2xl font-semibold mt-10 ">Data Processing Agreement (DPA)</h1>
-                    <div className='mt-5'>Last Updated: Last Updated: 7/05/2025</div>
-                    <div className='mt-5'>{`Welcome to TCHEBAA. These Terms of Use ("Terms") govern your use of our platform,
-                    including our website (www.tchebaa.com), mobile application, and services ("Service"). By
-                    accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy. If
-                    you do not agree with any part of these Terms, you may not access or use the Service.`}
-                    </div>
+                    <h1 className="text-2xl font-semibold mt-10 text-black">{t('DPA')}</h1>
+                    <div className='mt-5 text-black'>{t('effectiveDate')}</div>
                     
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">This DPA is entered into between:</div>
-                        <div className="mt-2 ">1. Controller: The user/customer of TCHEBAA</div>
-                        <div className="mt-2 ">2. Processor: TCHEBAA, operated by TCHEBAA (tchebaa.int@gmail.com)</div>
+                        <div className="font-semibold text-lg text-black">{t('thisDPAIsEnteredIntoBetween')}</div>
+                        <div className="mt-2 text-black">{t('controllerTheUser')}</div>
+                        <div className="mt-2 text-black">{t('processorTchebaa')}</div>
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">1. Definitions</div>
-                        <div className="mt-2 ">Defines terms like Personal Data, Processing, Data Subject, etc.</div>
+                        <div className="font-semibold text-lg text-black">{t('definitions')}</div>
+                        <div className="mt-2 text-black">{t('definesTermsLikePersonalData')}</div>
                         <div className="mt-5">
-                            <div className="font-semibold text-lg ">2. Scope and Purpose</div>
-                            <div className="mt-2 ">Processor will only process Personal Data as instructed by the Controller for TCHEBAA service purposes.</div>
+                            <div className="font-semibold text-lg text-black">{t('scopeAndPurpose')}</div>
+                            <div className="mt-2 text-black">{t('processorWillOnlyProcessPersonalData')}</div>
                         </div>
-                        <div className="font-semibold text-lg mt-5">3. Responsibilities</div>
-                        <div className="font-semibold text-lg mt-2">Processor will:</div>
+                        <div className="font-semibold text-lg mt-5 text-black">{t('responsibilities')}</div>
+                        <div className="font-semibold text-lg mt-2 text-black">{t('processorWill')}</div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Process only as instructed.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Implement security measures.</div>
+                            <div className="text-black">{t('processOnlyAsInstructed')}</div>
                         </div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">Assist in data subject rights compliance.</div>
-                        </div>
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">4. Sub-Processors</div>
-                        <div className="mt-2 ">Permitted with contractual safeguards and prior notice to Controller.</div>
-                        <div className="mt-2 ">2. Processor: TCHEBAA, operated by TCHEBAA (tchebaa.int@gmail.com)</div>
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">User Conduct</div>
-                        <div className="mt-5">You agree not to:</div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Use the Service for unlawful purposes.</div>
+                            <div className="text-black">{t('implementSecurityMeasures')}</div>
                         </div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Post or share content that is offensive, defamatory, or infringes on the rights of others.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Interfere with the proper functioning of the platform.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Use automated means to access the Service without our written consent.</div>
-                        </div>  
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">5. International Transfers</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Processor ensures compliance using standard safeguards.</div>
-                        </div>   
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">6. Audits</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Controller may request audits or documentation to verify compliance.</div>
+                            <div className="text-black">{t('assistInDataSubjectRightsCompliance')}</div>
                         </div>
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">7. Data Subject Rights</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Processor helps Controller respond to requests.</div>
-                        </div>
+                        <div className="font-semibold text-lg text-black">{t('subProcessors')}</div>
+                        <div className="mt-2 text-black">{t('permittedWithContractualSafeguards')}</div>
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">8. Termination</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Data will be deleted upon termination unless retention is required by law.</div>
-                        </div>
+                        <div className="font-semibold text-lg text-black">{t('internationalTransfers')}</div>
+                        <div className="mt-2 text-black">{t('processorEnsuresComplianceUsingStandardSafeguards')}</div>
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">9. Liability</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Each party is liable for its own breaches.</div>
-                        </div>
+                        <div className="font-semibold text-lg text-black">{t('internationalTransfers')}</div>
+                        <div className="mt-2 text-black">{t('processorEnsuresComplianceUsingStandardSafeguards')}</div>
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">10. Governing Law</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Laws of Texas, USA. Disputes resolved in Bexar County, TX.</div>
-                        </div>
+                        <div className="font-semibold text-lg text-black">{t('audits')}</div>
+                        <div className="mt-2 text-black">{t('controllerMayRequestAudits')}</div>
                     </div>
-                    <div className="mt-5 mb-10">
-                        <div className="font-semibold text-lg ">11. Signatures</div>
-                        <div className="flex flex-row mt-5 ">
-                            <div>Controller and TCHEBAA to sign and date.</div>
-                        </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('termination')}</div>
+                        <div className="mt-2 text-black">{t('dataWillBeDeletedUponTermination')}</div>
                     </div>
-                   
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('liability')}</div>
+                        <div className="mt-2 text-black">{t('eachPartyIsLiableForItsOwnBreaches')}</div>
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('governingLaw')}</div>
+                        <div className="mt-2 text-black">{t('lawsOfTexasUSA')}</div>
+                    </div>
+                    <div className="mt-5 mb-20">
+                        <div className="font-semibold text-lg text-black">{t('signatures')}</div>
+                        <div className="mt-2 text-black">{t('controllerAndTchebaaToSignAndDate')}</div>
+                    </div>
+                    
 
                 </div>
 

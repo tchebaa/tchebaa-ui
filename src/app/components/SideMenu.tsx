@@ -89,10 +89,13 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                     <div><FiMessageSquare size={25} color='black'/></div>
                     <div className='ml-2 text-black'>{t('messages')}</div>
                 </Link>
-                <div className='flex flex-row items-center mt-2  lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
-                    <div><IoTicketOutline size={25} color='black'/></div>
-                    <div className='ml-2 text-black'>{t('tickets')}</div>
-                </div>
+                <Link   href={{ pathname: '../pages/tickets' }} passHref>
+                    <div className='flex flex-row items-center mt-2  lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
+                        <div><IoTicketOutline size={25} color='black'/></div>
+                        <div className='ml-2 text-black'>{t('tickets')}</div>
+                    </div>
+                </Link>
+                
                 <Link className="cursor-pointer" href={{ pathname: '../pages/postEventPage' }} passHref target='_blank'>
                         <div className='flex flex-row items-center mt-2 lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer'>
                             <div><MdOutlineAddchart size={25} color='black'/> </div>

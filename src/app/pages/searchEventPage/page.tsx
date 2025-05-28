@@ -18,6 +18,8 @@ import ComponentHeader from '../../components/ComponentHeader';
 import { generateClient } from 'aws-amplify/data';
 import {type Schema} from '../../../../tchebaa-backend/amplify/data/resource'
 import {useTranslations} from 'next-intl';
+import ForgotPasswordModal from '../../components/ForgotPasswordModal';
+import ConfirmAccountModal from '../../components/ConfirmAccountModal';
 import {Amplify} from 'aws-amplify'
 import outputs from '../../../../amplify_outputs.json'
 
@@ -91,6 +93,7 @@ interface Event {
    const [loginModal, setLoginModal] = useState(false)
    const [signUpModal, setSignUpModal] = useState(false)
     const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
 
    
 
@@ -228,14 +231,35 @@ interface Event {
                   <div className='fixed z-40 w-full max-w-lg border top-16 pb-10 bg-white rounded-md'>
                      
                      <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                     setConfirmationModal={setConfirmationModal}/>
                   </div>: null}
                   {signUpModal ? 
                   <div className='fixed z-40 w-full max-w-lg border top-16 pb-10 bg-white rounded-md'>
                     
                      <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                     forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
                   </div>: null}
+                  {
+                      confirmationModal ? 
+                      <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                        <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
+                      </div>
+                      :
+                      null
+                    }
+                  {
+                      forgotPasswordModal ? 
+                      <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                      <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                      forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
+                      </div>
+                      :
+                      null
+                  }
             </div>
                 
             <div className='flex flex-row justify-between bg-white w-full lg:w-7/12 h-full  mb-5'>

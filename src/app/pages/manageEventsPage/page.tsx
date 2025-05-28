@@ -452,8 +452,8 @@ interface Event {
             {screenName === 'admin' ?
             <div className='flex flex-col items-center'> 
             
-              <div className='mt-10 flex flex-row w-11/12 max-w-lg border'>
-                    <input className=' w-full p-2 rounded-md' placeholder={t('search')}  value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
+              <div className='mt-10 flex flex-row w-11/12 max-w-lg border border-black'>
+                    <input className=' w-full p-2 rounded-md text-black' placeholder={t('search')}  value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
                     <div className='border-l-1 px-1 flex flex-col items-center justify-center cursor-pointer'  onClick={()=> handleGetEvents()}>
                         <BiSearch size={24} color={'#1184e8'} />
                     </div>
@@ -497,7 +497,7 @@ interface Event {
                 })}
               </div>
                   :
-                  <div><div>{t('noeventsfound')}</div></div>}
+                  <div className='pb-20'><div className='text-black'>{t('noeventsfound')}</div></div>}
             </div>
             }
           </div>

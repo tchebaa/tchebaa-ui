@@ -266,7 +266,7 @@ export default function oneUser() {
                         <div  onClick={()=> setUpdateLimitModal(false)}><MdClose size={24} color={"black"}  /></div>
                     </div>
                 
-                    <input className='border p-1 mt-2' value={JSON.stringify(postLimit)} type='number' onChange={(e)=> setPostLimit(Number(e.target.value))} placeholder={JSON.stringify(postLimit)}/>
+                    <input className='border p-1 mt-2 text-black' value={JSON.stringify(postLimit)} type='number' onChange={(e)=> setPostLimit(Number(e.target.value))} placeholder={JSON.stringify(postLimit)}/>
                     <div className='border flex mt-2 w-11/12 flex-col items-center mt-5 py-1 rounded-md border-cyan-500 cursor-pointer' onClick={()=> handleUpdateUser()}>
                         <div className='text-black font-semibold'>{t('update')}</div>
                     </div>

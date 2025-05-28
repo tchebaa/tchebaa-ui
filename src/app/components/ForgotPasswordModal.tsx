@@ -20,7 +20,7 @@ const client = generateClient<Schema>();
 
 export default function ForgotPasswordModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}:
      {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>,
-      forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>
+      forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>, confirmationModal: boolean, setConfirmationModal: Dispatch<SetStateAction<boolean>>
      }) {
 
     const {userDetails, setUserDetails} = useUser()
@@ -186,7 +186,7 @@ export default function ForgotPasswordModal({loginModal, setLoginModal, signUpMo
                  
                   </div>: null}
                 <div className='flex flex-col items-center mt-2'>
-                    <input placeholder={t('email')} className='border p-2 w-full'  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                    <input placeholder={t('email')} className='border p-2 w-full text-black'  value={email} onChange={(e)=> setEmail(e.target.value)}/>
                       {emailError ? <div className='text-red-500 '>{emailError}</div>: null}
     
                       {loginError ? <div className='text-red-500 '>{loginError}</div>: null}
@@ -202,8 +202,8 @@ export default function ForgotPasswordModal({loginModal, setLoginModal, signUpMo
                 </div>
                 {resendCodeSuccess ? 
                 <div className='flex flex-col items-center'>
-                    <input  className='border p-2 w-full mt-2' placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
-                    <input  className='border p-2 w-full mt-2' placeholder={t('newpassword')} type='password'  value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                    <input  className='border p-2 w-full mt-2 text-black' placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
+                    <input  className='border p-2 w-full mt-2 text-black' placeholder={t('newpassword')} type='password'  value={password} onChange={(e)=> setPassword(e.target.value)}/>
                     <button onClick={()=> handleConfirm()} className='cursor-pointer  md:text-base border-2 rounded-md p-1 ml-5  mt-3 flex items-center justify-center cursor-pointer' 
                     style={{backgroundColor: '#1184e8'}}>
                         <div className='text-white'>{t('changepassword')}</div>

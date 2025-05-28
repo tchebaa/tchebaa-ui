@@ -1,9 +1,8 @@
 "use client"
 
-import {useState, useEffect} from 'react'
+import {useState, useEffect, Dispatch, SetStateAction} from 'react'
 import {signIn, getCurrentUser, confirmSignUp, resendSignUpCode} from '@aws-amplify/auth'
 import {useUser} from '../context/UserContext'
-import { t } from 'i18next';
 import { MdClose, MdModeEditOutline, MdDeleteForever  } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 import { generateClient } from 'aws-amplify/data';
@@ -21,9 +20,14 @@ const client = generateClient<Schema>();
 
 
 
-export default function ConfirmAccountModal() {
+export default function ConfirmAccountModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}:
+     {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>,
+      forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>, confirmationModal: boolean, 
+      setConfirmationModal: Dispatch<SetStateAction<boolean>>
+     }) {
 
     const {userDetails, setUserDetails} = useUser()
+    const t = useTranslations()
 
 
     const [email, setEmail] = useState<string>('')
@@ -194,24 +198,24 @@ export default function ConfirmAccountModal() {
                 
               </div>: null}
             <div>
-                <input placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                  {emailError ? <div>{emailError}</div>: null}
+                <input className='text-black border-black' placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                  {emailError ? <div className='text-red-500 mt-2'>{emailError}</div>: null}
 
-                  {loginError ? <div>{loginError}</div>: null}
+                  {loginError ? <div className='text-red-500 mt-2'>{loginError}</div>: null}
                 
                 <button onClick={()=> handleResendCode()}>
                     <div className='text-black'>{t('resendcode')}</div>
                 </button>
-                {resendCodeSuccess ? <div>{`${t('codesentto')} ${email}.${t('entercodebelowtocontinue')}`}</div>: null}
-                {resendCodeError ? <div>{resendCodeError}</div>: null}
+                {resendCodeSuccess ? <div className='text-black'>{`${t('codesentto')} ${email}.${t('entercodebelowtocontinue')}`}</div>: null}
+                {resendCodeError ? <div className='text-red-500 mt-2'>{resendCodeError}</div>: null}
             </div>
             <div>
-                <div>{t('alreadyhaveacode')}</div>
+                <div className='text-black'>{t('alreadyhaveacode')}</div>
                 
             </div>
             <div>
-                <input placeholder={t('email')} value={confirmEmail} onChange={(e)=> setConfirmEmail(e.target.value)}/>
-                <input placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
+                <input className='text-black' placeholder={t('email')} value={confirmEmail} onChange={(e)=> setConfirmEmail(e.target.value)}/>
+                <input className='text-black' placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
                 <button onClick={()=> handleConfirm()}>
                     <div>{t('confirmaccount')}</div>
                 </button>

@@ -332,10 +332,10 @@ export default function EventAnalytics() {
                         return(
                             <div key={i} className='flex items-center justify-center'>
                                 {dateFilterCode === item.code ? 
-                                <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500' onClick={()=> handleDateChange(item.code)}>
+                                <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>
                                     {item.name}</div>
                                     : 
-                                <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                                <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                             </div>
                         )
                     })}

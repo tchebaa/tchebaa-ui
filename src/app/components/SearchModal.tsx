@@ -77,7 +77,7 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
             </div>
             <div className='bg-white h-full z-20   flex flex-col items-center justify-between mt-2 rounded-full w-full lg:w-4/5 '>
                     <div className=' w-full h-10 border flex flex-row items-center '>
-                            <input placeholder={headerPage === 'dashboard' ? 'Search': 'Search'} value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);}} className=' w-full h-full px-2' />
+                            <input placeholder={headerPage === 'dashboard' ? 'Search': 'Search'} value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);}} className=' w-full h-full px-2 text-black' />
                             <div className='   flex items-center justify-center w-10 h-full' >
                                 <BiSearch size={25} color='#00BDFE' />
                             </div>
@@ -92,7 +92,7 @@ export default function SearchModal({headerPage, setSearchModalVisible, setMenuM
                                     >
                                         {({getInputProps, suggestions, getSuggestionItemProps, loading})=> (
                                             <div className="w-full ">
-                                                <input  className="w-11/12 border  px-1 py-2 mt-1" {...getInputProps({placeholder: t('location')})} />
+                                                <input  className="w-11/12 border text-black px-1 py-2 mt-1" {...getInputProps({placeholder: t('location')})} />
                                                 <div className="w-11/12 max-w-sm absolute  z-10 bg-white flex flex-col ">
                                                     {loading ? <div className='text-black'>...loading</div>: null}
                                                     {suggestions.map((suggestion, i) =>{

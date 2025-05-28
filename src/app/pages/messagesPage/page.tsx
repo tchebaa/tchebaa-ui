@@ -278,15 +278,15 @@ const handleSendText = async () => {
                             {userDetails?.username === item.sender ? 
                             <div>
                                 <div>
-                                    <div>{item.content}</div>
+                                    <div className='text-black'>{item.content}</div>
                                 </div>
-                                <div>{moment(item.createdAt).fromNow()}</div>
+                                <div className='text-black'>{moment(item.createdAt).fromNow()}</div>
                             </div>:
                             <div>
                                 <div>
-                                    <div>{item.content}</div>
+                                    <div className='text-black'>{item.content}</div>
                                 </div>
-                                <div>{moment(item.createdAt).fromNow()}</div>
+                                <div className='text-black'>{moment(item.createdAt).fromNow()}</div>
                             </div>}
                         </div>
                     )
@@ -297,7 +297,7 @@ const handleSendText = async () => {
                 
             </div>
             <div>
-                <input value={text} onChange={(e)=> setText(e.target.value)}/>
+                <input className='text-black p-2 ' value={text} onChange={(e)=> setText(e.target.value)}/>
                 <div onClick={()=> handleSendText()}>
                     <IoSendOutline  size={24} color={'#1184e8'}/>
                 </div>

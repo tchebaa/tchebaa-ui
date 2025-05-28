@@ -169,7 +169,7 @@ export default function SearchComponent({category, categoryTitle, setOpenMobileM
                     
                     <div className=' ml-2 p-1 flex flex-row hover:shadow mt-5 items-center border rounded-full max-w-sm'>
                         
-                        <input placeholder={`Search ${categoryTitle} events`} value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);}} className='rounded-full w-full h-full p-2' />
+                        <input placeholder={`Search ${categoryTitle} events`} value={searchTerm} onChange={(event)=>{setSearchTerm(event.target.value);}} className='text-black w-full h-full p-2' />
                         <div className='pr-2 cursor-pointer' onClick={()=> handleGetNearEvents()}>
                             <BiSearch size={25} color='#00BDFE' />
                         </div>
@@ -181,10 +181,10 @@ export default function SearchComponent({category, categoryTitle, setOpenMobileM
                             return(
                                 <div key={i} className='flex items-center justify-center'>
                                     {dateFilter === item.code ? 
-                                    <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500' onClick={()=> handleDateChange(item.code)}>
+                                    <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>
                                         {item.name}</div>
                                         : 
-                                    <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                                    <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                                 </div>
                             )
                         })}

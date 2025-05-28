@@ -18,41 +18,7 @@ export default function DateSelectComponents({startDate, setStartDate, endDate, 
     
 
     
-    //const { endDate, startDate,  setEndDate, setStartDate,  dayType, setDayType} = useInput()
-    const [newStartDate, setNewStartDate] = useState(new Date());
-   
-    const [value, setValue] = useState({
-        
-    });
 
-    const [valueStart, setValueStart] = useState({
-        
-    });
-    const [valueEnd, setValueEnd] = useState({
-        
-    });
-
-
-    const handleValueChangeStart = (newValue: string) => {
-        
-    
-       
-      // setNewDate(newValue)
-       setStartDate(newValue)
-       console.log(startDate)
-       
-    };
-
-
-   
-
-
-    const handleValueChangeEnd = (newValue: string) => {
-        
-        
-        setEndDate(newValue)
-       
-    };
 
 
     return (

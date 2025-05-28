@@ -347,10 +347,10 @@ export default function Users() {
                     return(
                         <div key={i} className='flex items-center justify-center'>
                             {dateFilterCode === item.code ? 
-                            <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500' onClick={()=> handleDateChange(item.code)}>
+                            <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>
                                 {item.name}</div>
                                 : 
-                            <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                            <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                         </div>
                         
                     )
@@ -359,7 +359,7 @@ export default function Users() {
 
           
             <div className='mt-2 max-w-sm flex flex-row items-center border justify-center w-11/12'>
-                <input className=' p-2 w-full'  placeholder={t('search')} value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
+                <input className=' p-2 w-full text-black'  placeholder={t('search')} value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
                 <div  className="px-1" onClick={()=> handleSearchUsers()}>
 
                     <BiSearch size={24}  color={'#1184e8'} />

@@ -9,25 +9,32 @@ import { BsDot } from "react-icons/bs";
 import LoginModal from '../../components/LoginModal'
 import SignUpModal from '../../components/SignUpModal'
 import ForgotPasswordModal from '../../components/ForgotPasswordModal'
+import {useTranslations} from 'next-intl';
+import ConfirmAccountModal from '../../components/ConfirmAccountModal'
+
+
 
 export default function PrivacyPolicyPage() {
 
+    const t = useTranslations()
     const [loadParticles, setLoadParticles] = useState(true) 
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
     const [menuModalVisible, setMenuModalVisible] = useState(false)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
      const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
 
 
     return(
-        <div className="flex flex-col w-full h-full bg-gray-300 items-center">
+        <div className="flex flex-col w-full h-full bg-gray-300 items-center mb-10">
             {
                 loginModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal} />
                 </div>
                 :
                 null
@@ -36,16 +43,27 @@ export default function PrivacyPolicyPage() {
                 signUpModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal} />
                 </div>
                 :
                 null
             }
             {
-                !forgotPasswordModal ? 
+                confirmationModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
+                </div>
+                :
+                null
+            }
+            {
+                forgotPasswordModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
                 </div>
                 :
                 null
@@ -53,90 +71,202 @@ export default function PrivacyPolicyPage() {
                    
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
-        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-4">
+        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-20">
                 <div className="w-11/12 flex flex-col">
-                    <h1 className="text-2xl font-semibold mt-10 ">Privacy Statement</h1>
-                    <div className='mt-5'>Last Updated: 7/05/2025</div>
+                    <h1 className="text-2xl font-semibold mt-10 text-black">{t('privacyPolicyForTchebaa')}</h1>
+                    <div className='mt-5 text-black'>{t('lastUpdatedMay')}</div>
                     
                     <div className="mt-5 ">
-                    {`This Privacy Policy explains how TCHEBAA collects, uses, and discloses your information when you use our platform.
-                        We are committed to protecting your personal data and complying with applicable privacy laws,including GDPR and CCPA. `}
+                    {t('thisPrivacyPolicyExplainsHowTchebaa')}
 
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Information We Collect</div>
+                        <div className="font-semibold text-lg text-black">{t('informationWeCollect')}</div>
+                        <div className="text-black mt-5">{t('aPersonalInformation')}</div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">Personal and business data provided during account registration or use of our service..</div>
+                            <div className="text-black">{t('name')}</div>
                         </div>
                         <div className="flex flex-row">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">Technical data from your device or usage such as the date and time that you used our Services and preferred languages.</div>
+                            <div className="text-black">{t('emailAddress')}</div>
                         </div>
-                        
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">Use of information</div>
-                        <div className="mt-2 ">
-                        In order to respect the data privacy regulations of the various jurisdictions in which we operate, 
-                        we are dedicated to offering you pertinent content on our Services. We utilize information about you in a 
-                        variety of ways so that you can benefit from and use our Services, including the following:
-                        </div>
-                        
+                        <div className="text-black mt-5">{t('bUsageData')}</div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">To provide, maintain, and improve our services.</div>
+                            <div className="text-black">{t('deviceInformation')}</div>
                         </div>
                         <div className="flex flex-row">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">To communicate with users and manage accounts.</div>
+                            <div className="text-black">{t('iPaddress')}</div>
                         </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('languagePreferences')}</div>
+                        </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('appUsageStatistics')}</div>
+                        </div>
+                        <div className="text-black mt-5">{t('cLocationData')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('ifYouGrantLocationPermissions')}</div>
+                        </div>
+                        
+                        
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Sharing and Disclosure</div>
-                        
+                        <div className="font-semibold text-lg text-black">{t('useOfInformation')}</div>
+                        <div className="text-black mt-5">{t('weUseTheCollectedData')}</div>
                         
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">With event organizers, service providers, and for legal compliance.</div>
+                            <div className="text-black">{t('toCreateAndManageUserAccounts')}</div>
+                        </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('toCommunicateWithUsersAndManageAccounts')}</div>
+                        </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('toPersonalizeYourExperience')}</div>
+                        </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('toComplyWithLegalObligations')}</div>
+                        </div>
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('sharingAndDisclosure')}</div>
+                        <div className="text-black mt-5">{t('weDoNotSellYourPersonalData')}</div>
+                        
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('serviceProviders')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('eventOrganizersOrBusinesses')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('lawEnforcementOrRegulators')}</div>
                         </div>
                         
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Data Security</div>
+                        <div className="font-semibold text-lg text-black">{t('dataSecurity')}</div>
                         
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Measures to protect data from unauthorized access or misuse.</div>
+                            <div className="text-black">{t('weTakeAppropriate')}</div>
                         </div>
                         
                     </div>
+                    
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">User Rights</div>
+                        <div className="font-semibold text-lg text-black">{t('userRights')}</div>
+                        <div className=" mt-5 text-black">{t('dependingOnYourLocation')}</div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">Access, correction, deletion, and portability of personal data.</div>
+                            <div className="text-black">{t('accessYourData')}</div>
                         </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('correctInaccurateInformation')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('requestDeletionOfYourData')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('objectToOrRestrict')}</div>
+                        </div>
+                        <div className=" mt-5 text-black">{t('toExerciseTheseRights')}</div>
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('childrensPrivacy')}</div>
+                        <div className=" mt-5 text-black">{t('ourServicesAreNotIntendedFor')}</div>
+                        
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('thirdPartyServices7')}</div>
+                        <div className=" mt-5 text-black">{t('ourAppMayUseThirdParty')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('firebase')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('awsAmplify')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('googleMaps')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('paymentProcessors')}</div>
+                        </div>
+                        <div className=" mt-5 text-black">{t('theseThirdParties')}</div>
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('changesToThisPrivacyPolicy')}</div>
+                        <div className=" mt-5 text-black">{t('weMayUpdateThisPrivacyPolicy')}</div>
                         
                     </div>
                     <div className="mt-5 mb-10">
-                        <div className="font-semibold text-lg ">Contact Us</div>
+                        <div className="font-semibold text-lg text-black">{t('contactUs')}</div>
                         <div className="flex flex-row mt-5 ">
-                            <div>Email: tchebaa.int@gmail.com</div>
+                            <div className='text-black'>{t('emailTchebaaIntGmailCom')}</div>
                         </div>
                         
                     </div>

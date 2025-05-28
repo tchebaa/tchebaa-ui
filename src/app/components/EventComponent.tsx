@@ -17,6 +17,7 @@ import { uploadData, getUrl } from '@aws-amplify/storage';
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa6";
 import { MdPhotoLibrary, MdClose } from "react-icons/md";
+import {useTranslations} from 'next-intl';
 
 Amplify.configure(outputs)
 
@@ -89,6 +90,7 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
     const {likedEvents, handleGetLikedEvents, loadingLikedEvents} = useLikes()
     const {userDetails} = useUser()
     const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation()
+    const t = useTranslations()
 
     const [loadingLikeUnlikeEvent, setLoadingLikeUnlikeEvent] = useState<boolean>(false)
     const [loginModal, setLoginModal] = useState<boolean>(false)
@@ -199,7 +201,7 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
     return(
         <div className="w-full  max-w-7xl h-full flex flex-col items-center pb-96 mb-20 mt-16 md:mt-20 ">
             {event && extraImagesModal ? 
-            <div className='bg-white border absolute rounded-md z-40 w-full h-full max-w-7xl p-4'>
+            <div className='bg-white  border-black absolute rounded-md z-40 w-full h-full max-w-7xl p-4'>
                 <div className='flex flex-row items-center justify-between '>
                     <div></div>
                     <div className='cursor-pointer' onClick={()=> setExtraImagesModal(false)}><MdClose size={24} color="black" /></div>
@@ -214,7 +216,7 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
                         
                         </div>: null }
                         {event.eventImage2.aspectRatio === 'b' && !loadingImage2 ?
-                        <div className=" flex w-full flex-col items-center justify-center md:rounded-lg border h-56 md:w-11/12 md:h-96 max-w-2xl"  
+                        <div className=" flex w-full flex-col items-center justify-center md:rounded-lg border border-black h-56 md:w-11/12 md:h-96 max-w-2xl"  
 
                             style={{backgroundImage: 'url(' + `${screenType === 'preview' ? event.eventImage2.url : eventImage2Url}` + ')', backgroundSize: 'cover',
                             backgroundRepeat: 'no-repeat', overflow: 'hidden', }} >
@@ -421,13 +423,13 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
                 <div className='invisible relative md:ml-4 z-20 md:visible md:relative' >
                     <div>
                         
-                        <div className=' p-2 overflow-x-scroll border-l border-r border-t   w-full max-w-sm fixed h-20 bg-white'>
+                        <div className=' p-2 overflow-x-scroll border-l border-r border-t border-black  w-full max-w-sm fixed h-20 bg-white'>
                         
                             <BookingDateComponent sortedDates={sortedDates} loadingSortedDates={loadingSortedDates} handleSelectDate={handleSelectDate} eventIndex={eventIndex}/>
                         </div>
                     </div>
                         
-                    <div className='fixed mt-20 p-2 overflow-x-scroll border-b border-r border-l   w-full max-w-sm bg-white'>
+                    <div className='fixed mt-20 p-2 overflow-x-scroll border-b border-r border-l border-black  w-full max-w-sm bg-white'>
                         <TicketPriceList ticketPriceArray={ticketPriceArray} adultNumber={adultNumber} adolescentNumber={adolescentNumber} 
                         childNumber={childNumber} handleAddTicket={handleAddTicket} handleMinusTicket={handleMinusTicket} handleOpenCheckoutModal={handleOpenCheckoutModal} />
                     </div>
@@ -435,47 +437,47 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
                 {dateSelectModal ? 
                 <div className='visible fixed z-20 md:invisible md:absolute top-80 bg-white w-full' >
                     <div className='w-full'>
-                        <div className='w-full flex flex-row items-center justify-between p-2 border-t'>
+                        <div className='w-full flex flex-row items-center justify-between p-2 border-t border-black'>
                             <div></div>
                             <div className='cursor-pointer' onClick={()=> setDateSelectModal(false)}><MdClose size={24} color="black" /></div>
                         </div>
-                        <div className=' p-2 overflow-x-scroll border-l border-r border-t   w-full fixed h-20 bg-white'>
+                        <div className=' p-2 overflow-x-scroll border-l border-r border-t border-black  w-full fixed h-20 bg-white'>
                         
                             <BookingDateComponent sortedDates={sortedDates} loadingSortedDates={loadingSortedDates} handleSelectDate={handleSelectDate} eventIndex={eventIndex}/>
                         </div>
                     </div>
                         
-                    <div className='fixed mt-20 p-2 overflow-x-scroll border-b border-r border-l   w-full bg-white'>
+                    <div className='fixed mt-20 p-2 overflow-x-scroll border-b border-r border-l border-black  w-full bg-white'>
                         <TicketPriceList ticketPriceArray={ticketPriceArray} adultNumber={adultNumber} adolescentNumber={adolescentNumber} 
                         childNumber={childNumber} handleAddTicket={handleAddTicket} handleMinusTicket={handleMinusTicket} handleOpenCheckoutModal={handleOpenCheckoutModal} />
                     </div>
                 </div>: null}
             </div>: null}   
             {dateSelectModal ? null : 
-            <div className='fixed bottom-0 border-t p-2 w-full flex flex-row items-center justify-between'>
+            <div className='fixed bottom-0 border-t border-black p-2 w-full flex flex-row items-center justify-between'>
                 <div></div>
-                <div className='text-black border p-1 rounded-md cursor-pointer font-semibold' onClick={()=> setDateSelectModal(true)}>Select Date</div>
+                <div className='text-black border border-black p-1 rounded-md cursor-pointer font-semibold' onClick={()=> setDateSelectModal(true)}>{t('selectdate')}</div>
             </div>}
             {event ? 
             <div className='w-full  max-w-6xl h-full items-center flex-col flex md:mr-4'>
                 <div className='w-full  mt-5 text-3xl flex  flex-col items-center'>
-                    <div className='max-w-6xl md:w-full w-11/12 pb-5 font-semibold '>
+                    <div className='max-w-6xl md:w-full w-11/12 pb-5 font-semibold text-black '>
                         {event.eventName}
                     </div>
             
                 </div>
                 <div className='flex flex-col  w-full  p-2'>
-                    <div className='pt-3 w-full  border-t max-w-2xl  text-xl font-semibold'>About this Event</div>
-                    <div className='md:w-full w-11/12 mt-5 h-20 max-h-40  max-w-2xl  overflow-y-scroll p-2 font-thin'>
+                    <div className='pt-3 w-full  border-t border-black max-w-2xl  text-xl font-semibold text-black'>{t('aboutthisevent')}</div>
+                    <div className='md:w-full w-11/12 mt-5 h-20 max-h-40  max-w-2xl  overflow-y-scroll p-2 text-black'>
                         {event.eventDescription}
                     </div>
                 </div>
                 <div className='flex flex-col  w-full p-2'>
-                    <div className='pt-3 w-full border-t max-w-2xl  text-xl font-semibold'>Location</div>
+                    <div className='pt-3 w-full border-t border-black max-w-2xl  text-xl font-semibold text-black'>{t('location')}</div>
                         <div className='max-w-2xl w-11/12 pb-5 mt-5 flex flex-row flex-wrap justify-between '>
                             <div className='flex flex-row '>
                                 <div className='text-orange-600 '><FaMapMarkerAlt size={20}/></div>
-                                <div className='ml-2'>{event.eventAddress}</div>
+                                <div className='ml- text-black'>{event.eventAddress}</div>
                             
                             </div>
                             

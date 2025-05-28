@@ -13,8 +13,8 @@ export default function ChatUser({item}: {item: {lastMessage: string, participan
 
 
     return(
-        <Link className='w-full flex items-center cursor-pointer flex-row border mt-2 p-2' href={{pathname: '/(tabs)/profile/chats', query: {conversationId: item.id, screenName: "user"}}} passHref>
-            <div className='p-2'>
+        <Link className='w-full flex items-center cursor-pointer flex-row border border-black mt-2 p-2' href={{pathname: '/(tabs)/profile/chats', query: {conversationId: item.id, screenName: "user"}}} passHref>
+            <div className='p-2 text-cyan-500'>
                 <BsPersonCircle className='text-cyan-500' size={30}/>
             </div>
             <div className=' ml-3'>

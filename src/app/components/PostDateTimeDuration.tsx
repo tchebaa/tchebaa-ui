@@ -388,16 +388,16 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                         <div className='flex flex-row mt-2'>
                             <div className='border p-2 w-1/3'>
                                 <div className='text-black font-semibold'>{t('days')}</div>
-                                <input className='border w-2/3 mt-1 px-1 ' value={days}  placeholder={t('days')}  onChange={(e)=> setDays(Number(e.target.value))} type='number'/>
+                                <input className='border w-2/3 mt-1 px-1 text-black' value={days}  placeholder={t('days')}  onChange={(e)=> setDays(Number(e.target.value))} type='number'/>
                         
                             </div>
                             <div className='border p-2 ml-2  w-1/3'>
                                 <div className='text-black font-semibold'>{t('hours')}</div>
-                                <input className='border w-2/3 mt-1 px-1' value={hours} placeholder={t('hours')}  onChange={(e)=> setHours(Number(e.target.value))} type='number'/>
+                                <input className='border w-2/3 mt-1 px-1 text-black' value={hours} placeholder={t('hours')}  onChange={(e)=> setHours(Number(e.target.value))} type='number'/>
                             </div>
                             <div className='border p-2 ml-2  w-1/3'>
                                 <div className='text-black font-semibold'>{t('minutes')}</div>
-                                <input className='border w-2/3 mt-1 px-1' value={minutes} placeholder={t('minutes')} onChange={(e)=> setMinutes(Number(e.target.value))} type='number'/>
+                                <input className='border w-2/3 mt-1 px-1 text-black' value={minutes} placeholder={t('minutes')} onChange={(e)=> setMinutes(Number(e.target.value))} type='number'/>
                             </div>
                             
                         </div>
@@ -420,9 +420,9 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                                     <div className='ml-1 text-sm text-gray-400 font-semibold' >{t('egvipregulareconomy')}</div>
                                     
                                 </div>
-                                <input className='border px-1 mt-2' value={parsedItem.ticketTitle} placeholder={t('egvipregulareconomy')} onChange={(e)=> handleChangeTicketArrayInput('ticketTitle', e.target.value, i)}/>
+                                <input className='border px-1 mt-2 text-black' value={parsedItem.ticketTitle} placeholder={t('egvipregulareconomy')} onChange={(e)=> handleChangeTicketArrayInput('ticketTitle', e.target.value, i)}/>
                                     <div className='mt-2 text-black font-semibold'>{t('ticketnumber')}</div>
-                                <input className='border px-1 mt-2' value={parsedItem.ticketNumber.toString()} placeholder={t('ticketnumber')} type='number' onChange={(e)=> handleChangeTicketArrayInput('ticketNumber', Number(e.target.value), i)}/>
+                                <input className='border px-1 mt-2 text-black' value={parsedItem.ticketNumber.toString()} placeholder={t('ticketnumber')} type='number' onChange={(e)=> handleChangeTicketArrayInput('ticketNumber', Number(e.target.value), i)}/>
                             
                         
                                 <div className='flex flex- mt-2'>
@@ -435,21 +435,21 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                                         <div className='text-black font-semibold' >{t('adult')}</div>
                                         <div className='ml-1 text-sm text-gray-400 font-semibold'>18+</div>
                                     </div>
-                                    <input className='border px-1 w-3/6'  value={parsedItem.adultPrice.toString()} placeholder={t('adultprice')} type='number' onChange={(e)=> handleChangeTicketArrayInput('adultPrice', Number(e.target.value), i)} />
+                                    <input className='border px-1 w-3/6 text-black'  value={parsedItem.adultPrice.toString()} placeholder={t('adultprice')} type='number' onChange={(e)=> handleChangeTicketArrayInput('adultPrice', Number(e.target.value), i)} />
                                 </div>
                                 <div className='flex flex-row justify-between mt-2'>
                                     <div className='flex-row flex '>
                                         <div className='text-black font-semibold'>{t('adolescent')}</div>
                                         <div className='ml-1 text-sm text-gray-400 font-semibold'>13 - 17</div>
                                     </div>
-                                    <input className=' px-1 border w-3/6' value={parsedItem.adolescentPrice.toString()} placeholder={t('adolescentprice')}  type='number' onChange={(e)=> handleChangeTicketArrayInput('adolescentPrice', Number(e.target.value), i)} />
+                                    <input className=' px-1 border w-3/6 text-black' value={parsedItem.adolescentPrice.toString()} placeholder={t('adolescentprice')}  type='number' onChange={(e)=> handleChangeTicketArrayInput('adolescentPrice', Number(e.target.value), i)} />
                                 </div>
                                 <div className='flex flex-row justify-between mt-2'>
                                     <div className='flex flex-row '>
                                         <div className='text-black font-semibold'>{t('child')}</div>
                                         <div className='ml-1 text-sm text-gray-400 font-semibold' >0 - 12</div>
                                     </div>
-                                    <input className='border px-1 w-3/6' value={parsedItem.childPrice.toString()} placeholder={t('childprice')} type='number' onChange={(e)=> handleChangeTicketArrayInput('childPrice', Number(e.target.value), i)} />
+                                    <input className='border px-1 w-3/6 text-black' value={parsedItem.childPrice.toString()} placeholder={t('childprice')} type='number' onChange={(e)=> handleChangeTicketArrayInput('childPrice', Number(e.target.value), i)} />
                                 </div>
                             </div>
 
@@ -459,7 +459,7 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                     <div className='flex items-center flex-col mt-2'>
                         <div className='border items-center flex flex-col p-2 rounded-md cursor-pointer' onClick={()=> handleAddTicketOption()}>
                             <FaRegPlusSquare  color={ "black"} size={24} />
-                            <div>{t('addanotherticketoption')}</div>
+                            <div className='text-black'>{t('addanotherticketoption')}</div>
                         </div>
                     </div>
                     
@@ -509,7 +509,7 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                                 
                                     <div className='ml-2'>
                                         <div className='text-black font-semibold'>{t('eventdate')}</div>
-                                        <div>{moment(parsedItem.eventDate).format('L')}</div>
+                                        <div className='text-black'>{moment(parsedItem.eventDate).format('L')}</div>
                                     </div>
                                 </div>
                                 <div  className='flex flex-row border w-full p-4 rounded-md cursor-pointer mt-2'>
@@ -517,7 +517,7 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                                 
                                     <div className='ml-2'>
                                         <div className='text-black font-semibold'>{t('eventduration')}</div>
-                                        <div>{moment(parsedItem.eventDate).format('LT')}</div>
+                                        <div className='text-black'>{moment(parsedItem.eventDate).format('LT')}</div>
                                     </div>
                                 </div>
                             </div>
@@ -526,16 +526,16 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                                 <div className='flex flex-row mt-2'>
                                     <div className='border p-2 w-1/3'>
                                         <div className='text-black font-semibold'>{t('days')}</div>
-                                        <div>{parsedItem.eventDays}</div>
+                                        <div className='text-black'>{parsedItem.eventDays}</div>
                                 
                                     </div>
                                     <div className='border p-2 ml-2  w-1/3'>
                                         <div className='text-black font-semibold'>{t('hours')}</div>
-                                        <div>{parsedItem.eventHours}</div>
+                                        <div className='text-black'>{parsedItem.eventHours}</div>
                                     </div>
                                     <div className='border p-2 ml-2  w-1/3'>
                                         <div className='text-black font-semibold'>{t('minutes')}</div>
-                                        <div>{parsedItem.eventMinutes}</div>
+                                        <div className='text-black'>{parsedItem.eventMinutes}</div>
                                     </div>
                                     
                                 </div>

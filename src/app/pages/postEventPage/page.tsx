@@ -29,6 +29,7 @@ import Header from '../../components/Header';
 import LoginModal from '../../components/LoginModal';
 import SignUpModal from '../../components/SignUpModal';
 import ForgotPasswordModal from '../../components/ForgotPasswordModal';
+import ConfirmAccountModal from '../../components/ConfirmAccountModal';
 
 
 
@@ -64,6 +65,7 @@ export default function PostEventPage() {
     const [menuModalVisible, setMenuModalVisible] = useState(false)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
 
     const [loadingGetEvent, setLoadingGetEvent] = useState<boolean>(false)
     const [loadingEventError, setLoadingEventError] = useState<string>('')
@@ -135,7 +137,7 @@ export default function PostEventPage() {
     const [uploadLoading, setUploadLoading] = useState<boolean>(false)
 
 
-       const [modalOpen, setModalOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
 
 
    const [mainImageUrl, setMainImageUrl] = useState('')
@@ -1520,14 +1522,15 @@ const handleGetEvent = async () => {
 
 
     return(
-        <div className='w-full mt-1 bg-white   h-full '>
+        <div className='w-full mt-1 bg-white  flex flex-col items-center h-full '>
             <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
         {
             loginModal ? 
             <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
             <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+            setConfirmationModal={setConfirmationModal} />
             </div>
             :
             null
@@ -1536,16 +1539,27 @@ const handleGetEvent = async () => {
             signUpModal ? 
             <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
             <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+            setConfirmationModal={setConfirmationModal}/>
             </div>
             :
             null
         }
         {
-            !forgotPasswordModal ? 
+            confirmationModal ? 
+            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+            <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
+            </div>
+            :
+            null
+        }
+        {
+            forgotPasswordModal ? 
             <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
             <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
+            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}
+            confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
             </div>
             :
             null

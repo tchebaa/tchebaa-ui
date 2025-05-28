@@ -9,16 +9,21 @@ import { BsDot } from "react-icons/bs";
 import LoginModal from '../../components/LoginModal'
 import SignUpModal from '../../components/SignUpModal'
 import ForgotPasswordModal from '../../components/ForgotPasswordModal'
+import {useTranslations} from 'next-intl';
+
+
 
 export default function TermsOfServicePage() {
 
+    const t = useTranslations()
     const [loadParticles, setLoadParticles] = useState(true) 
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
     const [menuModalVisible, setMenuModalVisible] = useState(false)
     const [loginModal, setLoginModal] = useState<boolean>(false)
     const [signUpModal, setSignUpModal] = useState<boolean>(false)
-     const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
+    const [forgotPasswordModal, setForgotPasswordModal] = useState<boolean>(false)
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false)
 
 
     return(
@@ -27,25 +32,29 @@ export default function TermsOfServicePage() {
                 loginModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal} />
                 </div>
                 :
                 null
             }
             {
-                      !forgotPasswordModal ? 
-                      <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                        <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal}/>
-                      </div>
-                      :
-                      null
-                    }
+                forgotPasswordModal ? 
+                <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
+                </div>
+                :
+                null
+            }
             {
                 signUpModal ? 
                 <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
                 <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal}
-                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} />
+                forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} 
+                confirmationModal={confirmationModal} 
+                setConfirmationModal={setConfirmationModal}/>
                 </div>
                 :
                 null
@@ -55,192 +64,247 @@ export default function TermsOfServicePage() {
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
         <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-4">
                 <div className="w-11/12 flex flex-col">
-                    <h1 className="text-2xl font-semibold mt-10 ">Terms of Service</h1>
-                    <div className='mt-5'>Last Updated: Last Updated: 7/05/2025</div>
-                    <div className='mt-5'>{`Welcome to TCHEBAA. These Terms of Use ("Terms") govern your use of our platform,
-                    including our website (www.tchebaa.com), mobile application, and services ("Service"). By
-                    accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy. If
-                    you do not agree with any part of these Terms, you may not access or use the Service.`}
+                    <h1 className="text-2xl font-semibold mt-10 text-black">{t('termsOfUse')}</h1>
+                    <div className='mt-5 text-black'>{t('effectiveDate')}</div>
+                    <div className='mt-5 text-black'>{t('welcomeToTchebaa')}
                     </div>
-                    
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Eligibility</div>
-                        <div className="mt-2 ">
-                        You must be at least 18 years of age, or the legal age of majority in your jurisdiction, to use TCHEBAA. 
-                        By using the Service, you represent and warrant that you meet the eligibility requirements.
+                        <div className="font-semibold text-lg text-black">{t('accountRegistrationAndResponsibilites')}</div>
+                        <div className="mt-2 text-black">{t('toUseCertainFeaturesOfTchebaa')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('provideAccurate')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('maintainConfidentiality')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('beFullyResponsible')}</div>
+                        </div>
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('eligibility')}</div>
+                        <div className="mt-2 text-black">
+                        {t('youMustBeAtLeast')}
 
                         </div>
                         
                     
                         
                     </div>
+                    
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">User Accounts</div>
-                        <div className="mt-2 ">To access certain features, you may be required to create an account. You agree to:</div>
+                        <div className="font-semibold text-lg text-black">{t('useOfTheServices')}</div>
+                        <div className="mt-5 text-black">{t('youMayUseTchebaaTo')}</div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Personal and business data provided during account registration or use of our service.</div>
+                            <div className="text-black">{t('createAndPromoteEvents')}</div>
                         </div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black' />
                             </div>
-                            <div className="">Keep your login credentials confidential.</div>
+                            <div className="text-black">{t('browseAndSaveFavoriteEvents')}</div>
                         </div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Keep your login credentials confidential.</div>
+                            <div className="text-black">{t('viewPersonalizedRecommendations')}</div>
                         </div>
                         <div className="flex flex-row mt-5">
                             <div className="mt-1">
-                                <BsDot size={20} />
+                                <BsDot size={20} color='black'/>
                             </div>
-                            <div className="">Notify us of any unauthorized use of your account.</div>
-                        </div>
-                        <div className='mt-5'>{`We reserve the right to suspend or terminate your account if any information provided is inaccurate, false, or misleading.`}</div>
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">User Conduct</div>
-                        <div className="mt-5">You agree not to:</div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Use the Service for unlawful purposes.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Post or share content that is offensive, defamatory, or infringes on the rights of others.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Interfere with the proper functioning of the platform.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Use automated means to access the Service without our written consent.</div>
+                            <div className="text-black">{t('accessAdditionalFeaturesAsAPaidUser')}</div>
                         </div>  
+                        <div className="mt-5 text-black">{t('youAgreeNotTo')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('useThePlatformForIllegal')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('postContentThatIsDefamatory')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('interfereWithTheProperWorking')}</div>
+                        </div>
+                        
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Content Ownership and License</div>
+                        <div className="font-semibold text-lg text-black">{t('paidServicesAndSubscriptions')}</div>
+                        <div className="mt-5 text-black">{t('certainFeaturesOfTchebaa')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('youAuthorizeUsToChargeYourPaymentMethod')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('youAcknowledgeThatFeesAre')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('weMayChangePricing')}</div>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('userContent')}</div>
                         
                         
                         <div className="flex flex-row mt-5 ">
-                            <div>You retain ownership of content you post through TCHEBAA. However, by posting or uploading
-                            content, you grant TCHEBAA a non-exclusive, royalty-free, worldwide license to use, reproduce,
-                            display, and distribute your content in connection with providing the Service.
-                            We reserve the right to remove or restrict content that violates these Terms or is otherwise
-                            objectionable.</div>
+                            <div className='text-black'>{t('youMayUploadOrShare')}</div>
                         </div>
                         
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Payments and Subscriptions</div>
-                        <div className="mt-5">Some features of the Service may be offered for a fee. If you purchase a subscription or paid feature:</div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">You agree to provide accurate billing information.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Charges will be clearly disclosed and may recur depending on your subscription plan.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">Interfere with the proper functioning of the platform.</div>
-                        </div>
-                        <div className="flex flex-row mt-5">
-                            <div className="mt-1">
-                                <BsDot size={20} />
-                            </div>
-                            <div className="">You may cancel at any time per the cancellation policy provided during purchase.</div>
-                        </div>  
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">Third-Party Links</div>
-                        
-                        
-                        <div className="flex flex-row mt-5">
-                            <div className="">TCHEBAA may include links to third-party services. We do not control these sites and are not 
-                                responsible for their content or practices. Use of third-party services is at your own risk.
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div className="mt-5">
-                        <div className="font-semibold text-lg ">Termination</div>
+                        <div className="font-semibold text-lg text-black">{t('locationBasedServices')}</div>
                         
                         
                         <div className="flex flex-row mt-5 ">
-                            <div>We may terminate or suspend your access to the Service at our discretion, with or without notice, 
-                                for conduct that we believe violates these Terms or is harmful to us or other users.</div>
+                            <div className='text-black'>{t('someFeaturesRequireAccessToYourDevice')}</div>
                         </div>
                         
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Disclaimers and Limitation of Liability</div>
+                        <div className="font-semibold text-lg text-black">{t('privacy')}</div>
+                        
+                        
+                        <div className="flex flex-row mt-5 ">
+                            <div className='text-black'>{t('yourUseOfTheServicesIs')}</div>
+                        </div>
+                        
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('termination')}</div>
+                        <div className="mt-5 text-black">{t('weMaySuspendOrTerminate')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('youBreachTheseTerms')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('weSuspectFraudulent')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('weAreRequiredToDo')}</div>
+                        </div>
+                        <div className="mt-5 text-black">{t('youMayDeleteYourAccount')}</div> 
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('intellectualProperty')}</div>
                         
                         
                         <div className="flex flex-row mt-5">
-                            <div className="">The Service is provided “as is” without warranties of any kind. To the fullest extent permitted by
-                            law, TCHEBAA disclaims all warranties, express or implied, and is not liable for any indirect,
-                            incidental, or consequential damages arising out of your use or inability to use the Service.
+                            <div className="text-black">{t('allTchebaaContentBranding')}</div>
+                        </div>
+                        
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('thirdPartyServices')}</div>
+                        
+                        
+                        <div className="flex flex-row mt-5 ">
+                            <div className='text-black'>{t('tchebaaMayLinkToOrInteractWith')}</div>
+                        </div>
+                        
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('disclaimers')}</div>
+                        
+                        
+                        <div className="flex flex-row mt-5">
+                            <div className="text-black">{t('tchebaaIsProvidedAsIs')}
                             </div>
                         </div>
                         
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Indemnification</div>
+                        <div className="font-semibold text-lg text-black">{t('termination')}</div>
+                        <div className="mt-5 text-black">{t('toTheFullestExtentPermitted')}</div>
                         <div className="flex flex-row mt-5">
-                            <div className="">You agree to indemnify and hold harmless TCHEBAA, its affiliates, and their officers and
-                                employees from any claim or demand made by a third party due to your use of the Service,
-                                violation of these Terms, or your infringement of any rights.
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('anyIndirectIncidental')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black'/>
+                            </div>
+                            <div className="text-black">{t('lossOfDataIncomeOrReputation')}</div>
+                        </div>
+                        <div className="flex flex-row mt-5">
+                            <div className="mt-1">
+                                <BsDot size={20} color='black' />
+                            </div>
+                            <div className="text-black">{t('errorsOrDowntimeInTheService')}</div>
+                        </div>
+                         
+                    </div>
+                    <div className="mt-5">
+                        <div className="font-semibold text-lg text-black">{t('indemnity')}</div>
+                        <div className="flex flex-row mt-5">
+                            <div className="text-black">{t('youAgreeToIndemnify')}
                             </div>
                         </div>   
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Changes to Terms</div>
+                        <div className="font-semibold text-lg text-black">{t('governingLawAndDisputeResolution')}</div>
                         <div className="flex flex-row mt-5">
-                            <div className="">We may update these Terms from time to time. We will notify users of significant changes and
-                            indicate the date of the last update. Continued use of the Service after changes constitutes your
-                            acceptance of the new Terms.
+                            <div className="text-black">{t('thisAgreementIsGovernedByTheLaws')}
                             </div>
                         </div>   
                     </div>
                     <div className="mt-5">
-                        <div className="font-semibold text-lg ">Governing Law</div>
+                        <div className="font-semibold text-lg text-black">{t('changesToThisAgreement')}</div>
                         <div className="flex flex-row mt-5">
-                            <div className="">These Terms are governed by the laws of the State of Texas, without regard to its conflict of law
-                            principles. Any disputes shall be resolved in the state or federal courts located in Bexar County,
-                            Texas.
+                            <div className="text-black">{t('weMayUpdateTheseTerms')}
                             </div>
                         </div>   
                     </div>
                     <div className="mt-5 mb-10">
-                        <div className="font-semibold text-lg ">Contact Us</div>
+                        <div className="font-semibold text-lg text-black">{t('contactUs')}</div>
                         
                         
                         <div className="flex flex-row mt-5 ">
-                            <div>For any questions about these Terms, please contact us at:</div>
+                            <div className='text-black'>{t('ifYouHaveQuestionsOrNeedSupport')}</div>
                         </div>
                         <div className="flex flex-row mt-5 ">
-                            <div>{`📧 tchebaa.int@gmail.com`}</div>
+                            <div className='text-black'>{t('emailTchebaaInt')}</div>
                         </div>
                         
                     </div>

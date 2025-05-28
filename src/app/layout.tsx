@@ -13,7 +13,7 @@ import {Amplify} from 'aws-amplify'
 import { generateClient } from 'aws-amplify/data';
 import {type Schema} from '../../tchebaa-backend/amplify/data/resource'
 import outputs from '../../amplify_outputs.json'
-
+import 'moment/locale/fr';
 
 
 
@@ -41,15 +41,6 @@ export default function RootLayout({
 }>) {
 
   
-
-
-  const handleGetLocale = async () => {
-
-    const locale = await getLocale()
-
-    console.log(locale)
-
-  }
 
 
   

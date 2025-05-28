@@ -186,7 +186,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
     return (
         <div className='w-full '>
               {deleteModal ? 
-                <div className='absolute bg-white border w-11/12 m-2 max-w-sm p-2 rounded-md flex flex-col items-center'>
+                <div className='absolute bg-white border border-black w-11/12 m-2 max-w-sm p-2 rounded-md flex flex-col items-center'>
                     <div className='text-black font-semibold'>{t('areyousureyouwanttodeletethisevent')}</div>
                     <div className='mt-1 text-black font-semibold'>{eventName}</div>
                     <div className='text-black mt-1'>{eventAddress}</div>
@@ -194,7 +194,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                     
                     {loadingDelete ? <div className='text-black font-semibold'>{t('deleting')}</div> :
                     <div className='flex flex-row items-center justify-between mt-2'>
-                        <div className='border-2 px-1 cursor-pointer'  onClick={()=> setDeleteModal(false)}>
+                        <div className='border-2 border-black px-1 cursor-pointer'  onClick={()=> setDeleteModal(false)}>
                             <div className='text-black font-semibold'>{t('no')}</div>
                         </div>
                         <div className='border-2 px-1 ml-5 border-red-500 cursor-pointer' onClick={()=> handleDeleteEvent()}>
@@ -206,7 +206,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                     {item.eventMainImage.aspectRatio === 'a'  ? 
                     <div className='w-full'>
                       {!loadingImage ? 
-                      <div className='w-full h-44 max-w-sm rounded-md border'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+                      <div className='w-full h-44 max-w-sm rounded-md border border-black'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>
                       </div>:
                       <div className='text-black font-semibold'>{t('loading')}</div>} 
@@ -215,7 +215,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                     {item.eventMainImage.aspectRatio === 'b'  ? 
                     <div className='w-full'>
                       {!loadingImage ? 
-                      <div className='w-full h-44 max-w-sm flex items-center rounded-md border'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+                      <div className='w-full h-44 max-w-sm flex items-center rounded-md border border-black'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>
                             <div className=' z-10 backdrop-blur-sm w-full h-full flex flex-col items-center  '>
                                <div className='h-40 mt-2 absolute z-20 w-40 rounded-md rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
@@ -229,7 +229,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                     {item.eventMainImage.aspectRatio === 'c'  ? 
                     <div>
                     {!loadingImage ? 
-                    <div className='w-full h-44 max-w-sm rounded-md border '  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+                    <div className='w-full h-44 max-w-sm rounded-md border border-black '  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat', overflow: 'hidden'}}>
                       <div className=' z-10 backdrop-blur-sm w-full h-full flex flex-col items-center  '>
                          <div className='h-40 w-28 mt-2 absolute z-20 rounded-md  rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
@@ -251,7 +251,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                             <div>
                                 
                                 <Link href={{pathname: '../pages/eventBookings' , query: {screenName: screenType, eventId: item.id, eventName: item.eventName, eventAddress: item.eventAddress}}} target="_blank" passHref>
-                                    <div className='border text-black rounded-md px-1'><div>{t('viewbookings')}</div></div>
+                                    <div className='border text-black rounded-md px-1 border-black'><div>{t('viewbookings')}</div></div>
                                 </Link>
                                 </div>
                             
@@ -260,7 +260,7 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                                 
                                 {screenName === 'main' ? null :
                                 <Link href={{pathname: '../pages/eventAnalytics' , query: {screenName: screenType, id: item.id}}} target="_blank" passHref>
-                                    <div className='border text-black rounded-md px-1'><div>{t('viewanalytics')}</div></div>
+                                    <div className='border text-black rounded-md px-1 border-black'><div>{t('viewanalytics')}</div></div>
                                 </Link>}
                                 </div>
                             
@@ -270,21 +270,21 @@ export default function EventManageBody({item, screenType, deletedItem, setDelet
                           
                           <div className='flex flex-row items-center justify-between mt-2'>
                             {screenName === 'main' ? 
-                            <div className='border text-black px-1 rounded-md cursor-pointer' onClick={()=> handleOpenDeleteModal(item.eventName, item.id, item.eventAddress)}><div>{t('delete')}</div></div>
+                            <div className='border border-black text-black px-1 rounded-md cursor-pointer' onClick={()=> handleOpenDeleteModal(item.eventName, item.id, item.eventAddress)}><div>{t('delete')}</div></div>
                             :
                             <div>
-                              {admin?.deleteEventPermissions ? <div className='border text-black rounded-md px-1 cursor-pointer'  onClick={()=> handleOpenDeleteModal(item.eventName, item.id, item.eventAddress)}><div>{t('delete')}</div></div>
+                              {admin?.deleteEventPermissions ? <div className='border border-black text-black rounded-md px-1 cursor-pointer'  onClick={()=> handleOpenDeleteModal(item.eventName, item.id, item.eventAddress)}><div>{t('delete')}</div></div>
                               :
                               null}
                             </div>}
                             {screenName === 'main' ? 
                             <Link href={{pathname: '../pages/postEventPage' , query: {screenName: screenType, id: item.id}}} >
-                                <div className='border text-black rounded-md px-1 cursor-pointer'><div>{t('edit')}</div></div>
+                                <div className='border border-black text-black rounded-md px-1 cursor-pointer'><div>{t('edit')}</div></div>
                             </Link>:
                             <div>
                               {admin?.editEventPermissions ? 
                               <Link href={{pathname: '../pages/postEventPage' , query: {screenName: screenType, id: item.id}}} >
-                                  <div className='border text-black rounded-md px-1 cursor-pointer'><div>{t('edit')}</div></div>
+                                  <div className='border border-black text-black rounded-md px-1 cursor-pointer'><div>{t('edit')}</div></div>
                               </Link>: null}
                             </div>}
                           </div>

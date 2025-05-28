@@ -247,129 +247,123 @@ export default function EventListItem({item, loginModal, setLoginModal, signUpMo
 
     
 
-    useEffect(()=> {
-
-    },[])
-
-   
-
     return(
            
-                    <Link  className=" w-11/12 md:w-72 max-w-sm mt-3 md:mr-2 flex flex-col rounded-md  bg-white hover:shadow" target="_blank" href={{ pathname: '../pages/eventPage', query: { id: item.id } }} passHref>
-                       {item.eventMainImage.aspectRatio === 'a' && !loadingImage ? 
-                       <div className=" flex  h-44 rounded-lg border"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
-                            <div className="p-1 flex flex-row justify-between w-full">
-                                <div className="z-20">
-                                    {item.sponsored  ? 
-                                    <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
-                                </div>
-                                {userDetails ? 
-                                <div>
-                                    {likedEvents ? 
-                                    <div>
-                                    {likedEvents.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
-                                    <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    }
-                                    </div>: null}
-                                </div>:
-                                <div>
-                                    
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    
-                                </div>}
-                            </div>
-                        </div>: 
-                        null}
-                        {item.eventMainImage.aspectRatio === 'b' && !loadingImage ? 
-                       <div className=" flex  h-44 flex-col items-center  rounded-lg  border"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
-                            <div className="p-1 flex flex-row justify-between w-full backdrop-blur-sm">
-                                <div className="z-20">
-                                    {item.sponsored  ? 
-                                    <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
-                                </div>
-                               {userDetails ? 
-                               <div>
-                                    {likedEvents!.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
-                                    <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    }
-                                </div>:
-                                <div>
-                                    
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    
-                                </div>
-                                }
-                            </div>
-                            <div className='h-40 mt-2 absolute z-20 w-40 rounded-md rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}></div>
-                           <div className=' z-10 backdrop-blur-sm w-full h-full  '>
-                               
-                               
-                            </div>
-                            
-                        </div>: 
-                        null}
-                        {item.eventMainImage.aspectRatio === 'c' && !loadingImage ? 
-                       <div className=" flex  h-44 flex-col items-center  rounded-lg  border"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
-                            <div className="p-1 flex flex-row justify-between w-full backdrop-blur-sm ">
-                                <div className="z-20">
-                                    {item.sponsored  ? 
-                                    <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
-                                </div>
-                                {userDetails  ?
-                                <div>
-                                    {likedEvents!.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
-                                    <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    }
-                                    </div>:
-                                    <div>
-                                    
-                                    <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                                    onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
-                                        <IoMdHeartEmpty color="black" size={20}/>
-                                    </div>
-                                    
-                                </div>}
-                            </div>
-                            <div className='h-40 w-28 mt-2 absolute z-20 rounded-md  rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}></div>
-                           
-                            <div className=' z-10 backdrop-blur-sm w-full h-full  '>
-                               
-                               
-                            </div>
-                            
-                        </div>: 
-                        null}
-                        <div className="p-2">
-                            <div className=" text-lg text-black font-semibold  max-h-14 overflow-hidden text-clip">{item.eventName}</div>
-                            <div className="text-black text-sm mt-1">{item.eventAddress}</div>
-                            <div>
-                               {item.site ? null : <EventDateTimeCostSection eventTimelines={item.dateTimePriceList} option={'homeNear'} /> }
-                            </div>
-                            
-                        </div>
-                        
-                    </Link>
+          <Link  className=" w-11/12 md:w-72 max-w-sm mt-3 md:mr-2 flex flex-col rounded-md  bg-white hover:shadow" target="_blank" href={{ pathname: '../pages/eventPage', query: { id: item.id } }} passHref>
+              {item.eventMainImage.aspectRatio === 'a' && !loadingImage ? 
+              <div className=" flex  h-44 rounded-lg border border-black"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
+                  <div className="p-1 flex flex-row justify-between w-full">
+                      <div className="z-20">
+                          {item.sponsored  ? 
+                          <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
+                      </div>
+                      {userDetails ? 
+                      <div>
+                          {likedEvents ? 
+                          <div>
+                          {likedEvents.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
+                          <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          }
+                          </div>: null}
+                      </div>:
+                      <div>
+                          
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          
+                      </div>}
+                  </div>
+              </div>: 
+              null}
+              {item.eventMainImage.aspectRatio === 'b' && !loadingImage ? 
+              <div className=" flex  h-44 flex-col items-center  rounded-lg  border border-black"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
+                  <div className="p-1 flex flex-row justify-between w-full backdrop-blur-sm">
+                      <div className="z-20">
+                          {item.sponsored  ? 
+                          <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
+                      </div>
+                      {userDetails ? 
+                      <div>
+                          {likedEvents!.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
+                          <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          }
+                      </div>:
+                      <div>
+                          
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          
+                      </div>
+                      }
+                  </div>
+                  <div className='h-40 mt-2 absolute z-20 w-40 rounded-md rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}></div>
+                  <div className=' z-10 backdrop-blur-sm w-full h-full  '>
+                      
+                      
+                  </div>
+                  
+              </div>: 
+              null}
+              {item.eventMainImage.aspectRatio === 'c' && !loadingImage ? 
+              <div className=" flex  h-44 flex-col items-center  rounded-lg  border border-black"  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat', overflow: 'hidden'}} >
+                  <div className="p-1 flex flex-row justify-between w-full backdrop-blur-sm ">
+                      <div className="z-20">
+                          {item.sponsored  ? 
+                          <div><SlBadge size={20} color="#FF4D00"/></div>: <div></div>}
+                      </div>
+                      {userDetails  ?
+                      <div>
+                          {likedEvents!.findIndex(newItem => newItem.eventId === item.id) > -1 ? 
+                          <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item.id, screenType)}}><IoMdHeart size={20} color="#ce2029"/></div>:
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          }
+                          </div>:
+                          <div>
+                          
+                          <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                          onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
+                              <IoMdHeartEmpty color="black" size={20}/>
+                          </div>
+                          
+                      </div>}
+                  </div>
+                  <div className='h-40 w-28 mt-2 absolute z-20 rounded-md  rounded-md'  style={{backgroundImage: 'url(' + `${mainImageUrl}` + ')', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', overflow: 'hidden'}}></div>
+                  
+                  <div className=' z-10 backdrop-blur-sm w-full h-full  '>
+                      
+                      
+                  </div>
+                  
+              </div>: 
+              null}
+              <div className="p-2">
+                  <div className=" text-lg text-black font-semibold  max-h-14 overflow-hidden text-clip">{item.eventName}</div>
+                  <div className="text-black text-sm mt-1">{item.eventAddress}</div>
+                  <div>
+                      {item.site ? null : <EventDateTimeCostSection eventTimelines={item.dateTimePriceList} option={'homeNear'} /> }
+                  </div>
+                  
+              </div>
+              
+          </Link>
                
           
            

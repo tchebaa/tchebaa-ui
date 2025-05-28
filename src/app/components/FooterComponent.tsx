@@ -7,11 +7,14 @@ import Link from 'next/link';
 import { FaFacebookF } from "react-icons/fa";
 import Image from 'next/image'
 import { BiSearch, BiLogoPlayStore, BiLogoApple } from "react-icons/bi";
+import {useTranslations} from 'next-intl';
 
 
 export default function FooterComponent(){
 
     const [year, setYear] = useState<string>('')
+
+    const t = useTranslations()
 
     useEffect(()=> {
 
@@ -19,18 +22,31 @@ export default function FooterComponent(){
 
     },[])
 
+    /**
+    
+    <Link className="cursor-pointer" href='/' passHref target='_blank'>
+                  
+        <div className="cursor-pointer">
+            <FaFacebookF size={24} color="black"/>
+        </div>
+        
+    </Link>
+
+     <Link className="cursor-pointer" href={{ pathname: '../pages/aboutUsPage'}}
+                passHref>
+                  
+                        <h1 className=" cursor-pointer hover:underline text-black">About Us</h1>
+                  
+                </Link>
+    
+     */
+
 
 
     return(
         <div className="w-full flex flex-col items-center bg-gray-200">
             <div className="mt-16 flex flex-row border-b-2 pb-5 mb-10">
-                <Link className="cursor-pointer" href='/' passHref target='_blank'>
-                  
-                        <div className="cursor-pointer">
-                            <FaFacebookF size={24} color="black"/>
-                        </div>
-                   
-                </Link>
+                
                 <Link className="cursor-pointer" href="https://www.tiktok.com/@tchebaa.internati?lang=en" passHref target='_blank'>
                     
                         <div className="ml-10 cursor-pointer">
@@ -47,25 +63,20 @@ export default function FooterComponent(){
                 </Link>
             </div>
             <div className="mt-5 flex flex-wrap items-center justify-center border-b-2 pb-5 mb-10 w-11/12 max-w-6xl">
-                <Link className="cursor-pointer" href={{ pathname: '../pages/aboutUsPage'}}
-                passHref>
-                  
-                        <h1 className=" cursor-pointer hover:underline text-black">About Us</h1>
-                  
-                </Link>
+               
                 <Link className="cursor-pointer" href={{
                     pathname: '../pages/privacyPolicyPage'
                 }}
                 passHref>
                     
-                        <h2 className=" ml-5 cursor-pointer hover:underline text-black">Privacy policy</h2>
+                        <h2 className=" ml-5 cursor-pointer hover:underline text-black">{t('privacyPolicy')}</h2>
                    
                 </Link>
                 <Link className="cursor-pointer" href={{
                     pathname: '../pages/termsOfServicePage'
                 }}>
                   
-                        <h2 className=" ml-5 cursor-pointer hover:underline text-black">Terms of service</h2>
+                        <h2 className=" ml-5 cursor-pointer hover:underline text-black">{t('termsOfUse')}</h2>
                    
                 </Link>
                 <Link className="cursor-pointer" href={{
@@ -77,11 +88,11 @@ export default function FooterComponent(){
                    
                 </Link>
                 <Link className="cursor-pointer" href={{
-                    pathname: '../pages/contactPage'
+                    pathname: '../pages/contactUs'
                 }}
                 passHref>
                     
-                        <h2 className=" ml-3 cursor-pointer hover:underline text-black">Contact us</h2>
+                        <h2 className=" ml-3 cursor-pointer hover:underline text-black">{t('contactUs')}</h2>
                    
                 </Link>
                 
@@ -118,7 +129,7 @@ export default function FooterComponent(){
                 </div>
             </div>
                  <div className="flex flex-row items-center mt-10 mb-10 md:mt-0 md:mb-0">
-                    <p className="  text-sm text-black">Copyright</p>
+                    <p className="  text-sm text-black">{t('copyright')}</p>
                     <div className="ml-3">
                     <AiOutlineCopyrightCircle size={18}/>
                     </div>

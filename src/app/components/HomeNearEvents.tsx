@@ -125,7 +125,7 @@ export default function HomeNearEvents({componentType, events, loadingEvents, lo
                     )
                 })}
             </div>:
-            <div className="flex items-center flex-col  justify-center w-11/12 mt-10">
+            <div className="flex items-center flex-col  justify-center w-11/12 mt-10 mb-20">
                 <div className="text-black">Oops! No events near you.</div>
                 <div></div>
             </div>}

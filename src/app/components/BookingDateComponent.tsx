@@ -64,7 +64,7 @@ export default function BookingDateComponent({sortedDates, loadingSortedDates, h
                                         <div className='ml-2 text-orange-600 font-semibold'>{t('ongoing')}</div>
                                         
                                     </div>:
-                                    <div className='border p-2 rounded-md flex flex-row items-center' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
+                                    <div className='border border-black p-2 rounded-md flex flex-row items-center' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
                                         <div className='truncate text-black'>
                                             {moment(item.eventDate).format('MMMM Do YYYY, h:mm a')}
                                         </div>
@@ -78,7 +78,7 @@ export default function BookingDateComponent({sortedDates, loadingSortedDates, h
                                     <div className='border p-2 rounded-md border-sky-400 text-black' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
                                         {moment(item.eventDate).format('MMMM Do YYYY, h:mm a')}
                                     </div>:
-                                    <div className='border p-2 rounded-md text-black' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
+                                    <div className='border border-black p-2 rounded-md text-black' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
                                         {moment(item.eventDate).format('MMMM Do YYYY, h:mm a')}
                                     </div>}
                                 </div>}

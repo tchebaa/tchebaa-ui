@@ -340,10 +340,10 @@ export default function AllAdmins() {
                 </div>
                 :
                 null}
-                <input className='border w-full p-2 mt-2' placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                {emailError ? <div >{t('emailrequired')}</div>: null}
-                <input className='border w-full p-2 mt-2' placeholder={t('name')}  value={adminName} onChange={(e)=> setAdminName(e.target.value)}/>
-                {adminNameError ? <div>{t('nameisrequired')}</div>: null}
+                <input className='border w-full p-2 mt-2 text-black' placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                {emailError ? <div className='text-red-500'>{t('emailrequired')}</div>: null}
+                <input className='border w-full p-2 mt-2 text-black' placeholder={t('name')}  value={adminName} onChange={(e)=> setAdminName(e.target.value)}/>
+                {adminNameError ? <div className='text-red-500'>{t('nameisrequired')}</div>: null}
                 <div className='mt-2 w-full'>
                         <div className='flex flex-row items-center cursor-pointer'  onClick={()=> setPostEventPermissions(!postEventPermissions)}>
                             {postEventPermissions ?
@@ -440,7 +440,7 @@ export default function AllAdmins() {
                             
                             <div key={i} className='border w-full max-w-sm md:m-2 p-5 my-1'>
                                 <div className='text-black font-semibold text-lg'>{item.adminName}</div>
-                                <div className='font-semibold'>{item.email}</div>
+                                <div className='font-semibold text-black'>{item.email}</div>
                                 <div className='flex flex-row items-center justify-between mt-2'>
                                     <div className='border rounded-md px-1 cursor-pointer ' onClick={()=> handleOpenAdminEdit(item)}>
                                         <div className=' text-black '>{t('edit')}</div>

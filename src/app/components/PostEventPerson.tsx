@@ -19,7 +19,7 @@ export default function PostEventPerson ({personType, setPersonType, companyName
             {screenName === 'admin' ? 
                 <div>
                     <div className='text-black font-semibold'>{t('eventorganizer')}</div>
-                    <input placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                    <input className='text-black border border-black p-2' placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
                     { emailError ? <div className='text-black'>{t('emailrequired')}</div>: null}
                 </div>
                 : null
@@ -49,13 +49,13 @@ export default function PostEventPerson ({personType, setPersonType, companyName
                 </div>
                 {!personType ? 
                 <div className='mt-2'>
-                    <input className='border p-2' placeholder={t('companyname')}  value={companyName} onChange={(e)=> setCompanyName(e.target.value)}/>
+                    <input className='border p-2 text-black' placeholder={t('companyname')}  value={companyName} onChange={(e)=> setCompanyName(e.target.value)}/>
                     {companyNameError ? <div className='text-red-500'>{t('companynamerequired')}</div> : <div ></div>}
-                    <input className='border p-2 mt-2'  placeholder={t('companyemail')}   value={companyEmail} onChange={(e)=> setCompanyEmail(e.target.value)}/>
+                    <input className='border p-2 mt-2 text-black'  placeholder={t('companyemail')}   value={companyEmail} onChange={(e)=> setCompanyEmail(e.target.value)}/>
                     {companyEmailError ? <div className='text-red-500'>{t('companyemailrequired')}</div> : <div ></div>}
                 </div> : 
                 <div className='mt-2'>
-                    <input className='border p-2' placeholder={t('myname')}  value={personName} onChange={(e)=> setPersonName(e.target.value)}/>
+                    <input className='border p-2 text-black' placeholder={t('myname')}  value={personName} onChange={(e)=> setPersonName(e.target.value)}/>
                     {personNameError ? <div className='text-red-500'>{t('yournameisrequired')}</div> : <div ></div>}
                 </div>}
             </div> 
