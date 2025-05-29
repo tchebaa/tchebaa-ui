@@ -292,61 +292,63 @@ export default function ComponentHeader({category, id, item}: {category: string,
                         <GoOrganization size={25} color='black'/>
                         
                     </div>: null}
-                    {userDetails  ?
-                    <div>
-                        {likedEvents!.findIndex(newItem => newItem.eventId === item?.id) > -1 ? 
-                        <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item?.id ?? '', 'home')}}><IoMdHeart size={20} color="#ce2029"/></div>:
-                        <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                        onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
-                            <IoMdHeartEmpty color="black" size={20}/>
-                        </div>
-                        }
-                        </div>:
+                    {category === 'oneEvent' ?
+                     <div>
+                        {userDetails  ?
                         <div>
-                        
-                        <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
-                        onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
-                            <IoMdHeartEmpty color="black" size={20}/>
-                        </div>
-                        
-                    </div>}
-                    {
-                        loginModal ? 
-                        <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                        <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
-                        </div>
-                        :
-                        null
-                    }
-                    {
-                        forgotPasswordModal ? 
-                        <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                        <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
-                        </div>
-                        :
-                        null
-                    }
-                    {
-                        confirmationModal ? 
-                        <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                        <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
-                        </div>
-                        :
-                        null
-                    }
-                    {
-                        signUpModal ? 
-                        <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
-                        <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
-                        forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
-                        </div>
-                        :
-                        null
-                    }
-                           
+                            {likedEvents!.findIndex(newItem => newItem.eventId === item?.id) > -1 ? 
+                            <div className=" rounded-full p-1 bg-white items-center" onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleUnlikeEvent(item?.id ?? '', 'home')}}><IoMdHeart size={20} color="#ce2029"/></div>:
+                            <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                            onClick={(e)=> {e.preventDefault(); e.stopPropagation();  handleLikeEvent()}}>
+                                <IoMdHeartEmpty color="black" size={20}/>
+                            </div>
+                            }
+                            </div>:
+                            <div>
+                            
+                            <div className="bg-white p-1 rounded-full items-center hover:bg-gray-300 border border-gray-400 z-20" 
+                            onClick={(e)=> {e.preventDefault(); e.stopPropagation(); setSignUpModal(true)}}>
+                                <IoMdHeartEmpty color="black" size={20}/>
+                            </div>
+                            
+                        </div>}
+                        {
+                            loginModal ? 
+                            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <LoginModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
+                            </div>
+                            :
+                            null
+                        }
+                        {
+                            forgotPasswordModal ? 
+                            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <ForgotPasswordModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
+                            </div>
+                            :
+                            null
+                        }
+                        {
+                            confirmationModal ? 
+                            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <ConfirmAccountModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal} />
+                            </div>
+                            :
+                            null
+                        }
+                        {
+                            signUpModal ? 
+                            <div className='fixed z-40 w-full max-w-lg border top-20 pb-10 bg-white rounded-md flex items-center justify-center'>
+                            <SignUpModal loginModal={loginModal} setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} 
+                            forgotPasswordModal={forgotPasswordModal} setForgotPasswordModal={setForgotPasswordModal} confirmationModal={confirmationModal} setConfirmationModal={setConfirmationModal}/>
+                            </div>
+                            :
+                            null
+                        }
+                    </div> : null}  
 
                 </div>
             </div>
