@@ -18,6 +18,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa6";
 import { MdPhotoLibrary, MdClose } from "react-icons/md";
 import {useTranslations} from 'next-intl';
+import { FaLandmark } from "react-icons/fa6";
 
 Amplify.configure(outputs)
 
@@ -201,7 +202,7 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
     return(
         <div className="w-full  max-w-7xl h-full flex flex-col items-center pb-96 mb-20 mt-16 md:mt-20 ">
             {event && extraImagesModal ? 
-            <div className='bg-white  border-black absolute rounded-md z-40 w-full h-full max-w-7xl p-4'>
+            <div className='bg-white  border-black absolute rounded-md z-40 w-full h-full max-w-7xl p-4 border'>
                 <div className='flex flex-row items-center justify-between '>
                     <div></div>
                     <div className='cursor-pointer' onClick={()=> setExtraImagesModal(false)}><MdClose size={24} color="black" /></div>
@@ -420,22 +421,33 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
                         </div>
                 </div>: 
                 null}
+                {event.site ?
+                <div className='invisible relative md:ml-4 z-20 md:visible md:relative'>
+                    <div className='p-2 rounded-md border border-black  w-full max-w-sm fixed h-20 bg-white'>
+                        <div className='text-orange-600 '>
+                            <FaLandmark size={20} />
+                        </div>
+                        <div className='mt-2 text-black font-semibold'>You may find events here, or near this place.</div>
+                    </div>
+                </div> 
+                :
                 <div className='invisible relative md:ml-4 z-20 md:visible md:relative' >
-                    <div>
-                        
-                        <div className=' p-2 overflow-x-scroll border-l border-r border-t border-black  w-full max-w-sm fixed h-20 bg-white'>
+                    <div className=' p-2 border-l-2 border-r-2 border-t-2 rounded-t-md border-black  w-full max-w-sm fixed  bg-white'>
+                        <div className='text-black font-semibold my-1'>{t('selectdate')}</div>
+                        <div className='overflow-x-scroll flex flex-row'>
                         
                             <BookingDateComponent sortedDates={sortedDates} loadingSortedDates={loadingSortedDates} handleSelectDate={handleSelectDate} eventIndex={eventIndex}/>
+
                         </div>
                     </div>
                         
-                    <div className='fixed mt-20 p-2 overflow-x-scroll border-b border-r border-l border-black  w-full max-w-sm bg-white'>
+                    <div className='fixed mt-26 p-2 overflow-x-scroll border-b-2 border-r-2 rounded-b-md border-l-2 border-black  w-full max-w-sm bg-white'>
                         <TicketPriceList ticketPriceArray={ticketPriceArray} adultNumber={adultNumber} adolescentNumber={adolescentNumber} 
                         childNumber={childNumber} handleAddTicket={handleAddTicket} handleMinusTicket={handleMinusTicket} handleOpenCheckoutModal={handleOpenCheckoutModal} />
                     </div>
-                </div>
+                </div>}
                 {dateSelectModal ? 
-                <div className='visible fixed z-20 md:invisible md:absolute top-80 bg-white w-full' >
+                <div className='visible fixed z-20 md:invisible md:absolute top-80 bg-white w-full ' >
                     <div className='w-full'>
                         <div className='w-full flex flex-row items-center justify-between p-2 border-t border-black'>
                             <div></div>
@@ -454,10 +466,22 @@ export default function EventComponent({event, loadingMainImage, mainImageUrl, s
                 </div>: null}
             </div>: null}   
             {dateSelectModal ? null : 
-            <div className='fixed bottom-0 border-t border-black p-2 w-full flex flex-row items-center justify-between'>
-                <div></div>
-                <div className='text-black border border-black p-1 rounded-md cursor-pointer font-semibold' onClick={()=> setDateSelectModal(true)}>{t('selectdate')}</div>
-            </div>}
+            
+                
+                <div className='fixed bottom-0 border-t border-black p-2 w-full md:invisible md:absolute flex flex-row items-center z-20 bg-white justify-between'>
+                   {event?.site ?
+                   <div className=' w-full max-w-sm bg-white'>
+                        <div className='text-orange-600 '>
+                            <FaLandmark size={20} />
+                        </div>
+                        <div className='mt-2 text-black font-semibold'>You may find events here, or near this place.</div>
+                    </div>
+                   : <div className='flex flex-row items-center justify-between w-full'>
+                        <div></div>
+                        <div className='text-black border border-black p-1 rounded-md cursor-pointer font-semibold' onClick={()=> setDateSelectModal(true)}>{t('selectdate')}</div>
+                    </div>}
+                </div>
+            }
             {event ? 
             <div className='w-full  max-w-6xl h-full items-center flex-col flex md:mr-4'>
                 <div className='w-full  mt-5 text-3xl flex  flex-col items-center'>

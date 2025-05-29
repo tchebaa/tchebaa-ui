@@ -347,7 +347,7 @@ export default function EventBookings() {
   return (
     <div className=' flex items-center flex-col'>
         
-            <ComponentHeader category='eventBookings' id={''}/>
+            <ComponentHeader category='eventBookings' id={''} item={null}/>
             <div className='w-full flex items-center border flex-col min-h-screen'>
                 <div className='mt-20 w-11/12 max-w-3xl'>
                     <div className='text-black font-semibold text-2xl'>{eventName}</div>
@@ -360,9 +360,9 @@ export default function EventBookings() {
                                 <div  key={i} className='flex items-center justify-center'>
                             
                                         {dateFilterCode === item.code ? 
-                                        <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div>
+                                        <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black font-semibold' onClick={()=> handleDateChange(item.code)}>{item.name}</div>
                                         : 
-                                        <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                                        <div className='w-full mx-1 border px-2 hover:font-semibold border-gray-400 hover:border-black whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                                 
                                 </div>
                                 

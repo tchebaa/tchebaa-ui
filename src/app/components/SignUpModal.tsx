@@ -22,7 +22,7 @@ const client = generateClient<Schema>();
 
 
 
-export default function SignUpModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}: 
+export default function SignUpModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal, confirmationModal, setConfirmationModal}: 
   {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>, 
     forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>, confirmationModal: boolean, setConfirmationModal: Dispatch<SetStateAction<boolean>>
   }) {
@@ -210,7 +210,7 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
                     </button>}
                     <div className="flex mt-3">
                             
-                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(false); setForgotPasswordModal(false)}}> 
+                            <div className='cursor-pionter' onClick={()=> {setLoginModal(false); setSignUpModal(false); setForgotPasswordModal(false); setConfirmationModal(true)}}> 
                                 <p className="ml-3  border-b cursor-pointer text-black ">{t('didntconfirmemailresendcode')}</p>
                             </div>
                         </div>

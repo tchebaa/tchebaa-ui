@@ -239,7 +239,7 @@ export default function LocationDateComponent() {
                                             <div className="w-full">
                                                 <input  className="w-11/12 text-black border px-1 py-2 mt-1" {...getInputProps({placeholder: t('location')})} />
                                                 <div className="w-11/12 max-w-sm absolute  z-10 bg-white flex flex-col ">
-                                                    {loading ? <div className='text-black'>...loading</div>: null}
+                                                    {loading ? <div className='text-black'>{t('loading')}</div>: null}
                                                     {suggestions.map((suggestion, i) =>{
                                                         
                                                         const style ={width: '90%'}

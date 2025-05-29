@@ -387,7 +387,13 @@
     "theseThirdParties": "These third parties may collect data according to their own privacy policies. We recommend reviewing their policies for more information.",
     "changesToThisPrivacyPolicy": "8. Changes to This Privacy Policy",
     "weMayUpdateThisPrivacyPolicy": "We may update this Privacy Policy from time to time. We will notify users of any significant changes by posting the new policy within the app or through other communication channels.",
-    "message": "Message"
+    "message": "Message",
+    "eventsNearYou": "Events near you",
+    "findYourWay": "FIND YOUR WAY",
+    "toAnySpecialPlace": "TO ANY SPECIAL PLACE",
+    "letsGoCapital": "LET'S GO",
+    "getItOn": "GET IT ON",
+    "downloadOn": "Download on"
     
 
 }

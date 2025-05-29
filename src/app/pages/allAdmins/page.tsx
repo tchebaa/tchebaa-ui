@@ -287,7 +287,7 @@ export default function AllAdmins() {
 
   return (
     <div>
-        <ComponentHeader category='allAdmins' id={''} />
+        <ComponentHeader category='allAdmins' id={''} item={null}/>
         <div className='w-full flex flex-col items-center min-h-screen pt-20'>
             
             {admin?.addAdminPermissions ? 

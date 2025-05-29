@@ -222,7 +222,7 @@ interface Event {
         <div className=' min-h-screen  bg-white w-full flex flex-col items-center '>
             <div className='   w-full items-center flex bg-white h-20 flex-col '>
             <div className='w-full flex '>
-                    <ComponentHeader category='Search' id={''} />
+                    <ComponentHeader category='Search' id={''} item={null}/>
                 </div>
                    
             </div>

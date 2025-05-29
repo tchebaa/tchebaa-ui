@@ -110,20 +110,20 @@ export default function FooterComponent(){
                             
             </div>
             <div className='flex flex-row items-center mt-3 md:mt-0  justify-between text-white max-w-md w-full'>
-                <div className='border px-2 rounded-md bg-black cursor-pointer  flex flex-row items-center '>
-                    <div><BiLogoPlayStore size={62}/></div>
+                <div className='border px-2 rounded-md bg-black cursor-pointer py-1  flex flex-row items-center '>
+                    <div><BiLogoPlayStore size={30} color='white'/></div>
                     <div>
-                        <div className="text-white text-sm">GET IT ON</div>
+                        <div className="text-white text-sm">{t('getItOn')}</div>
                         <div className="text-white font-medium text-sm">Google Play</div>
                     </div>
                 </div>
-                <div className='border px-2 rounded-md  bg-black cursor-pointer   flex flex-row items-center ml-1'>
+                <div className='border px-2 rounded-md  bg-black cursor-pointer py-1   flex flex-row items-center ml-1'>
                     <div>
-                    <BiLogoApple size={62} />
+                    <BiLogoApple size={30} color='white'/>
                     </div>
                     <div>
-                        <div className="text-white text-sm">Download on the</div>
-                        <div className="text-white font-medium text-sm md:text-lg">App Store</div>
+                        <div className="text-white text-sm ">{t('downloadOn')}</div>
+                        <div className="text-white font-medium text-sm ">App Store</div>
                     </div>
                     
                 </div>
@@ -131,7 +131,7 @@ export default function FooterComponent(){
                  <div className="flex flex-row items-center mt-10 mb-10 md:mt-0 md:mb-0">
                     <p className="  text-sm text-black">{t('copyright')}</p>
                     <div className="ml-3">
-                    <AiOutlineCopyrightCircle size={18}/>
+                    <AiOutlineCopyrightCircle size={18} color='black'/>
                     </div>
                     <p className=" ml-1  text-sm text-black">
                     {year} Tchebaa.

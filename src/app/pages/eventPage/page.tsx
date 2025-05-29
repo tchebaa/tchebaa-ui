@@ -31,6 +31,7 @@ import LoginModal from '../../components/LoginModal';
 import BookingDateComponent from '../../components/BookingDateComponent';
 import TicketPriceList from '../../components/TicketPriceList';
 import EventComponent from '../../components/EventComponent';
+import FooterComponent from '../../components/FooterComponent';
 
 
 
@@ -765,7 +766,7 @@ function OneEventComponent() {
 
     return(
         <div className=" flex flex-col items-center  min-h-screen  bg-white w-full">
-            <ComponentHeader category='oneEvent' id={id}/>
+            <ComponentHeader category='oneEvent' id={id} item={event}/>
             {loadingEvent ? 
             <div className="w-full  max-w-7xl h-full flex flex-col items-center pb-96 mb-80 mt-16 md:mt-20">
                 <div className='w-full max-w-7xl flex md:w-11/12 mt-1 flex-col md:flex-row '>
@@ -795,7 +796,7 @@ function OneEventComponent() {
             childNumber={childNumber} handleAddTicket={handleAddTicket} handleMinusTicket={handleMinusTicket} handleOpenCheckoutModal={handleOpenCheckoutModal}
             loadingSortedDates={loadingSortedDates} eventImage2Url={eventImage2Url} eventImage3Url={eventImage3Url} eventImage4Url={eventImage4Url} 
             loadingImage2={loadingImage2} loadingImage3={loadingImage3} loadingImage4={loadingImage4}/>}
-            
+            <FooterComponent />
         </div>
     )
 }

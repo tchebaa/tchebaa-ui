@@ -52,19 +52,19 @@ export default function BookingDateComponent({sortedDates, loadingSortedDates, h
                 return(
                     <div key={i} className='ml-4 '>
                         <div>
-                            {moment(item.eventEndDate).format() > moment(new Date()).format() ? null : 
+                            {moment(item.eventEndDate).format() < moment(new Date()).format() ? null : 
                             <div>
                                 {moment(item.eventDate).format() < moment(new Date()).format() ? 
                                 <div>
                                     {eventIndex === i ? 
-                                    <div className='border p-2 rounded-md border-sky-400 flex flex-row items-center ' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
+                                    <div className='border p-2 rounded-md border-sky-400 flex flex-row items-center cursor-pointer ' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
                                         <div className='truncate text-black'>
                                             {moment(item.eventDate).format('MMMM Do YYYY, h:mm a')}
                                         </div>
                                         <div className='ml-2 text-orange-600 font-semibold'>{t('ongoing')}</div>
                                         
                                     </div>:
-                                    <div className='border border-black p-2 rounded-md flex flex-row items-center' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
+                                    <div className='border border-black p-2 rounded-md flex flex-row items-center cursor-pointer' onClick={()=> handleSelectDate(i, item.eventDate,item.eventEndDate, item.eventDays, item.eventHours, item.eventMinutes, item.ticketPriceArray)}>
                                         <div className='truncate text-black'>
                                             {moment(item.eventDate).format('MMMM Do YYYY, h:mm a')}
                                         </div>

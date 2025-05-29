@@ -156,8 +156,8 @@ export default function HeaderDetailsBody({headerPage, loginModal, setLoginModal
                     
                     {languageModal ? 
                     <div className='flex flex-col bg-white absolute border  '>
-                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> handleChangeLanguage('en')}>EN</div>
-                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> handleChangeLanguage('fr')}>FR</div>
+                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> {handleChangeLanguage('en'); setLanguageModal(false)}}>EN</div>
+                        <div className='cursor-pointer hover:bg-gray-300 w-full h-full px-3 text-black' onClick={()=> {handleChangeLanguage('fr'); setLanguageModal(false)}}>FR</div>
                     </div>: null}
                 </div>
                 
@@ -165,7 +165,7 @@ export default function HeaderDetailsBody({headerPage, loginModal, setLoginModal
             </div>
             {headerPage === 'homeMessage' ? 
             <div className='flex flex-row items-center justify-between border-sky-500 border-b-2 p-1 ' >
-                <div><FiMessageSquare size={20}/></div>
+                <div><FiMessageSquare size={20} color='black'/></div>
                 <div className='ml-2 text-black'>{t('messages')}</div>
             </div>: 
             null}

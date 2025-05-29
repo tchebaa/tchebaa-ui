@@ -11,6 +11,9 @@ import { MdOutlineNightlife, MdTravelExplore, MdOutlineKayaking, MdOutlineKeyboa
 import axios from "axios"
 import {useLocation} from '../context/LocationContext'
 import EventListItem from "./EventListItem"
+import {useTranslations} from 'next-intl';
+
+
 
 interface TicketPrice {
     adultPrice: number;
@@ -70,6 +73,8 @@ export default function HomeNearEvents({componentType, events, loadingEvents, lo
 
 
  
+    const t = useTranslations()
+
     const eventsArray = range(1, 8)
 
 
@@ -85,7 +90,7 @@ export default function HomeNearEvents({componentType, events, loadingEvents, lo
     return(
         <div className=" w-full  max-w-7xl flex items-center flex-col pt-4 border-t" >
            <div className=" flex flex-row items-center justify-between w-11/12 md:w-full">
-                <div className="  font-semibold text-lg text-black  " >Events Near You</div>
+                <div className="  font-semibold text-xl text-black  " >{t('eventsNearYou')}</div>
                  
                 <div></div>
            </div>
@@ -126,7 +131,7 @@ export default function HomeNearEvents({componentType, events, loadingEvents, lo
                 })}
             </div>:
             <div className="flex items-center flex-col  justify-center w-11/12 mt-10 mb-20">
-                <div className="text-black">Oops! No events near you.</div>
+                <div className="text-black font-semibold">{t('noeventsnearyou')}</div>
                 <div></div>
             </div>}
            </div>}

@@ -358,7 +358,7 @@ export default function Analytics() {
   return (
     <div className='flex flex-col items-center w-full'>
 
-            <ComponentHeader category='analytics' id={''} />
+            <ComponentHeader category='analytics' id={''} item={null} />
             <div className='w-full flex flex-col items-center min-h-screen pt-20 border max-w-7xl'>
                     <div className='w-11/12'>
                         <div className='text-black font-semibold text-lg'>{t('onlineimpressions')}</div>
@@ -369,10 +369,10 @@ export default function Analytics() {
                             return(
                                 <div key={i} className='flex items-center justify-center'>
                                 {dateFilterCode === item.code ? 
-                                <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>
+                                <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black font-semibold' onClick={()=> handleDateChange(item.code)}>
                                     {item.name}</div>
                                     : 
-                                <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                                <div className='w-full mx-1 border border-gray-400 hover:border-black hover:font-semibold px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                             </div>
                                 
                             )

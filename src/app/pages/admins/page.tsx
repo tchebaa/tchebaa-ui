@@ -35,7 +35,7 @@ export default function Admin() {
 
   return (
     <div>
-        <ComponentHeader category='admins' id={''}/>
+        <ComponentHeader category='admins' id={''} item={null}/>
         <div className='w-full border flex flex-col items-center min-h-screen pt-20'>
             <div className='border w-full flex flex-col items-center max-w-3xl'>
                 <Link className='w-full flex flex-col items-center' href={{pathname: '../postEvent', query: {screenName: 'admin', id: null}}} >

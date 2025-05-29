@@ -107,6 +107,9 @@ interface Event {
   }
 
 
+
+
+
   const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
   const {startDate, setStartDate, endDate, setEndDate} = useDate()
 
@@ -124,6 +127,7 @@ interface Event {
   const [loadingEvents, setLoadingEvents] = useState<boolean>(true)
   const [errorLoadingEvents, setErrorLoadingEvents] = useState<string>('')
   const [events, setEvents] = useState<Event []>([])
+  const [dateFilter, setDateFilter] = useState<string>('all')
 
 
 
@@ -131,6 +135,121 @@ interface Event {
   const router = useRouter();
 
 
+  const dayRanges = [
+          {
+              name: t('all'),
+              code: 'all'
+          },
+          {
+              name: t('today'),
+              code: 'today'
+          },
+          {
+              name: t('tomorrow'),
+              code: 'tomorrow'
+          },
+          {
+              name: t('thisweek'),
+              code: 'thisweek'
+          },
+          {
+              name: t('thisweekend'),
+              code: 'thisweekend'
+          },
+          {
+              name: t('nextweek'),
+              code: 'nextweek'
+          },
+          {
+              name: t('thismonth'),
+              code: 'thismonth'
+          },
+          {
+              name: t('nextmonth'),
+              code: 'nextmonth'
+          },
+      ]
+  
+      const handleDateChange = (code: string) => {
+              
+          //setDayType(code)
+      
+          if(code === 'all') {
+  
+              setDateFilter('all')
+  
+              setStartDate?.(moment(new Date()).format().toString())
+              setEndDate?.('')
+          }
+      
+          if(code === 'today'){
+  
+              setDateFilter('today')
+  
+              setStartDate?.(moment(new Date()).startOf('day').format().toString())
+              setEndDate?.(moment(new Date()).endOf('day').format().toString())
+      
+             // console.log(moment(new Date()).startOf('day').format())
+      
+             // console.log(moment(new Date).endOf('day').format())
+              
+      
+          }
+      
+          if(code === 'tomorrow'){
+  
+              setDateFilter('tomorrow')
+  
+              setStartDate?.(moment(new Date()).endOf('day').format().toString())
+              setEndDate?.(moment(new Date()).add(1, 'days').endOf('day').format().toString())
+              
+              
+          }
+          if(code === 'thisweek'){
+      
+              setDateFilter('thisweek')
+  
+              setStartDate?.(moment(new Date()).startOf('isoWeek').format().toString())
+              setEndDate?.(moment(new Date()).endOf('isoWeek').format().toString())
+              
+              
+          }
+          if(code === 'thisweekend'){
+  
+              setDateFilter('thisweekend')
+  
+              setStartDate?.(moment(new Date()).endOf('isoWeek').subtract(2, 'days').format().toString())
+              setEndDate?.(moment(new Date()).endOf('isoWeek').format().toString())
+              
+          }
+      
+          if(code === 'nextweek'){
+  
+              setDateFilter('nextweek')
+  
+  
+              setStartDate?.(moment(new Date()).add(1, 'week').startOf('isoWeek').format().toString())
+              setEndDate?.(moment(new Date()).add(1, 'week').endOf('isoWeek').format().toString())
+      
+              
+          }
+          if(code === 'thismonth'){
+  
+              setDateFilter('thismonth')
+  
+              setStartDate?.(moment(new Date()).startOf('month').format())
+              setEndDate?.(moment(new Date()).endOf('month').format())
+          }
+      
+          if(code === 'nextmonth'){
+  
+              setDateFilter('nextmonth')
+  
+              setStartDate?.(moment(new Date()).add(1, 'month').startOf('month').format())
+              setEndDate?.(moment(new Date()).add(1, 'month').endOf('month').format())
+              
+          }
+      }
 
 
     const handleGetEvents = async () => {
@@ -249,6 +368,19 @@ interface Event {
         </div>
         : null}
         <EventCategories />
+        <div className='mt-5 flex flex-row overflow-x-scroll  w-11/12 max-w-6xl'>
+              {dayRanges.map((item, i)=> {
+                  return(
+                      <div key={i} className='flex items-center justify-center'>
+                          {dateFilter === item.code ? 
+                          <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black font-semibold' onClick={()=> handleDateChange(item.code)}>
+                              {item.name}</div>
+                              : 
+                          <div className='w-full mx-1 border border-gray-400 hover:border-black px-2 whitespace-nowrap rounded-md hover:font-semibold mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                      </div>
+                  )
+              })}
+          </div>
         <HomeNearEvents componentType={'home'} events={events} loadingEvents={loadingEvents} loginModal={loginModal} signUpModal={signUpModal} setLoginModal={setLoginModal} setSignUpModal={setSignUpModal}/>
         {
           loginModal ? 

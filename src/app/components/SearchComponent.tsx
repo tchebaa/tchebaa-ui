@@ -181,10 +181,10 @@ export default function SearchComponent({category, categoryTitle, setOpenMobileM
                             return(
                                 <div key={i} className='flex items-center justify-center'>
                                     {dateFilter === item.code ? 
-                                    <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black' onClick={()=> handleDateChange(item.code)}>
+                                    <div className='w-full mx-1 border-2 px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer border-cyan-500 text-black font-semibold' onClick={()=> handleDateChange(item.code)}>
                                         {item.name}</div>
                                         : 
-                                    <div className='w-full mx-1 border px-2 whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
+                                    <div className='w-full mx-1 border px-2 border-gray-400 hover:border-black hover:font-semibold whitespace-nowrap rounded-md mx-1 cursor-pointer text-black' onClick={()=> handleDateChange(item.code)}>{item.name}</div> }
                                 </div>
                             )
                         })}

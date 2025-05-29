@@ -268,7 +268,7 @@ const handleSendText = async () => {
   return (
     <div>
         <div>
-            <ComponentHeader category='messages' id={''}/>
+            <ComponentHeader category='messages' id={''} item={null}/>
             {loadingChats ? <div className='text-black font-semibold'>{t('loading')}</div>
             : <div>
             <div>

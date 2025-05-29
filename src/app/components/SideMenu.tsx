@@ -80,10 +80,14 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
     return(
         <div className="md:invisible md:absolute flex flex-row bg-white fixed w-full mt-60 text-black p-1 border-b">
             <div className="flex ml-1 flex-col bg-white  w-full">
-                <div className="flex flex-col mt-2">
-                    {languageCode == 'en' ? <div className="border-sky-500 hover:border-b-2 p-1 cursor-pointer text-black">EN</div>: null}
-                    {languageCode == 'fr' ? <div className="border-sky-500 hover:border-b-2 p-1 cursor-pointer text-black">FR</div>: null}
-                    <div className="lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer text-black">KSH</div>
+                <div className="flex flex-col mt-2 items-start">
+                    {languageCode == 'en' ? <div className="border-sky-500 border-b-2 p-1 cursor-pointer text-black">EN</div>
+                    : 
+                    <div className="border-black border-b-2 p-1 cursor-pointer text-black" onClick={()=> handleChangeLanguage('en')}>EN</div>}
+                    {languageCode == 'fr' ? <div className="border-sky-500 border-b-2 p-1 cursor-pointer text-black">FR</div>
+                    : 
+                    <div className="border-black border-b-2 p-1 cursor-pointer text-black" onClick={()=> handleChangeLanguage('fr')}>FR</div>}
+                    <div className="lg:ml-5 border-sky-500 border-b-2 p-1 cursor-pointer text-black">USD</div>
                 </div>
                 <Link className='flex flex-row items-center mt-2  lg:ml-5 border-sky-500 hover:border-b-2 p-1 cursor-pointer' href={{ pathname: '../pages/homeMessage', query: {pageMessageType: 'home' } }} passHref>
                     <div><FiMessageSquare size={25} color='black'/></div>

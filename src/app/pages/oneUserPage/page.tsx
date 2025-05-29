@@ -249,7 +249,7 @@ export default function oneUser() {
 
   return (
     <div className='flex flex-col items-center w-full'>
-        <ComponentHeader category='user' id={''}/>
+        <ComponentHeader category='user' id={''} item={null}/>
             <div className='w-full flex flex-col items-center min-h-screen pt-20 border max-w-7xl'>
                 <div>
                     <IoPersonCircleOutline size={40} color={ "black"} />

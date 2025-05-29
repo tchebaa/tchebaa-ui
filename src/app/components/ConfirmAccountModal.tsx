@@ -20,7 +20,7 @@ const client = generateClient<Schema>();
 
 
 
-export default function ConfirmAccountModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal}:
+export default function ConfirmAccountModal({loginModal, setLoginModal, signUpModal, setSignUpModal, forgotPasswordModal, setForgotPasswordModal, confirmationModal, setConfirmationModal}:
      {loginModal: boolean, setLoginModal: Dispatch<SetStateAction<boolean>>, signUpModal: boolean, setSignUpModal: Dispatch<SetStateAction<boolean>>,
       forgotPasswordModal: boolean, setForgotPasswordModal: Dispatch<SetStateAction<boolean>>, confirmationModal: boolean, 
       setConfirmationModal: Dispatch<SetStateAction<boolean>>
@@ -182,7 +182,11 @@ export default function ConfirmAccountModal({loginModal, setLoginModal, signUpMo
 
   return (
     
-        <div>
+        <div className='w-11/12 flex flex-col items-center'>
+            <div className='w-full flex flex-row items-center justify-between p-2'>
+                <div></div>
+                <div className='cursor-pointer' onClick={()=> setConfirmationModal(false)}><MdClose color='black' size={24}/></div>
+            </div>
             <div>
                 <div className='text-black font-semibold'>{t('confirmyouraccount')}</div>
                 
@@ -197,33 +201,34 @@ export default function ConfirmAccountModal({loginModal, setLoginModal, signUpMo
                 <div className='text-black'>{t('sendingcode')}</div>
                 
               </div>: null}
-            <div>
-                <input className='text-black border-black' placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+            <div className='flex flex-col w-full mt-5 items-center'>
+                <input className='text-black border-black border p-2 w-full' placeholder={t('email')}  value={email} onChange={(e)=> setEmail(e.target.value)}/>
                   {emailError ? <div className='text-red-500 mt-2'>{emailError}</div>: null}
 
                   {loginError ? <div className='text-red-500 mt-2'>{loginError}</div>: null}
                 
-                <button onClick={()=> handleResendCode()}>
-                    <div className='text-black'>{t('resendcode')}</div>
+                <button className="cursor-pointer md:text-base  border-2 rounded-md p-1 max-w-xl mt-3 flex items-center justify-center" style={{backgroundColor: '#1184e8'}} onClick={()=> handleResendCode()} >
+                    <div className=" md:text-base text-white">{t('resendcode')}</div>
                 </button>
                 {resendCodeSuccess ? <div className='text-black'>{`${t('codesentto')} ${email}.${t('entercodebelowtocontinue')}`}</div>: null}
                 {resendCodeError ? <div className='text-red-500 mt-2'>{resendCodeError}</div>: null}
             </div>
-            <div>
+            <div className='mt-2'>
                 <div className='text-black'>{t('alreadyhaveacode')}</div>
                 
             </div>
-            <div>
-                <input className='text-black' placeholder={t('email')} value={confirmEmail} onChange={(e)=> setConfirmEmail(e.target.value)}/>
-                <input className='text-black' placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
-                <button onClick={()=> handleConfirm()}>
-                    <div>{t('confirmaccount')}</div>
+            <div className='flex flex-col w-full mt-2 items-center'>
+                <input className='text-black border p-2 border-black w-full' placeholder={t('email')} value={confirmEmail} onChange={(e)=> setConfirmEmail(e.target.value)}/>
+                <input className='text-black border p-2 border-black mt-2 w-full' placeholder={t('entercode')} value={codeConfirm} onChange={(e)=> setCodeConfirm(e.target.value)}/>
+                <button className="cursor-pointer md:text-base w-11/12 border-2 rounded-md p-1 max-w-xl mt-3 flex items-center justify-center" style={{backgroundColor: '#1184e8'}} 
+                     onClick={()=> handleConfirm()} >
+                    <div className=" md:text-base text-white">{t('confirmaccount')}</div>
                 </button>
-                {confirmError ? <div>{confirmError}</div>: null}
+                {confirmError ? <div className='text-red-500'>{confirmError}</div>: null}
             </div>
             <div>
-            <button>
-                <div >{t('login')}</div>
+            <button className="ml-3 font-bold border-b cursor-pointer mt-2 text-black" onClick={()=> {setSignUpModal(false); setLoginModal(true); setForgotPasswordModal(false); setConfirmationModal(false)}}>
+                <div className='text-black'>{t('login')}</div>
             </button>
                    
             </div>

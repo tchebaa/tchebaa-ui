@@ -387,6 +387,12 @@
     "theseThirdParties": "Ces tiers peuvent collecter des données conformément à leurs propres politiques de confidentialité. Nous vous recommandons de consulter leurs politiques pour plus d'informations.",
     "changesToThisPrivacyPolicy": "8. Modifications de cette Politique de Confidentialité",
     "weMayUpdateThisPrivacyPolicy": "Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre. En cas de modifications importantes, nous vous en informerons via l’application ou par d’autres moyens de communication.",
-    "message": "Le message"
+    "message": "Le message",
+    "eventsNearYou": "Événements près de chez vous",
+    "findYourWay": "TROUVER VOTRE CHEMIN",
+    "toAnySpecialPlace": "VERS N'IMPORTE QUEL ENDROIT SPÉCIAL",
+    "letsGoCapital": "ALLONS-Y",
+    "getItOn": "TÉLÉCHARGEZ-LE",
+    "downloadOn": "TELECHARGER SUR"
 
 }
