@@ -1476,7 +1476,7 @@ const handleGetEvent = async () => {
                 return(
                     <PostLocationNameDetails eventName={eventName}  setEventName={setEventName} eventDescription={eventDescription} setEventDescription={setEventDescription} 
                 eventNameError={eventNameError} eventDescriptionError={eventDescriptionError} address={address} setAddress={setAddress} coordinates={coordinates} 
-                setCoordinates={setCoordinates} eventAddressError={eventAddressError}/>
+                setCoordinates={setCoordinates} eventAddressError={eventAddressError} />
                 )
             }
             if(pageSection === 3) {

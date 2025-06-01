@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
                     <h1 className="text-2xl font-semibold mt-10 text-black">{t('privacyPolicyForTchebaa')}</h1>
                     <div className='mt-5 text-black'>{t('lastUpdatedMay')}</div>
                     
-                    <div className="mt-5 ">
+                    <div className="mt-5 text-black">
                     {t('thisPrivacyPolicyExplainsHowTchebaa')}
 
                     </div>

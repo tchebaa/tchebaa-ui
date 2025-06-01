@@ -56,14 +56,61 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
     
     const scrollRef = useRef(null)
 
-    
-    const handleChangeDate = (event: any) => {
-      
-     
 
-      };
+      const handleAddRemoveLandmark = (site: boolean) => {
+
+        if(site) {
+            const eventDate = moment(new Date()).format()
+            const eventEndDate = moment(eventDate).add(1000, 'days')
+
+            const item = {
+                eventDate: eventDate,
+                eventEndDate: eventEndDate,
+                eventDays: 1000,
+                eventHours: 0,
+                eventMinutes: 0,
+                ticketPriceArray: ticketPriceArray.map((item, i)=> {
+                    return JSON.parse(item)
+                })
+            }
+
+            const itemIndex = dateTimePrice.indexOf(JSON.stringify(item))
+
+            dateTimePrice.splice(itemIndex, 1)
+
+            setDateTimePrice([...dateTimePrice])
+
+            setSite(false)
+
+        } else {
+
+            const eventDate = moment(new Date()).format()
+            const eventEndDate = moment(eventDate).add(1000, 'days')
+
+            const item = {
+                eventDate: eventDate,
+                eventEndDate: eventEndDate,
+                eventDays: 1000,
+                eventHours: 0,
+                eventMinutes: 0,
+                ticketPriceArray: ticketPriceArray.map((item, i)=> {
+                    return JSON.parse(item)
+                })
+            }
 
 
+
+            setDateTimePrice([...dateTimePrice, JSON.stringify(item)])
+
+            setSite(true)
+
+        }
+
+        
+
+        
+
+      }
 
       
 
@@ -337,6 +384,7 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
 
     return(
         <div className='w-full pb-20'>
+                {site ? null : 
                 <div className='w-full'> 
                 {showForm || dateTimePrice.length < 1 ? 
 
@@ -599,7 +647,7 @@ export default function PostDateTimeDuration ({ageRestriction, dateTimePrice, se
                         }
                     </div> 
                     : null}
-                </div>
+                </div>}
                 
         </div>
     )
