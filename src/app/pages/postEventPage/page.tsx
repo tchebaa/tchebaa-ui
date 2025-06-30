@@ -36,7 +36,9 @@ import ConfirmAccountModal from '../../components/ConfirmAccountModal';
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 

@@ -30,7 +30,9 @@ import ConfirmAccountModal from './components/ConfirmAccountModal';
 Amplify.configure(outputs)
 
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 const heroImages = [
   'https://firebasestorage.googleapis.com/v0/b/tukiofusion.appspot.com/o/fusion9.png?alt=media&token=dcdcaf03-d213-4c5b-a4b7-52cd37cb558b',
@@ -272,6 +274,8 @@ interface Event {
 
           if(data) {
 
+           
+
             const filtered = data?.filter((e): e is NonNullable<typeof e> => Boolean(e));
             setEvents(filtered as Event[]);
           }
@@ -285,6 +289,8 @@ interface Event {
 
 
       } catch(e) {
+
+        console.log(e, 'error')
 
          // setErrorLoadingEvents(e.message)
           

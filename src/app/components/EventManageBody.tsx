@@ -12,7 +12,9 @@ import Link from 'next/link';
 import {useAdmin} from '../context/TchebaaAdminContext'
 
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 interface TicketPrice {

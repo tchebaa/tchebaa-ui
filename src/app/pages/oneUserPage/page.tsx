@@ -22,7 +22,9 @@ import { FaRegClock, FaRegPlusSquare, FaRegEdit   } from "react-icons/fa";
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 interface User {

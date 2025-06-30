@@ -25,7 +25,9 @@ import {signIn, getCurrentUser} from '@aws-amplify/auth'
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 //import {signOut} from 'firebase/auth';
 //import {auth} from '../firebase/firebase'
@@ -136,7 +138,7 @@ export default function SideMenu({setSearchModalVisible, setMenuModalVisible, me
                         <div className='text-black font-semibold'>{t('profile')}</div>
                     </div>}
                     {admins?.some((admin)=> admin.email === userDetails?.username) ? 
-                    <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref className='text-black font-semibold'>
+                    <Link href={{ pathname: '../pages/settingsPage', query: {pageMessageType: 'home' } }} target="_blank" passHref className='text-black font-semibold'>
                         {t('administrator')}
                     </Link>: null}
                     <div className='text-black font-semibold'>{t('settings')}</div>

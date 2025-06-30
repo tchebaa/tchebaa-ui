@@ -11,12 +11,14 @@ import SignUpModal from '../../components/SignUpModal'
 import ForgotPasswordModal from '../../components/ForgotPasswordModal'
 import {useTranslations} from 'next-intl';
 import ConfirmAccountModal from '../../components/ConfirmAccountModal'
+import { useUser} from '../../context/UserContext'
 
 
 
 export default function ContactUs() {
 
     const t = useTranslations()
+    const {userDetails, setUserDetails, onlineUserDetails} = useUser()
     const [loadParticles, setLoadParticles] = useState(true) 
     const [headerPage, setHeaderPage] = useState('home')
     const [searchModalVisible, setSearchModalVisible] = useState(false)
@@ -74,9 +76,30 @@ export default function ContactUs() {
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
         <div className="flex flex-col w-11/12 max-w-7xl rounded-md  border bg-white  mt-28 mb-4 min-h-screen p-10">
-            <input className='text-black border mt-20 p-1 max-w-sm' placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
-            <textarea className='text-black border mt-5 p-1 max-w-sm h-40' placeholder={t('message')} value={message} onChange={(e)=> setMessage(e.target.value)}/>
+            <div className='text-black font-semibold'>{t('contactUs')}</div>
+            <div className='text-black mt-5'>{t('emailTchebaaIntGmailCom')}</div>
+            {userDetails ? 
+            <div className='flex flex-col'>
+                <input className='text-black border mt-20 p-1 max-w-sm' placeholder={t('email')} value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                <textarea className='text-black border mt-5 p-1 max-w-sm h-40' placeholder={t('message')} value={message} onChange={(e)=> setMessage(e.target.value)}/>
+                <div className='flex flex-col items-end max-w-sm mt-5'>
+                    <div className='text-black font-semibold border-black border-2 rounded-md px-3'>{t('send')}</div>
+                </div>
             </div>
+            :
+            <div className="w-11/12 flex flex-col" >
+                    <div className='bg-white flex flex-col items-start'>
+                        <div className='bg-white border-2 border-black px-3 m-5 rounded-md text-black font-semibold cursor-pointer' onClick={()=> setLoginModal(true)}>{t('login')}</div>
+                    </div>
+                    <div  className='bg-white flex flex-col items-start'>
+                        <div className='bg-white border-2 border-black px-3 m-5 rounded-md text-black font-semibold cursor-pointer' onClick={()=> setSignUpModal(true)}>{t('signup')}</div>
+                    </div>
+                    
+                </div>}
+            
+            
+            </div>
+            
             <div className="w-full bottom-0">
                 <FooterComponent />
             </div>

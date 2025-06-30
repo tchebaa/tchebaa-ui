@@ -24,7 +24,9 @@ import {signIn, getCurrentUser} from '@aws-amplify/auth'
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 
@@ -205,21 +207,23 @@ export default function HeaderDetailsBody({headerPage, loginModal, setLoginModal
                <div className="w-40 mt-10 bg-white p-2 border absolute">
                     {!userDetails ? 
                     <div>
-                        <div className='font-semibold text-black cursor-pointer' onClick={()=> setLoginModal(true)}>{t('login')}</div>
-                        <div className='text-black font-semibold cursor-pointer' onClick={()=> setSignUpModal(true)}>{t('signup')}</div>
+                        <div className='font-semibold text-black cursor-pointer hover:bg-gray-300' onClick={()=> setLoginModal(true)}>{t('login')}</div>
+                        <div className='text-black font-semibold cursor-pointer hover:bg-gray-300' onClick={()=> setSignUpModal(true)}>{t('signup')}</div>
                         
                     </div>
                     :
                     <div>
                         <Link className='text-black font-semibold' href={{ pathname: '../pages/manageEventsPage', query: { screenName: 'main' } }} passHref>{t('manageevents')}</Link>
-                        <div className='text-black font-semibold cursor-pointer'>{t('signout')}</div>
-                        <div className='text-black font-semibold cursor-pointer'>{t('profile')}</div>
+                        <div className='text-black font-semibold cursor-pointer hover:bg-gray-300'>{t('signout')}</div>
+                        <div className='text-black font-semibold cursor-pointer hover:bg-gray-300'>{t('profile')}</div>
                     </div>}
                     {admins?.some((admin)=> admin.email === userDetails?.username) ? 
                     <Link href={{ pathname: '../pages/admins', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold'>
                     {t('administrator')}
                     </Link>: null}
-                    <div className='text-black font-semibold'>{t('settings')}</div>
+                     <Link href={{ pathname: '../pages/settingsPage', query: {pageMessageType: 'home' } }} target="_blank" passHref  className='text-black font-semibold '>
+                        <div className='text-black font-semibold hover:bg-gray-300'>{t('settings')}</div>
+                    </Link>
                 </div>
 
                : null}

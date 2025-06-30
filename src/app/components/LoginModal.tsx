@@ -17,7 +17,9 @@ import {signIn, getCurrentUser} from '@aws-amplify/auth'
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 
@@ -104,7 +106,7 @@ export default function LoginModal({loginModal, setLoginModal, signUpModal, setS
             const user = await signIn({
               username: email,
               password: password,
-            }).then((e)=> { setLoginError(''); setLoadingLogin(false)})
+            }).then((e)=> { setLoginError(''); setLoginModal(false); setLoadingLogin(false)})
     
             
     

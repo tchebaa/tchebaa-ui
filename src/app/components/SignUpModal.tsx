@@ -18,7 +18,9 @@ import { MdClose } from "react-icons/md";
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 
@@ -70,7 +72,7 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
             const user = await signIn({
               username: email,
               password: password,
-            }).then((e)=> { setConfirmError(''); setConfirmModal(false); console.log(e); router.push('/locationScreen'); })
+            }).then((e)=> { setConfirmError(''); setConfirmModal(false); console.log(e); })
   
           
           }
@@ -124,7 +126,7 @@ export default function SignUpModal({loginModal, setLoginModal, signUpModal, set
               const user = await signUp({
                 username: email,
                 password: password,
-              }).then((e)=> {setSignUpError(''); setLoadingSignUp(false) ;console.log(e); setConfirmModal(true)})
+              }).then((e)=> {setSignUpError(''); setLoadingSignUp(false); setSignUpModal(false) ; setConfirmModal(true)})
       
               const { data, errors } = await client.models.User.create({
                 email: email,

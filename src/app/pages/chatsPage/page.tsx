@@ -23,7 +23,9 @@ Amplify.configure(outputs)
 
 
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 
@@ -123,12 +125,11 @@ function ChatsComponent() {
 
     useEffect(()=> {
 
-      
+      if(userDetails) {
 
-             handleGetConversations()
+        handleGetConversations()
 
-      
-
+      }
     
 
     },[userDetails])
@@ -185,7 +186,7 @@ function ChatsComponent() {
                         <div className='w-full h-full backdrop-blur-lg bg-gradient-to-b  from-transparent  to-white '></div>
                     </div>
                 </div>
-                <div className='text-black font-semibold w-full max-w-lg px-1 mt-2'>Chats</div>
+                <div className='text-black font-semibold w-full max-w-lg px-1 mt-2'>{t('chat')}</div>
                 <div className=' w-full max-w-lg flex mt-10 flex-col items-center p-1 h-5/6 overflow-scroll  border'>
                     {conversations.map((item, i)=> {
                         return(

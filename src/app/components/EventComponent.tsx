@@ -22,7 +22,9 @@ import { FaLandmark } from "react-icons/fa6";
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 interface TicketPrice {

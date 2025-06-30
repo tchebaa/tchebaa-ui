@@ -17,7 +17,9 @@ import FooterComponent from '../../components/FooterComponent';
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 interface Location {
     type: string;

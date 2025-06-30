@@ -32,7 +32,9 @@ import { FiVideo } from "react-icons/fi";
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 

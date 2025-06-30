@@ -10,7 +10,9 @@ import outputs from '../../../amplify_outputs.json'
 Amplify.configure(outputs)
 
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 interface IAdmin {
@@ -90,6 +92,8 @@ export function AdminProvider({children}: ChildrenProps) {
       setAdminsErrorText('')
 
       const { data, errors } = await client.models.Admin.list()
+
+      console.log(errors)
 
       const sanitizedAdmins: IAdmin[] = data.map((admin) => ({
         ...admin,

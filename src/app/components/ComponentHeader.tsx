@@ -29,7 +29,9 @@ import outputs from '../../../amplify_outputs.json'
 
 Amplify.configure(outputs)
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 
 interface TicketPrice {
