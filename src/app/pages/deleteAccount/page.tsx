@@ -195,22 +195,22 @@ export default function DeleteAccount() {
                     
         <Header headerPage={headerPage} searchModalVisible={searchModalVisible} setSearchModalVisible={setSearchModalVisible} loginModal={loginModal}
         setLoginModal={setLoginModal} signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
-        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border bg-white items-center mb-4 min-h-screen p-5">
+        <div className="flex flex-col w-11/12 max-w-6xl rounded-md mt-28 border border-black bg-white items-center mb-4 min-h-screen p-5">
         <div className='w-full'>
-            <div className='font-semibold'>{t('toDeleteAccount')}</div>
-            <div className='font-semibold mt-10'>{t('onTheMobileApp')}</div>
-            <div className=' mt-5'>{t('openTheApp')}</div>
-            <div className=' '>{t('ifNotLoggedIn')}</div>
-            <div className=' '>{t('goToProfile')}</div>
-            <div className=' '>{t('deleteAccount')}</div>
-            <div className=' '>{t('confirmDeletion')}</div>
-            <div className='font-semibold mt-10'>{t('onTheWebsite')}</div>
-            <div className=' mt-5 hover:underline cursor-pointer' onClick={()=> handleOpenSettings()}>{t('openThisLink')}</div>
-            <div className=' '>{t('ifNotLoggedIn')}</div>
-            <div className=' '>{t('goToProfile')}</div>
-            <div className=' '>{t('deleteAccount')}</div>
-            <div className=' '>{t('confirmDeletion')}</div>
-            <div className=' mt-10'>{t('alternativelyContact')}</div>
+            <div className='font-semibold text-black'>{t('toDeleteAccount')}</div>
+            <div className='font-semibold mt-10 text-black'>{t('onTheMobileApp')}</div>
+            <div className='text-black mt-5'>{t('openTheApp')}</div>
+            <div className='text-black '>{t('ifNotLoggedIn')}</div>
+            <div className='text-black '>{t('goToProfile')}</div>
+            <div className='text-black '>{t('deleteAccount')}</div>
+            <div className='text-black '>{t('confirmDeletion')}</div>
+            <div className='text-black font-semibold mt-10'>{t('onTheWebsite')}</div>
+            <div className='text-black mt-5 hover:underline cursor-pointer' onClick={()=> handleOpenSettings()}>{t('openThisLink')}</div>
+            <div className='text-black '>{t('ifNotLoggedIn')}</div>
+            <div className='text-black '>{t('goToProfile')}</div>
+            <div className='text-black '>{t('deleteAccount')}</div>
+            <div className='text-black '>{t('confirmDeletion')}</div>
+            <div className='text-black mt-10'>{t('alternativelyContact')}</div>
             
         </div>
             

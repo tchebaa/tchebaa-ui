@@ -45,7 +45,7 @@ export default function FooterComponent(){
 
     return(
         <div className="w-full flex flex-col items-center bg-gray-200">
-            <div className="mt-16 flex flex-row border-b-2 pb-5 mb-10">
+            <div className="mt-16 flex flex-row border-b-2 pb-5 mb-10 border-black">
                 
                 <Link className="cursor-pointer" href="https://www.tiktok.com/@tchebaa.internati?lang=en" passHref target='_blank'>
                     
@@ -62,7 +62,7 @@ export default function FooterComponent(){
                   
                 </Link>
             </div>
-            <div className="mt-5 flex flex-wrap items-center justify-center border-b-2 pb-5 mb-10 w-11/12 max-w-6xl">
+            <div className="mt-5 flex flex-wrap items-center justify-center border-b-2 pb-5 mb-10 w-11/12 max-w-6xl border-black">
                
                 <Link className="cursor-pointer" href={{
                     pathname: '../pages/privacyPolicyPage'
