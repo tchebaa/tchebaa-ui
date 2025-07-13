@@ -357,7 +357,7 @@ interface Event {
           }
   
       }
-  
+
 
 
         const eventsCategories = [

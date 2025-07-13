@@ -19,6 +19,7 @@ import { generateClient } from 'aws-amplify/data';
 import {type Schema} from '../../../../tchebaa-backend/amplify/data/resource'
 import {useUser} from '../../context/UserContext'
 import {signOut, deleteUser} from '@aws-amplify/auth'
+import {signIn, getCurrentUser} from '@aws-amplify/auth';
 
 
 Amplify.configure(outputs)
@@ -117,6 +118,40 @@ function SettingsComponent() {
         
 
     }
+
+    const checkCurrentUser = async () => {
+    
+    
+    
+          try{
+    
+            const { username, userId, signInDetails } = await getCurrentUser();
+    
+            
+    
+          
+    
+          if(userId) {
+    
+            
+    
+            setUserDetails({username: signInDetails?.loginId ?? '', userId: userId})
+            
+    
+          }
+    
+          } catch (e) {
+            
+          }
+          
+    
+    
+        }
+
+    useEffect(()=> {
+        checkCurrentUser()
+
+    },[loginModal])
 
 
 

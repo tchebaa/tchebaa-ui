@@ -13,6 +13,7 @@ import EventCategories from './components/EventCategories';
 import LocationDateComponent from './components/LocationDateComponent';
 import {useLocation} from './context/LocationContext'
 import {useDate} from './context/DateContext'
+import {useUser} from './context/UserContext'
 import moment from 'moment';
 import { generateClient } from 'aws-amplify/data';
 import SignUpModal from './components/SignUpModal';
@@ -22,7 +23,8 @@ import {Amplify} from 'aws-amplify'
 import ForgotPasswordModal from './components/ForgotPasswordModal';
 import HomeNearEvents from './components/HomeNearEvents';
 import { MdLocationOn } from "react-icons/md";
-import outputs from '../../amplify_outputs.json'
+import outputs from '../../amplify_outputs.json';
+import {signIn, getCurrentUser} from '@aws-amplify/auth';
 import ConfirmAccountModal from './components/ConfirmAccountModal';
 
 
@@ -113,6 +115,7 @@ interface Event {
 
 
   const {userAddress, userLocation, setUserAddress, setUserLocation} = useLocation();
+  const {userDetails, setUserDetails} = useUser()
   const {startDate, setStartDate, endDate, setEndDate} = useDate()
 
   const [loadParticles, setLoadParticles] = useState(true) 
@@ -300,6 +303,45 @@ interface Event {
 
   }
 
+   const checkCurrentUser = async () => {
+  
+  
+  
+        try{
+  
+          const { username, userId, signInDetails } = await getCurrentUser();
+  
+          
+  
+        
+  
+        if(userId) {
+  
+          
+  
+          setUserDetails({username: signInDetails?.loginId ?? '', userId: userId})
+          
+  
+        }
+  
+        } catch (e) {
+          
+        }
+        
+  
+  
+      }
+  
+    
+  
+  
+      useEffect(()=> {
+  
+       checkCurrentUser()
+  
+      
+      },[loginModal])
+  
 
   const handleGetEventsTest = async () => {
 
