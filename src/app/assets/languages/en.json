@@ -401,6 +401,8 @@
     "goToProfile": "3. Go to Profile.",
     "deleteAccount":"4. Delete Account.",
     "confirmDeletion": "5. Confirm the deletion by following the prompts.",
+    "deleteAccount3":"4. Delete Account.",
+    "confirmDeletion4": "5. Confirm the deletion by following the prompts.",
     "onTheWebsite": "On the website",
     "openThisLink": "1. Open this link",
     "alternativelyContact": "Alternatively, you can contact us at tchebaa.int@gmail.com to request deletion."

@@ -205,11 +205,14 @@ export default function DeleteAccount() {
             <div className='text-black '>{t('deleteAccount')}</div>
             <div className='text-black '>{t('confirmDeletion')}</div>
             <div className='text-black font-semibold mt-10'>{t('onTheWebsite')}</div>
-            <div className='text-black mt-5 hover:underline cursor-pointer' onClick={()=> handleOpenSettings()}>{t('openThisLink')}</div>
+            <div className='flex flex-row items-center'>
+                <div className='text-black mt-5 hover:underline cursor-pointer' onClick={()=> handleOpenSettings()}>{t('openThisLink')}:</div>
+                <div className='text-black mt-5 hover:underline cursor-pointer ml-2 text-gray-500 hover:text-black' onClick={()=> handleOpenSettings()}>https://www.tchebaa.com/pages/settingsPage</div>
+            </div>
+            
             <div className='text-black '>{t('ifNotLoggedIn')}</div>
-            <div className='text-black '>{t('goToProfile')}</div>
-            <div className='text-black '>{t('deleteAccount')}</div>
-            <div className='text-black '>{t('confirmDeletion')}</div>
+            <div className='text-black '>{t('deleteAccount3')}</div>
+            <div className='text-black '>{t('confirmDeletion4')}</div>
             <div className='text-black mt-10'>{t('alternativelyContact')}</div>
             
         </div>
