@@ -106,7 +106,7 @@ export default function LoginModal({loginModal, setLoginModal, signUpModal, setS
             const user = await signIn({
               username: email,
               password: password,
-            }).then((e)=> { setLoginError(''); setLoginModal(false); setLoadingLogin(false)})
+            }).then((e)=> { setLoginError(''); setLoginModal(false); setLoadingLogin(false); checkCurrentUser()})
     
             
     
