@@ -393,7 +393,17 @@
     "toAnySpecialPlace": "TO ANY SPECIAL PLACE",
     "letsGoCapital": "LET'S GO",
     "getItOn": "GET IT ON",
-    "downloadOn": "Download on"
+    "downloadOn": "Download on",
+    "toDeleteAccount": "To delete your account and associated data:",
+    "onTheMobileApp": "On the mobile app",
+    "openTheApp": "1. Open the app.",
+    "ifNotLoggedIn": "2. If not logged in,  login to your account.",
+    "goToProfile": "3. Go to Profile.",
+    "deleteAccount":"4. Delete Account.",
+    "confirmDeletion": "5. Confirm the deletion by following the prompts.",
+    "onTheWebsite": "On the website",
+    "openThisLink": "1. Open this link",
+    "alternativelyContact": "Alternatively, you can contact us at tchebaa.int@gmail.com to request deletion."
     
 
 }

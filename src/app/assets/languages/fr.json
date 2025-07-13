@@ -393,6 +393,17 @@
     "toAnySpecialPlace": "VERS N'IMPORTE QUEL ENDROIT SPÉCIAL",
     "letsGoCapital": "ALLONS-Y",
     "getItOn": "TÉLÉCHARGEZ-LE",
-    "downloadOn": "TELECHARGER SUR"
+    "downloadOn": "TELECHARGER SUR",
+    "toDeleteAccount": "Pour supprimer votre compte et les données associées :",
+    "onTheMobileApp": "Sur l’application mobile",
+    "openTheApp": "1.Ouvrez l’application.",
+    "ifNotLoggedIn": "2.Si vous n’êtes pas connecté, connectez-vous à votre compte.",
+    "goToProfile": "3.Allez dans Profil.",
+    "deleteAccount":"4.Sélectionnez Supprimer le compte.",
+    "confirmDeletion": "5.Confirmez la suppression en suivant les instructions à l’écran..",
+    "onTheWebsite": "Sur le site web",
+    "openThisLink": "Ouvrez ce lien.",
+    "alternativelyContact": "Vous pouvez également nous contacter à l’adresse tchebaa.int@gmail.com pour demander la suppression de votre compte."
+    
 
 }
