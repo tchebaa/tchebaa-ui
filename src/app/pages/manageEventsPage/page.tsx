@@ -499,7 +499,7 @@ interface Event {
                 })}
               </div>
                   :
-                  <div className='pb-20'><div className='text-black'>{t('noeventsfound')}</div></div>}
+                  <div className='pb-20 mt-20'><div className='text-black'>{t('noeventsfound')}</div></div>}
             </div>
             }
           </div>
